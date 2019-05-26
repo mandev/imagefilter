@@ -15,7 +15,7 @@
     <repositories>
         <repository>
             <id>local-repo</id>
-            <url>file://C:/dev/maven-repository</url>
+            <url>file://${basedir}/maven-repository</url>
         </repository>
     </repositories>
 
