@@ -103,7 +103,7 @@ pom.xml.releaseBackup
 ######################
 # Package Files
 ######################
-**/*.jar
+#**/*.jar
 **/*.war
 **/*.ear
 **/*.db
