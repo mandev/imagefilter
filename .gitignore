@@ -175,11 +175,6 @@ pom.xml.releaseBackup
 .editorconfig
 
 ######################
-# Anything marked with gitignore:
-######################
-*gitignore*
-
-######################
 # python compiled code :
 ######################
 *.pyc
