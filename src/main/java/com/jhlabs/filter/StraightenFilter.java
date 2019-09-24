@@ -22,16 +22,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A filter which rotates an image. These days this is easier done with Java2D, but this filter remains.
+ * A filter which rotates an image. These days this is easier done with Java2D,
+ * but this filter remains.
  */
 public class StraightenFilter extends TransformFilter {
+
     private static final Logger logger = LoggerFactory.getLogger(StraightenFilter.class);
     //
 
     private float angle;
     private float cos;
     private float sin;
-    private float scale ;
+    private float scale;
     private boolean keepSize = true;
 
     /**
@@ -43,6 +45,7 @@ public class StraightenFilter extends TransformFilter {
 
     /**
      * Construct a RotateFilter.
+     *
      * @param angle the angle to rotate
      */
     public StraightenFilter(float angle) {
@@ -51,6 +54,7 @@ public class StraightenFilter extends TransformFilter {
 
     /**
      * Construct a RotateFilter.
+     *
      * @param angle the angle to rotate
      * @param resize true if the output image should be resized
      */
@@ -61,6 +65,7 @@ public class StraightenFilter extends TransformFilter {
 
     /**
      * Specifies the angle of rotation.
+     *
      * @param angle the angle of rotation.
      * @angle
      * @see #getAngle
@@ -73,13 +78,13 @@ public class StraightenFilter extends TransformFilter {
 
     /**
      * Returns the angle of rotation.
+     *
      * @return the angle of rotation.
      * @see #setAngle
      */
     public float getAngle() {
         return angle;
     }
-
 
     @Override
     protected void transformSpace(Rectangle rect) {
@@ -143,7 +148,7 @@ public class StraightenFilter extends TransformFilter {
     // Igor Krivokon
     // TODO : deal with angle > +/- 90°
     private float getScale(int width, int height) {
-        double a = Math.abs(angle) ;
+        double a = Math.abs(angle);
         float c = (float) Math.cos(a);
         float s = (float) Math.sin(a);
         float ha = (float) (height * height) / (width * s + height * c);

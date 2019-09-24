@@ -18,7 +18,8 @@ package com.jhlabs.image;
 import java.util.*;
 
 /**
- * A filter which "dissolves" an image by thresholding the alpha channel with random numbers.
+ * A filter which "dissolves" an image by thresholding the alpha channel with
+ * random numbers.
  */
 public class DissolveFilter extends PointFilter {
 
@@ -30,11 +31,12 @@ public class DissolveFilter extends PointFilter {
 
     public DissolveFilter() {
         randomNumbers = new Random(0);
-        initialize() ;
+        initialize();
     }
 
     /**
      * Set the density of the image in the range 0..1.
+     *
      * @param density the density
      * @min-value 0
      * @max-value 1
@@ -47,6 +49,7 @@ public class DissolveFilter extends PointFilter {
 
     /**
      * Get the density of the image.
+     *
      * @return the density
      * @see #setDensity
      */
@@ -56,6 +59,7 @@ public class DissolveFilter extends PointFilter {
 
     /**
      * Set the softness of the dissolve in the range 0..1.
+     *
      * @param softness the softness
      * @min-value 0
      * @max-value 1
@@ -68,6 +72,7 @@ public class DissolveFilter extends PointFilter {
 
     /**
      * Get the softness of the dissolve.
+     *
      * @return the softness
      * @see #setSoftness
      */

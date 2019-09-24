@@ -95,7 +95,7 @@ public class GaussianFilter extends ConvolveFilter {
 
         return dst;
     }
-   
+
     public static void convolve(Kernel kernel, int[] inPixels, int[] outPixels, int width, int height,
             boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction) {
 

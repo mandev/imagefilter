@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
@@ -24,6 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class StraightenPanelFilter extends AbstractPanelFilter implements ChangeListener, ActionListener {
+
     //
     private static final Logger logger = LoggerFactory.getLogger(StraightenPanelFilter.class);
     //

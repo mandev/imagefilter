@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
@@ -18,6 +17,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class UnsharpMaskPanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     //
     private JPanel panel;
     private FloatJSpinSlider radiusSlider;

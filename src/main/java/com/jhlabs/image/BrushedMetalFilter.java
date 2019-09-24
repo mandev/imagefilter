@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.image.BufferedImage;
@@ -40,11 +39,11 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
     /**
      * Constructs a BrushedMetalFilter object.
      *
-     * @param color       an int specifying the metal color
-     * @param radius      an int specifying the blur size
-     * @param amount      a float specifying the amount of texture
-     * @param monochrome  a boolean -- true for monochrome texture
-     * @param shine       a float specifying the shine to add
+     * @param color an int specifying the metal color
+     * @param radius an int specifying the blur size
+     * @param amount a float specifying the amount of texture
+     * @param monochrome a boolean -- true for monochrome texture
+     * @param shine a float specifying the shine to add
      */
     public BrushedMetalFilter(int color, int radius, float amount, boolean monochrome, float shine) {
         this.color = color;
@@ -58,8 +57,9 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
         int width = src.getWidth();
         int height = src.getHeight();
 
-        if (dst == null)
+        if (dst == null) {
             dst = createCompatibleDestImage(src, null);
+        }
 
         int[] inPixels = new int[width];
         int[] outPixels = new int[width];
@@ -93,27 +93,38 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
                 blur(inPixels, outPixels, width, radius);
                 setRGB(dst, 0, y, width, 1, outPixels);
             }
-            else
+            else {
                 setRGB(dst, 0, y, width, 1, inPixels);
+            }
         }
         return dst;
     }
 
     private int random(int x) {
         x += (int) (255 * (2 * randomNumbers.nextFloat() - 1) * amount);
-        if (x < 0) x = 0;
-        else if (x > 0xff) x = 0xff;
+        if (x < 0) {
+            x = 0;
+        }
+        else if (x > 0xff) {
+            x = 0xff;
+        }
         return x;
     }
 
     private static int clamp(int c) {
-        if (c < 0) return 0;
-        if (c > 255) return 255;
+        if (c < 0) {
+            return 0;
+        }
+        if (c > 255) {
+            return 255;
+        }
         return c;
     }
 
     /**
-     * Return a mod b. This differs from the % operator with respect to negative numbers.
+     * Return a mod b. This differs from the % operator with respect to negative
+     * numbers.
+     *
      * @param a the dividend
      * @param b the divisor
      * @return a mod b
@@ -140,9 +151,13 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
             out[x] = 0xff000000 | ((tr / r2) << 16) | ((tg / r2) << 8) | (tb / r2);
 
             int i1 = x + radius + 1;
-            if (i1 > widthMinus1) i1 = mod(i1, width);
+            if (i1 > widthMinus1) {
+                i1 = mod(i1, width);
+            }
             int i2 = x - radius;
-            if (i2 < 0) i2 = mod(i2, width);
+            if (i2 < 0) {
+                i2 = mod(i2, width);
+            }
             int rgb1 = in[i1];
             int rgb2 = in[i2];
 
@@ -154,6 +169,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the horizontal size of the blur.
+     *
      * @param radius the radius of the blur in the horizontal direction
      * @min-value 0
      * @max-value 100+
@@ -165,6 +181,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the horizontal size of the blur.
+     *
      * @return the radius of the blur in the horizontal direction
      * @see #setRadius
      */
@@ -174,6 +191,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the amount of noise to add in the range 0..1.
+     *
      * @param amount the amount of noise
      * @min-value 0
      * @max-value 1
@@ -185,6 +203,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the amount of noise to add.
+     *
      * @return the amount of noise
      * @see #setAmount
      */
@@ -194,6 +213,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the amount of shine to add to the range 0..1.
+     *
      * @param shine the amount of shine
      * @min-value 0
      * @max-value 1
@@ -205,6 +225,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the amount of shine to add in the range 0..1.
+     *
      * @return the amount of shine
      * @see #setShine
      */
@@ -214,6 +235,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the color of the metal.
+     *
      * @param color the color in ARGB form
      * @see #getColor
      */
@@ -223,6 +245,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the color of the metal.
+     *
      * @return the color in ARGB form
      * @see #setColor
      */
@@ -232,6 +255,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the type of noise to add.
+     *
      * @param monochrome true for monochrome noise
      * @see #getMonochrome
      */
@@ -241,6 +265,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the type of noise to add.
+     *
      * @return true for monochrome noise
      * @see #setMonochrome
      */

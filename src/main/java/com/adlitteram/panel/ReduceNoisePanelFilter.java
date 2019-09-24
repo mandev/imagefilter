@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.adlitteram.panel;
 
 import com.adlitteram.util.Message;
@@ -19,6 +18,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class ReduceNoisePanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     //
     private JPanel panel;
 

@@ -119,7 +119,7 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
         }
         return new BufferedImage(dstCM, dstCM.createCompatibleWritableRaster(width, height), dstCM.isAlphaPremultiplied(), null);
     }
-    
+
     public static BufferedImage createBufferedImage(ColorModel colorModel, int width, int height, int[] pixels) {
         // RGB
         if (colorModel instanceof DirectColorModel) {
@@ -149,7 +149,7 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
         BufferedImage bi = new BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied(), null);
         bi.setRGB(0, 0, width, height, pixels, 0, width);
         return bi;
-    }    
+    }
 
     @Override
     public Rectangle2D getBounds2D(BufferedImage src) {
@@ -220,7 +220,7 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
         // Unknown
         return UNKNOWN_TYPE;
     }
-    
+
     // BufferedImage is Gray (8 bits) - Return internal array
     public static byte[] getGRAY(BufferedImage image) {
         return ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
@@ -442,9 +442,7 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
     public static void setRGB9(BufferedImage image, int sx, int sy, int width, int height, int[] pixels) {
         image.setRGB(sx, sy, width, height, pixels, 0, width);
     }
-    
 
-    
 }
 //    public BufferedImage createBufferedImage(ColorModel colorModel, int width, int height, int[] pixels) {
 //

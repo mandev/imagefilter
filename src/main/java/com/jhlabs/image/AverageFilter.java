@@ -12,27 +12,26 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-
+ */
 package com.jhlabs.image;
 
-
 /**
- * A filter which averages the 3x3 neighbourhood of each pixel, providing a simple blur.
+ * A filter which averages the 3x3 neighbourhood of each pixel, providing a
+ * simple blur.
  */
 public class AverageFilter extends ConvolveFilter {
-	
+
     /**
      * The convolution kernal for the averaging.
      */
-	protected static float[] theMatrix = { 0.1f, 0.1f, 0.1f, 0.1f, 0.2f, 0.1f, 0.1f, 0.1f, 0.1f };
+    protected static float[] theMatrix = {0.1f, 0.1f, 0.1f, 0.1f, 0.2f, 0.1f, 0.1f, 0.1f, 0.1f};
 
-	public AverageFilter() {
-		super( theMatrix );
-	}
+    public AverageFilter() {
+        super(theMatrix);
+    }
 
     @Override
-	public String toString() {
-		return "Blur/Average Blur";
-	}
+    public String toString() {
+        return "Blur/Average Blur";
+    }
 }

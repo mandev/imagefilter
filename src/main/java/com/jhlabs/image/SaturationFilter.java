@@ -16,8 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * A filter to change the saturation of an image. This works by calculating a grayscale version of the image
- * and then extrapolating away from it.
+ * A filter to change the saturation of an image. This works by calculating a
+ * grayscale version of the image and then extrapolating away from it.
  */
 public class SaturationFilter extends PointFilter {
 
@@ -30,8 +30,7 @@ public class SaturationFilter extends PointFilter {
     }
 
     /**
-     * Construct a SaturationFilter.
-     * The amount of saturation change.
+     * Construct a SaturationFilter. The amount of saturation change.
      */
     public SaturationFilter(float amount) {
         this.amount = amount;
@@ -39,8 +38,10 @@ public class SaturationFilter extends PointFilter {
     }
 
     /**
-     * Set the amount of saturation change. 1 leaves the image unchanged, values between 0 and 1 desaturate, 0 completely
-     * desaturates it and values above 1 increase the saturation.
+     * Set the amount of saturation change. 1 leaves the image unchanged, values
+     * between 0 and 1 desaturate, 0 completely desaturates it and values above
+     * 1 increase the saturation.
+     *
      * @param amount the amount
      */
     public void setAmount(float amount) {
@@ -49,6 +50,7 @@ public class SaturationFilter extends PointFilter {
 
     /**
      * Set the amount of saturation change.
+     *
      * @return the amount
      */
     public float getAmount() {

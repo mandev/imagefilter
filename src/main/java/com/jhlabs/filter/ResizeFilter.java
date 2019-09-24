@@ -40,6 +40,7 @@ public class ResizeFilter extends AbstractBufferedImageOp {
 
     /**
      * Construct a ResizeFilter.
+     *
      * @param width the width to scale to
      * @param height the height to scale to
      * @param type

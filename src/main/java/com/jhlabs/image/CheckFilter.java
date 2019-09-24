@@ -36,6 +36,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Set the foreground color.
+     *
      * @param foreground the color.
      * @see #getForeground
      */
@@ -45,6 +46,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Get the foreground color.
+     *
      * @return the color.
      * @see #setForeground
      */
@@ -54,6 +56,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Set the background color.
+     *
      * @param background the color.
      * @see #getBackground
      */
@@ -63,6 +66,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Get the background color.
+     *
      * @return the color.
      * @see #setBackground
      */
@@ -72,6 +76,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Set the X scale of the texture.
+     *
      * @param xScale the scale.
      * @see #getXScale
      */
@@ -81,6 +86,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Get the X scale of the texture.
+     *
      * @return the scale.
      * @see #setXScale
      */
@@ -90,6 +96,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Set the Y scale of the texture.
+     *
      * @param yScale the scale.
      * @see #getYScale
      */
@@ -99,6 +106,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Get the Y scale of the texture.
+     *
      * @return the scale.
      * @see #setYScale
      */
@@ -108,6 +116,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Set the fuzziness of the texture.
+     *
      * @param fuzziness the fuzziness.
      * @see #getFuzziness
      */
@@ -117,6 +126,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Get the fuzziness of the texture.
+     *
      * @return the fuzziness.
      * @see #setFuzziness
      */
@@ -126,6 +136,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Set the angle of the texture.
+     *
      * @param angle the angle of the texture.
      * @angle
      * @see #getAngle
@@ -142,6 +153,7 @@ public class CheckFilter extends PointFilter {
 
     /**
      * Get the angle of the texture.
+     *
      * @return the angle of the texture.
      * @see #setAngle
      */

@@ -36,6 +36,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Construct a GammaFilter.
+     *
      * @param gamma the gamma level for all RGB channels
      */
     public GammaContrastFilter(float gamma) {
@@ -44,6 +45,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Construct a GammaFilter.
+     *
      * @param rGamma the gamma level for the red channel
      * @param gGamma the gamma level for the blue channel
      * @param bGamma the gamma level for the green channel
@@ -54,6 +56,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Set the filter brightness.
+     *
      * @param brightness the brightness in the range 0 to 1
      * @min-value 0
      * @max-value 0
@@ -66,6 +69,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Get the filter brightness.
+     *
      * @return the brightness in the range 0 to 1
      * @see #setBrightness
      */
@@ -75,6 +79,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Set the filter contrast.
+     *
      * @param contrast the contrast in the range 0 to 1
      * @min-value 0
      * @max-value 0
@@ -87,6 +92,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Get the filter contrast.
+     *
      * @return the contrast in the range 0 to 1
      * @see #setContrast
      */
@@ -96,6 +102,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Set the gamma levels.
+     *
      * @param rGamma the gamma level for the red channel
      * @param gGamma the gamma level for the blue channel
      * @param bGamma the gamma level for the green channel
@@ -110,6 +117,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Set the gamma level.
+     *
      * @param gamma the gamma level for all RGB channels
      * @see #getGamma
      */
@@ -119,6 +127,7 @@ public class GammaContrastFilter extends TransferFilter {
 
     /**
      * Get the gamma level.
+     *
      * @return the gamma level for all RGB channels
      * @see #setGamma
      */

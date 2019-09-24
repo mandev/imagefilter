@@ -13,23 +13,32 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.Rectangle;
 
 /**
- * A filter which removes noise from an image using a "pepper and salt" algorithm.
+ * A filter which removes noise from an image using a "pepper and salt"
+ * algorithm.
  */
 public class DespeckleFilter extends WholeImageFilter {
+
     public DespeckleFilter() {
     }
 
     private short pepperAndSalt(short c, short v1, short v2) {
-        if (c < v1) c++;
-        if (c < v2) c++;
-        if (c > v1) c--;
-        if (c > v2) c--;
+        if (c < v1) {
+            c++;
+        }
+        if (c < v2) {
+            c++;
+        }
+        if (c > v1) {
+            c--;
+        }
+        if (c > v2) {
+            c--;
+        }
         return c;
     }
 

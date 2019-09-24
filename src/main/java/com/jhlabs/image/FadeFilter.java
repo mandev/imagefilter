@@ -30,6 +30,7 @@ public class FadeFilter extends PointFilter {
 
     /**
      * Specifies the angle of the texture.
+     *
      * @param angle the angle of the texture.
      * @angle
      * @see #getAngle
@@ -46,6 +47,7 @@ public class FadeFilter extends PointFilter {
 
     /**
      * Returns the angle of the texture.
+     *
      * @return the angle of the texture.
      * @see #setAngle
      */

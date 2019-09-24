@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.*;
@@ -41,6 +40,7 @@ public class ContourFilter extends WholeImageFilter {
 
     /**
      * Specifies the scale of the contours.
+     *
      * @param scale the scale of the contours.
      * @min-value 0
      * @max-value 1
@@ -52,6 +52,7 @@ public class ContourFilter extends WholeImageFilter {
 
     /**
      * Returns the scale of the contours.
+     *
      * @return the scale of the contours.
      * @see #setScale
      */
@@ -118,16 +119,19 @@ public class ContourFilter extends WholeImageFilter {
                     if (nw != ne || nw != sw || ne != se || sw != se) {
                         v = (int) (scale * (Math.abs(nwb - neb) + Math.abs(nwb - swb) + Math.abs(neb - seb) + Math.abs(swb - seb)));
 //						v /= 255;
-                        if (v > 255)
+                        if (v > 255) {
                             v = 255;
+                        }
                     }
                 }
 
-                if (v != 0)
+                if (v != 0) {
                     outPixels[index] = PixelUtils.combinePixels(inPixels[index], contourColor, PixelUtils.NORMAL, v);
+                }
 //					outPixels[index] = PixelUtils.combinePixels( (contourColor & 0xff)|(v << 24), inPixels[index], PixelUtils.NORMAL );
-                else
+                else {
                     outPixels[index] = inPixels[index];
+                }
                 index++;
             }
             short[] t;

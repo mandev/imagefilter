@@ -36,6 +36,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Construct a ThresholdFilter.
+     *
      * @param t the threshold value
      */
     public ThresholdFilter(int t) {
@@ -45,6 +46,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Set the lower threshold value.
+     *
      * @param lowerThreshold the threshold value
      * @see #getLowerThreshold
      */
@@ -55,6 +57,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Get the lower threshold value.
+     *
      * @return the threshold value
      * @see #setLowerThreshold
      */
@@ -64,6 +67,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Set the upper threshold value.
+     *
      * @param upperThreshold the threshold value
      * @see #getUpperThreshold
      */
@@ -74,6 +78,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Get the upper threshold value.
+     *
      * @return the threshold value
      * @see #setUpperThreshold
      */
@@ -83,6 +88,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Set the color to be used for pixels above the upper threshold.
+     *
      * @param white the color
      * @see #getWhite
      */
@@ -92,6 +98,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Get the color to be used for pixels above the upper threshold.
+     *
      * @return the color
      * @see #setWhite
      */
@@ -101,6 +108,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Set the color to be used for pixels below the lower threshold.
+     *
      * @param black the color
      * @see #getBlack
      */
@@ -110,6 +118,7 @@ public class ThresholdFilter extends PointFilter {
 
     /**
      * Set the color to be used for pixels below the lower threshold.
+     *
      * @return the color
      * @see #setBlack
      */

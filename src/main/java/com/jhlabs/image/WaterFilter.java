@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.geom.Point2D;
@@ -40,6 +39,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Set the wavelength of the ripples.
+     *
      * @param wavelength the wavelength
      * @see #getWavelength
      */
@@ -49,6 +49,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Get the wavelength of the ripples.
+     *
      * @return the wavelength
      * @see #setWavelength
      */
@@ -58,6 +59,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Set the amplitude of the ripples.
+     *
      * @param amplitude the amplitude
      * @see #getAmplitude
      */
@@ -67,6 +69,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Get the amplitude of the ripples.
+     *
      * @return the amplitude
      * @see #setAmplitude
      */
@@ -76,6 +79,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Set the phase of the ripples.
+     *
      * @param phase the phase
      * @see #getPhase
      */
@@ -85,6 +89,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Get the phase of the ripples.
+     *
      * @return the phase
      * @see #setPhase
      */
@@ -93,7 +98,9 @@ public class WaterFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the X direction as a proportion of the image size.
+     * Set the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @param centreX the center
      * @see #getCentreX
      */
@@ -102,7 +109,9 @@ public class WaterFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the X direction as a proportion of the image size.
+     * Get the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreX
      */
@@ -111,7 +120,9 @@ public class WaterFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the Y direction as a proportion of the image size.
+     * Set the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @param centreY the center
      * @see #getCentreY
      */
@@ -120,7 +131,9 @@ public class WaterFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the Y direction as a proportion of the image size.
+     * Get the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreY
      */
@@ -130,6 +143,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Set the centre of the effect as a proportion of the image size.
+     *
      * @param centre the center
      * @see #getCentre
      */
@@ -140,6 +154,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Get the centre of the effect as a proportion of the image size.
+     *
      * @return the center
      * @see #setCentre
      */
@@ -149,6 +164,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Set the radius of the effect.
+     *
      * @param radius the radius
      * @min-value 0
      * @see #getRadius
@@ -159,6 +175,7 @@ public class WaterFilter extends TransformFilter {
 
     /**
      * Get the radius of the effect.
+     *
      * @return the radius
      * @see #setRadius
      */
@@ -169,7 +186,9 @@ public class WaterFilter extends TransformFilter {
     private void initialize(BufferedImage src) {
         icentreX = src.getWidth() * centreX;
         icentreY = src.getHeight() * centreY;
-        if (radius == 0) radius = Math.min(icentreX, icentreY);
+        if (radius == 0) {
+            radius = Math.min(icentreX, icentreY);
+        }
         radius2 = radius * radius;
     }
 
@@ -197,8 +216,9 @@ public class WaterFilter extends TransformFilter {
             float distance = (float) Math.sqrt(distance2);
             float amount = amplitude * (float) Math.sin(distance / wavelength * ImageMath.TWO_PI - phase);
             amount *= (radius - distance) / radius;
-            if (distance != 0)
+            if (distance != 0) {
                 amount *= wavelength / distance;
+            }
             out[0] = x + dx * amount;
             out[1] = y + dy * amount;
         }

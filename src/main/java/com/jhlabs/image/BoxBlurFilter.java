@@ -13,15 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import com.jhlabs.utils.ThreadUtils;
 import java.awt.image.BufferedImage;
 
 /**
- * A filter which performs a box blur on an image. The horizontal and vertical blurs can be specified separately
- * and a number of iterations can be given which allows an approximation to Gaussian blur.
+ * A filter which performs a box blur on an image. The horizontal and vertical
+ * blurs can be specified separately and a number of iterations can be given
+ * which allows an approximation to Gaussian blur.
  */
 public class BoxBlurFilter extends AbstractBufferedImageOp {
 
@@ -38,6 +38,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Construct a BoxBlurFilter.
+     *
      * @param hRadius the horizontal radius of blur
      * @param vRadius the vertical radius of blur
      * @param iterations the number of time to iterate the blur
@@ -50,6 +51,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set whether to premultiply the alpha channel.
+     *
      * @param premultiplyAlpha true to premultiply the alpha
      * @see #getPremultiplyAlpha
      */
@@ -59,6 +61,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get whether to premultiply the alpha channel.
+     *
      * @return true to premultiply the alpha
      * @see #setPremultiplyAlpha
      */
@@ -70,7 +73,9 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
         int width = src.getWidth();
         int height = src.getHeight();
 
-        if (dst == null) dst = createCompatibleDestImage(src);
+        if (dst == null) {
+            dst = createCompatibleDestImage(src);
+        }
 
         int[] inPixels = new int[width * height];
         int[] outPixels = new int[width * height];
@@ -78,7 +83,9 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
         getRGB(src, 0, 0, width, height, inPixels);
 
         boolean preMul = (premultiplyAlpha && src.getColorModel().hasAlpha() && !src.isAlphaPremultiplied());
-        if (preMul) ImageMath.premultiply(inPixels, 0, inPixels.length);
+        if (preMul) {
+            ImageMath.premultiply(inPixels, 0, inPixels.length);
+        }
 
         for (int i = 0; i < iterations; i++) {
             blur(inPixels, outPixels, width, height, hRadius);
@@ -90,7 +97,9 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
             blurFractional(outPixels, inPixels, height, width, vRadius);
         }
 
-        if (preMul) ImageMath.unpremultiply(inPixels, 0, inPixels.length);
+        if (preMul) {
+            ImageMath.unpremultiply(inPixels, 0, inPixels.length);
+        }
 
         setRGB(dst, 0, 0, width, height, inPixels);
         return dst;
@@ -151,15 +160,18 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
         @Override
         public void run() {
-            if (fractionnal)
+            if (fractionnal) {
                 BoxBlurFilter.blurFractional(start, end, inPixels, outPixels, width, height, radius);
-            else
+            }
+            else {
                 BoxBlurFilter.blur(start, end, inPixels, outPixels, width, height, radius);
+            }
         }
     }
 
     /**
      * Blur and transpose a block of ARGB pixels.
+     *
      * @param in the input pixels
      * @param out the output pixels
      * @param width the width of the pixel array
@@ -194,9 +206,13 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
                 out[outIndex] = (divide[ta] << 24) | (divide[tr] << 16) | (divide[tg] << 8) | divide[tb];
 
                 int i1 = x + r + 1;
-                if (i1 > widthMinus1) i1 = widthMinus1;
+                if (i1 > widthMinus1) {
+                    i1 = widthMinus1;
+                }
                 int i2 = x - r;
-                if (i2 < 0) i2 = 0;
+                if (i2 < 0) {
+                    i2 = 0;
+                }
                 int rgb1 = in[inIndex + i1];
                 int rgb2 = in[inIndex + i2];
 
@@ -262,6 +278,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the horizontal size of the blur.
+     *
      * @param hRadius the radius of the blur in the horizontal direction
      * @min-value 0
      * @see #getHRadius
@@ -272,6 +289,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the horizontal size of the blur.
+     *
      * @return the radius of the blur in the horizontal direction
      * @see #setHRadius
      */
@@ -281,6 +299,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the vertical size of the blur.
+     *
      * @param vRadius the radius of the blur in the vertical direction
      * @min-value 0
      * @see #getVRadius
@@ -291,6 +310,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the vertical size of the blur.
+     *
      * @return the radius of the blur in the vertical direction
      * @see #setVRadius
      */
@@ -300,6 +320,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set both the horizontal and vertical sizes of the blur.
+     *
      * @param radius the radius of the blur in both directions
      * @min-value 0
      * @see #getRadius
@@ -310,6 +331,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the size of the blur.
+     *
      * @return the radius of the blur in the horizontal direction
      * @see #setRadius
      */
@@ -319,6 +341,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the number of iterations the blur is performed.
+     *
      * @param iterations the number of iterations
      * @min-value 0
      * @see #getIterations
@@ -329,6 +352,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the number of iterations the blur is performed.
+     *
      * @return the number of iterations
      * @see #setIterations
      */

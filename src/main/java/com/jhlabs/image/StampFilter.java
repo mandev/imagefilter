@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * A filter which produces a rubber-stamp type of effect by performing a thresholded blur.
+ * A filter which produces a rubber-stamp type of effect by performing a
+ * thresholded blur.
  */
 public class StampFilter extends PointFilter {
 
@@ -37,6 +38,7 @@ public class StampFilter extends PointFilter {
 
     /**
      * Construct a StampFilter.
+     *
      * @param threshold the threshold value
      */
     public StampFilter(float threshold) {
@@ -45,6 +47,7 @@ public class StampFilter extends PointFilter {
 
     /**
      * Set the radius of the effect.
+     *
      * @param radius the radius
      * @min-value 0
      * @see #getRadius
@@ -55,6 +58,7 @@ public class StampFilter extends PointFilter {
 
     /**
      * Get the radius of the effect.
+     *
      * @return the radius
      * @see #setRadius
      */
@@ -64,16 +68,18 @@ public class StampFilter extends PointFilter {
 
     /**
      * Set the threshold value.
+     *
      * @param threshold the threshold value
      * @see #getThreshold
      */
     public void setThreshold(float threshold) {
         this.threshold = threshold;
-        initialize() ;
+        initialize();
     }
 
     /**
      * Get the threshold value.
+     *
      * @return the threshold value
      * @see #setThreshold
      */
@@ -83,6 +89,7 @@ public class StampFilter extends PointFilter {
 
     /**
      * Set the softness of the effect in the range 0..1.
+     *
      * @param softness the softness
      * @min-value 0
      * @max-value 1
@@ -90,11 +97,12 @@ public class StampFilter extends PointFilter {
      */
     public void setSoftness(float softness) {
         this.softness = softness;
-        initialize() ;
+        initialize();
     }
 
     /**
      * Get the softness of the effect.
+     *
      * @return the softness
      * @see #setSoftness
      */
@@ -104,6 +112,7 @@ public class StampFilter extends PointFilter {
 
     /**
      * Set the color to be used for pixels above the upper threshold.
+     *
      * @param white the color
      * @see #getWhite
      */
@@ -113,6 +122,7 @@ public class StampFilter extends PointFilter {
 
     /**
      * Get the color to be used for pixels above the upper threshold.
+     *
      * @return the color
      * @see #setWhite
      */
@@ -122,6 +132,7 @@ public class StampFilter extends PointFilter {
 
     /**
      * Set the color to be used for pixels below the lower threshold.
+     *
      * @param black the color
      * @see #getBlack
      */
@@ -131,6 +142,7 @@ public class StampFilter extends PointFilter {
 
     /**
      * Set the color to be used for pixels below the lower threshold.
+     *
      * @return the color
      * @see #setBlack
      */

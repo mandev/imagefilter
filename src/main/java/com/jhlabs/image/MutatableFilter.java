@@ -12,12 +12,12 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-
+ */
 package com.jhlabs.image;
 
 import java.awt.image.*;
 
 public interface MutatableFilter {
-	public void mutate(float mutationLevel, BufferedImageOp dst, boolean keepShape, boolean keepColors);
+
+    public void mutate(float mutationLevel, BufferedImageOp dst, boolean keepShape, boolean keepColors);
 }

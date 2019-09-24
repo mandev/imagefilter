@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.util.Message;
@@ -20,6 +19,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class CropPanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     //
     private JPanel panel;
     private JSpinner xField;

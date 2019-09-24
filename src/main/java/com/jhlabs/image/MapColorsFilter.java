@@ -16,8 +16,9 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * A filter which replaces one color by another in an image. This is frankly, not often useful, but has its occasional
- * uses when dealing with GIF transparency and the like.
+ * A filter which replaces one color by another in an image. This is frankly,
+ * not often useful, but has its occasional uses when dealing with GIF
+ * transparency and the like.
  */
 public class MapColorsFilter extends PointFilter {
 
@@ -33,6 +34,7 @@ public class MapColorsFilter extends PointFilter {
 
     /**
      * Construct a MapColorsFilter.
+     *
      * @param oldColor the color to replace
      * @param newColor the color to replace it with
      */

@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.jhlabs.image.AbstractBufferedImageOp;
@@ -6,6 +5,7 @@ import java.awt.Shape;
 import javax.swing.JPanel;
 
 public interface PanelFilter {
+
     //
     public String getName();
 

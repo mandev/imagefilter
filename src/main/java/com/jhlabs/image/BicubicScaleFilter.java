@@ -13,14 +13,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.*;
 import java.awt.image.*;
 
 /**
- * Scales an image using bi-cubic interpolation, which can't be done with AffineTransformOp.
+ * Scales an image using bi-cubic interpolation, which can't be done with
+ * AffineTransformOp.
  */
 public class BicubicScaleFilter extends AbstractBufferedImageOp {
 
@@ -35,9 +35,11 @@ public class BicubicScaleFilter extends AbstractBufferedImageOp {
     }
 
     /**
-     * Constructor for a filter which scales the input image to the given width and height using bicubic interpolation.
-     * Unfortunately, it appears that bicubic actually looks worse than bilinear interpolation on most Java implementations,
-     * but you can be the judge.
+     * Constructor for a filter which scales the input image to the given width
+     * and height using bicubic interpolation. Unfortunately, it appears that
+     * bicubic actually looks worse than bilinear interpolation on most Java
+     * implementations, but you can be the judge.
+     *
      * @param width the width of the output image
      * @param height the height of the output image
      */
@@ -50,7 +52,9 @@ public class BicubicScaleFilter extends AbstractBufferedImageOp {
         int w = src.getWidth();
         int h = src.getHeight();
 
-        if (dst == null) dst = createCompatibleDestImage(src, width, height);
+        if (dst == null) {
+            dst = createCompatibleDestImage(src, width, height);
+        }
 
         Graphics2D g = dst.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);

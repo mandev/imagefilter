@@ -66,8 +66,9 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
             float total = 0;
             float mean = 2.5f;
             for (int i = 0; i < 10; i++) {
-                if (i > 1)
+                if (i > 1) {
                     factorial *= i;
+                }
                 float probability = (float) Math.pow(mean, i) * (float) Math.exp(-mean) / factorial;
                 int start = (int) (total * 8192);
                 total += probability;
@@ -81,6 +82,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Specifies the scale of the texture.
+     *
      * @param scale the scale of the texture.
      * @min-value 1
      * @max-value 300+
@@ -92,6 +94,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Returns the scale of the texture.
+     *
      * @return the scale of the texture.
      * @see #setScale
      */
@@ -101,6 +104,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Specifies the stretch factor of the texture.
+     *
      * @param stretch the stretch factor of the texture.
      * @min-value 1
      * @max-value 50+
@@ -112,6 +116,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Returns the stretch factor of the texture.
+     *
      * @return the stretch factor of the texture.
      * @see #setStretch
      */
@@ -121,6 +126,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Specifies the angle of the texture.
+     *
      * @param angle the angle of the texture.
      * @angle
      * @see #getAngle
@@ -137,6 +143,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Returns the angle of the texture.
+     *
      * @return the angle of the texture.
      * @see #setAngle
      */
@@ -202,6 +209,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Set the colormap to be used for the filter.
+     *
      * @param colormap the colormap
      * @see #getColormap
      */
@@ -211,6 +219,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Get the colormap to be used for the filter.
+     *
      * @return the colormap
      * @see #setColormap
      */
@@ -244,6 +253,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Specifies the turbulence of the texture.
+     *
      * @param turbulence the turbulence of the texture.
      * @min-value 0
      * @max-value 1
@@ -255,6 +265,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Returns the turbulence of the effect.
+     *
      * @return the turbulence of the effect.
      * @see #setTurbulence
      */
@@ -264,6 +275,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Set the amount of effect.
+     *
      * @param amount the amount
      * @min-value 0
      * @max-value 1
@@ -275,6 +287,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     /**
      * Get the amount of texture.
+     *
      * @return the amount
      * @see #setAmount
      */
@@ -390,12 +403,15 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
             float d;
             dx *= weight;
             dy *= weight;
-            if (distancePower == 1.0f)
+            if (distancePower == 1.0f) {
                 d = dx + dy;
-            else if (distancePower == 2.0f)
+            }
+            else if (distancePower == 2.0f) {
                 d = (float) Math.sqrt(dx * dx + dy * dy);
-            else
+            }
+            else {
                 d = (float) Math.pow((float) Math.pow(dx, distancePower) + (float) Math.pow(dy, distancePower), 1 / distancePower);
+            }
 
             // Insertion sort the long way round to speed it up a bit
             if (d < results[0].distance) {
@@ -443,23 +459,29 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
         float fy = y - iy;
 
         float d = checkCube(fx, fy, ix, iy, results);
-        if (d > fy)
+        if (d > fy) {
             d = checkCube(fx, fy + 1, ix, iy - 1, results);
-        if (d > 1 - fy)
+        }
+        if (d > 1 - fy) {
             d = checkCube(fx, fy - 1, ix, iy + 1, results);
+        }
         if (d > fx) {
             checkCube(fx + 1, fy, ix - 1, iy, results);
-            if (d > fy)
+            if (d > fy) {
                 d = checkCube(fx + 1, fy + 1, ix - 1, iy - 1, results);
-            if (d > 1 - fy)
+            }
+            if (d > 1 - fy) {
                 d = checkCube(fx + 1, fy - 1, ix - 1, iy + 1, results);
+            }
         }
         if (d > 1 - fx) {
             d = checkCube(fx - 1, fy, ix + 1, iy, results);
-            if (d > fy)
+            if (d > fy) {
                 d = checkCube(fx - 1, fy + 1, ix + 1, iy - 1, results);
-            if (d > 1 - fy)
+            }
+            if (d > 1 - fy) {
                 d = checkCube(fx - 1, fy - 1, ix + 1, iy + 1, results);
+            }
         }
 
         float t = 0;
@@ -468,8 +490,9 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
         }
         if (angleCoefficient != 0) {
             float angle = (float) Math.atan2(y - results[0].y, x - results[0].x);
-            if (angle < 0)
+            if (angle < 0) {
                 angle += 2 * (float) Math.PI;
+            }
             angle /= 4 * (float) Math.PI;
             t += angleCoefficient * angle;
         }

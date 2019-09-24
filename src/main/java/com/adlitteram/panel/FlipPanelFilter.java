@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.util.Message;
@@ -18,6 +17,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class FlipPanelFilter extends AbstractPanelFilter implements ChangeListener, ActionListener {
+
     //
     private JPanel panel;
     private JCheckBox horCheck;
@@ -79,9 +79,15 @@ public class FlipPanelFilter extends AbstractPanelFilter implements ChangeListen
         boolean h = horCheck.isSelected();
         boolean v = verCheck.isSelected();
 
-        if ( h && v ) return new FlipFilterFast(FlipFilterFast.FLIP_HV);
-        if ( h ) return new FlipFilterFast(FlipFilterFast.FLIP_H);
-        if ( v ) return new FlipFilterFast(FlipFilterFast.FLIP_V);
-        return new IdentityFilter() ;
+        if (h && v) {
+            return new FlipFilterFast(FlipFilterFast.FLIP_HV);
+        }
+        if (h) {
+            return new FlipFilterFast(FlipFilterFast.FLIP_H);
+        }
+        if (v) {
+            return new FlipFilterFast(FlipFilterFast.FLIP_V);
+        }
+        return new IdentityFilter();
     }
 }

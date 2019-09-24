@@ -14,6 +14,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class MaximumPanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     //
     private JPanel panel;
 

@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.Rectangle;
@@ -36,6 +35,7 @@ public class PerspectiveFilter extends TransformFilter {
 
     /**
      * Construct a PerspectiveFilter.
+     *
      * @param x0 the new position of the top left corner
      * @param y0 the new position of the top left corner
      * @param x1 the new position of the top right corner
@@ -51,6 +51,7 @@ public class PerspectiveFilter extends TransformFilter {
 
     /**
      * Set the new positions of the image corners.
+     *
      * @param x0 the new position of the top left corner
      * @param y0 the new position of the top left corner
      * @param x1 the new position of the top right corner
@@ -119,7 +120,9 @@ public class PerspectiveFilter extends TransformFilter {
     }
 
     /**
-     * Get the origin of the output image. Use this for working out where to draw your new image.
+     * Get the origin of the output image. Use this for working out where to
+     * draw your new image.
+     *
      * @return the X origin.
      */
     public float getOriginX() {
@@ -127,7 +130,9 @@ public class PerspectiveFilter extends TransformFilter {
     }
 
     /**
-     * Get the origin of the output image. Use this for working out where to draw your new image.
+     * Get the origin of the output image. Use this for working out where to
+     * draw your new image.
+     *
      * @return the Y origin.
      */
     public float getOriginY() {

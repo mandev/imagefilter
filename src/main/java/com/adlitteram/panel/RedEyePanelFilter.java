@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.jhlabs.filter.RedEyeFilter;
@@ -15,6 +14,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class RedEyePanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     //
     private JPanel panel;
 

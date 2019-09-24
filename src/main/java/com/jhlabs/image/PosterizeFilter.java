@@ -29,6 +29,7 @@ public class PosterizeFilter extends PointFilter {
 
     /**
      * Set the number of levels in the output image.
+     *
      * @param numLevels the number of levels
      * @see #getNumLevels
      */
@@ -39,6 +40,7 @@ public class PosterizeFilter extends PointFilter {
 
     /**
      * Get the number of levels in the output image.
+     *
      * @return the number of levels
      * @see #setNumLevels
      */

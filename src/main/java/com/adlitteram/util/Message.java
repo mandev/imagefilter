@@ -1,4 +1,3 @@
-
 package com.adlitteram.util;
 
 import java.text.MessageFormat;
@@ -7,9 +6,11 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class Message {
+
     //
     private static ResourceBundle resource;
     private static Locale locale;
+
     //
     private static ResourceBundle getResourceBundle() {
         return ResourceBundle.getBundle("com.adlitteram.resource.text", getLocale());
@@ -26,7 +27,9 @@ public class Message {
 
     public static String get(String key) {
         try {
-            if (resource == null) resource = getResourceBundle();
+            if (resource == null) {
+                resource = getResourceBundle();
+            }
             return resource.getString(key);
         }
         catch (MissingResourceException e) {
@@ -43,7 +46,9 @@ public class Message {
     }
 
     public static String get(String key, Object[] args) {
-        if (args == null) return get(key);
+        if (args == null) {
+            return get(key);
+        }
 
         try {
             return MessageFormat.format(resource.getString(key), args);

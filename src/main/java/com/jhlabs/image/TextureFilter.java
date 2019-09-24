@@ -40,6 +40,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Set the amount of texture.
+     *
      * @param amount the amount
      * @min-value 0
      * @max-value 1
@@ -51,6 +52,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Get the amount of texture.
+     *
      * @return the amount
      * @see #setAmount
      */
@@ -76,6 +78,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Specifies the scale of the texture.
+     *
      * @param scale the scale of the texture.
      * @min-value 1
      * @max-value 300+
@@ -87,6 +90,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Returns the scale of the texture.
+     *
      * @return the scale of the texture.
      * @see #setScale
      */
@@ -96,6 +100,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Specifies the stretch factor of the texture.
+     *
      * @param stretch the stretch factor of the texture.
      * @min-value 1
      * @max-value 50+
@@ -107,6 +112,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Returns the stretch factor of the texture.
+     *
      * @return the stretch factor of the texture.
      * @see #setStretch
      */
@@ -116,6 +122,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Specifies the angle of the texture.
+     *
      * @param angle the angle of the texture.
      * @angle
      * @see #getAngle
@@ -132,6 +139,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Returns the angle of the texture.
+     *
      * @return the angle of the texture.
      * @see #setAngle
      */
@@ -141,6 +149,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Specifies the turbulence of the texture.
+     *
      * @param turbulence the turbulence of the texture.
      * @min-value 0
      * @max-value 1
@@ -152,6 +161,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Returns the turbulence of the texture.
+     *
      * @return the turbulence of the texture.
      * @see #setTurbulence
      */
@@ -161,6 +171,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Set the colormap to be used for the filter.
+     *
      * @param colormap the colormap
      * @see #getColormap
      */
@@ -170,6 +181,7 @@ public class TextureFilter extends PointFilter {
 
     /**
      * Get the colormap to be used for the filter.
+     *
      * @return the colormap
      * @see #setColormap
      */

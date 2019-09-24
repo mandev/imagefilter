@@ -12,11 +12,10 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-
+ */
 package com.jhlabs.math;
 
 public interface Function3D {
-	public float evaluate(float x, float y, float z);
-}
 
+    public float evaluate(float x, float y, float z);
+}

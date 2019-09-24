@@ -40,6 +40,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Construct a ShadowFilter.
+     *
      * @param radius the radius of the shadow
      * @param xOffset the X offset of the shadow
      * @param yOffset the Y offset of the shadow
@@ -54,6 +55,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Specifies the angle of the shadow.
+     *
      * @param angle the angle of the shadow.
      * @angle
      * @see #getAngle
@@ -64,6 +66,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Returns the angle of the shadow.
+     *
      * @return the angle of the shadow.
      * @see #setAngle
      */
@@ -73,6 +76,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the distance of the shadow.
+     *
      * @param distance the distance.
      * @see #getDistance
      */
@@ -82,6 +86,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the distance of the shadow.
+     *
      * @return the distance.
      * @see #setDistance
      */
@@ -90,7 +95,9 @@ public class ShadowFilter extends AbstractBufferedImageOp {
     }
 
     /**
-     * Set the radius of the kernel, and hence the amount of blur. The bigger the radius, the longer this filter will take.
+     * Set the radius of the kernel, and hence the amount of blur. The bigger
+     * the radius, the longer this filter will take.
+     *
      * @param radius the radius of the blur in pixels.
      * @see #getRadius
      */
@@ -100,6 +107,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the radius of the kernel.
+     *
      * @return the radius
      * @see #setRadius
      */
@@ -109,6 +117,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the opacity of the shadow.
+     *
      * @param opacity the opacity.
      * @see #getOpacity
      */
@@ -118,6 +127,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the opacity of the shadow.
+     *
      * @return the opacity.
      * @see #setOpacity
      */
@@ -127,6 +137,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the color of the shadow.
+     *
      * @param shadowColor the color.
      * @see #getShadowColor
      */
@@ -136,6 +147,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the color of the shadow.
+     *
      * @return the color.
      * @see #setShadowColor
      */
@@ -144,7 +156,9 @@ public class ShadowFilter extends AbstractBufferedImageOp {
     }
 
     /**
-     * Set whether to increase the size of the output image to accomodate the shadow.
+     * Set whether to increase the size of the output image to accomodate the
+     * shadow.
+     *
      * @param addMargins true to add margins.
      * @see #getAddMargins
      */
@@ -153,7 +167,9 @@ public class ShadowFilter extends AbstractBufferedImageOp {
     }
 
     /**
-     * Get whether to increase the size of the output image to accomodate the shadow.
+     * Get whether to increase the size of the output image to accomodate the
+     * shadow.
+     *
      * @return true to add margins.
      * @see #setAddMargins
      */
@@ -163,6 +179,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Set whether to only draw the shadow without the original image.
+     *
      * @param shadowOnly true to only draw the shadow.
      * @see #getShadowOnly
      */
@@ -172,6 +189,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     /**
      * Get whether to only draw the shadow without the original image.
+     *
      * @return true to only draw the shadow.
      * @see #setShadowOnly
      */
@@ -193,8 +211,9 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
     @Override
     public Point2D getPoint2D(Point2D srcPt, Point2D dstPt) {
-        if (dstPt == null)
+        if (dstPt == null) {
             dstPt = new Point2D.Double();
+        }
 
         if (addMargins) {
             float xOffset = distance * (float) Math.cos(angle);
@@ -203,8 +222,9 @@ public class ShadowFilter extends AbstractBufferedImageOp {
             float leftShadow = Math.max(0, radius - xOffset);
             dstPt.setLocation(srcPt.getX() + leftShadow, srcPt.getY() + topShadow);
         }
-        else
+        else {
             dstPt.setLocation(srcPt.getX(), srcPt.getY());
+        }
 
         return dstPt;
     }
@@ -219,8 +239,9 @@ public class ShadowFilter extends AbstractBufferedImageOp {
                 ColorModel cm = src.getColorModel();
                 dst = new BufferedImage(cm, cm.createCompatibleWritableRaster(src.getWidth(), src.getHeight()), cm.isAlphaPremultiplied(), null);
             }
-            else
+            else {
                 dst = createCompatibleDestImage(src, null);
+            }
         }
 
         float shadowR = ((shadowColor >> 16) & 0xff) / 255f;

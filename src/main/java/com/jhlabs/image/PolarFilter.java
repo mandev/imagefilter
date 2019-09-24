@@ -13,13 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.image.BufferedImage;
 
 /**
- * A filter which distorts and image by performing coordinate conversions between rectangular and polar coordinates.
+ * A filter which distorts and image by performing coordinate conversions
+ * between rectangular and polar coordinates.
  */
 public class PolarFilter extends TransformFilter {
 
@@ -49,6 +49,7 @@ public class PolarFilter extends TransformFilter {
 
     /**
      * Construct a PolarFilter.
+     *
      * @param type the distortion type
      */
     public PolarFilter(int type) {
@@ -78,6 +79,7 @@ public class PolarFilter extends TransformFilter {
 
     /**
      * Set the distortion type.
+     *
      * @param type the distortion type
      * @see #getType
      */
@@ -87,6 +89,7 @@ public class PolarFilter extends TransformFilter {
 
     /**
      * Get the distortion type.
+     *
      * @return the distortion type
      * @see #setType
      */
@@ -134,10 +137,12 @@ public class PolarFilter extends TransformFilter {
                         r = centreX - x;
                     }
                 }
-                if (x != centreX)
+                if (x != centreX) {
                     m = Math.abs(((float) (y - centreY)) / ((float) (x - centreX)));
-                else
+                }
+                else {
                     m = 0;
+                }
 
                 if (m <= ((float) height / (float) width)) {
                     if (x == centreX) {
@@ -161,20 +166,26 @@ public class PolarFilter extends TransformFilter {
                 theta = x / width * ImageMath.TWO_PI;
                 float theta2;
 
-                if (theta >= 1.5f * ImageMath.PI)
+                if (theta >= 1.5f * ImageMath.PI) {
                     theta2 = ImageMath.TWO_PI - theta;
-                else if (theta >= ImageMath.PI)
+                }
+                else if (theta >= ImageMath.PI) {
                     theta2 = theta - ImageMath.PI;
-                else if (theta >= 0.5f * ImageMath.PI)
+                }
+                else if (theta >= 0.5f * ImageMath.PI) {
                     theta2 = ImageMath.PI - theta;
-                else
+                }
+                else {
                     theta2 = theta;
+                }
 
                 t = (float) Math.tan(theta2);
-                if (t != 0)
+                if (t != 0) {
                     m = 1.0f / t;
-                else
+                }
+                else {
                     m = 0;
+                }
 
                 if (m <= ((float) (height) / (float) (width))) {
                     if (theta2 == 0) {

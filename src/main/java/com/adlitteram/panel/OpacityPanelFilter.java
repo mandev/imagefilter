@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
@@ -15,8 +14,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
 public class OpacityPanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     //
     private JPanel panel;
     private FloatJSpinSlider opacitySlider;

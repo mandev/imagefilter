@@ -41,6 +41,7 @@ public class NoiseFilter extends PointFilter {
 
     /**
      * Set the amount of effect.
+     *
      * @param amount the amount
      * @min-value 0
      * @max-value 1
@@ -52,6 +53,7 @@ public class NoiseFilter extends PointFilter {
 
     /**
      * Get the amount of noise.
+     *
      * @return the amount
      * @see #setAmount
      */
@@ -61,6 +63,7 @@ public class NoiseFilter extends PointFilter {
 
     /**
      * Set the distribution of the noise.
+     *
      * @param distribution the distribution
      * @see #getDistribution
      */
@@ -70,6 +73,7 @@ public class NoiseFilter extends PointFilter {
 
     /**
      * Get the distribution of the noise.
+     *
      * @return the distribution
      * @see #setDistribution
      */
@@ -79,6 +83,7 @@ public class NoiseFilter extends PointFilter {
 
     /**
      * Set whether to use monochrome noise.
+     *
      * @param monochrome true for monochrome noise
      * @see #getMonochrome
      */
@@ -88,6 +93,7 @@ public class NoiseFilter extends PointFilter {
 
     /**
      * Get whether to use monochrome noise.
+     *
      * @return true for monochrome noise
      * @see #setMonochrome
      */
@@ -97,6 +103,7 @@ public class NoiseFilter extends PointFilter {
 
     /**
      * Set the density of the noise.
+     *
      * @param density the density
      * @see #getDensity
      */
@@ -106,6 +113,7 @@ public class NoiseFilter extends PointFilter {
 
     /**
      * Get the density of the noise.
+     *
      * @return the density
      * @see #setDensity
      */

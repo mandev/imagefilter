@@ -13,15 +13,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import com.jhlabs.math.Noise;
 import java.awt.Rectangle;
 
 /**
- * A filter which distorts an image by rippling it in the X or Y directions.
- * The amplitude and wavelength of rippling can be specified as well as whether 
+ * A filter which distorts an image by rippling it in the X or Y directions. The
+ * amplitude and wavelength of rippling can be specified as well as whether
  * pixels going off the edges are wrapped or not.
  */
 public class RippleFilter extends TransformFilter {
@@ -57,6 +56,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Set the amplitude of ripple in the X direction.
+     *
      * @param xAmplitude the amplitude (in pixels).
      * @see #getXAmplitude
      */
@@ -66,6 +66,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Get the amplitude of ripple in the X direction.
+     *
      * @return the amplitude (in pixels).
      * @see #setXAmplitude
      */
@@ -75,6 +76,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Set the wavelength of ripple in the X direction.
+     *
      * @param xWavelength the wavelength (in pixels).
      * @see #getXWavelength
      */
@@ -84,6 +86,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Get the wavelength of ripple in the X direction.
+     *
      * @return the wavelength (in pixels).
      * @see #setXWavelength
      */
@@ -93,6 +96,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Set the amplitude of ripple in the Y direction.
+     *
      * @param yAmplitude the amplitude (in pixels).
      * @see #getYAmplitude
      */
@@ -102,6 +106,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Get the amplitude of ripple in the Y direction.
+     *
      * @return the amplitude (in pixels).
      * @see #setYAmplitude
      */
@@ -111,6 +116,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Set the wavelength of ripple in the Y direction.
+     *
      * @param yWavelength the wavelength (in pixels).
      * @see #getYWavelength
      */
@@ -120,6 +126,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Get the wavelength of ripple in the Y direction.
+     *
      * @return the wavelength (in pixels).
      * @see #setYWavelength
      */
@@ -129,6 +136,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Set the wave type.
+     *
      * @param waveType the type.
      * @see #getWaveType
      */
@@ -138,6 +146,7 @@ public class RippleFilter extends TransformFilter {
 
     /**
      * Get the wave type.
+     *
      * @return the type.
      * @see #setWaveType
      */

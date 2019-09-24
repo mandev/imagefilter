@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * A filter which uses the brightness of each pixel to lookup a color from a colormap. 
+ * A filter which uses the brightness of each pixel to lookup a color from a
+ * colormap.
  */
 public class LookupFilter extends PointFilter {
 
@@ -31,6 +32,7 @@ public class LookupFilter extends PointFilter {
 
     /**
      * Construct a LookupFilter.
+     *
      * @param colormap the color map
      */
     public LookupFilter(Colormap colormap) {
@@ -40,6 +42,7 @@ public class LookupFilter extends PointFilter {
 
     /**
      * Set the colormap to be used for the filter.
+     *
      * @param colormap the colormap
      * @see #getColormap
      */
@@ -49,6 +52,7 @@ public class LookupFilter extends PointFilter {
 
     /**
      * Get the colormap to be used for the filter.
+     *
      * @return the colormap
      * @see #setColormap
      */

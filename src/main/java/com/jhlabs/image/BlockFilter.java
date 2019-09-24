@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 /**
@@ -25,6 +24,7 @@ public class BlockFilter extends TransformFilter {
 
     /**
      * Set the pixel block size.
+     *
      * @param blockSize the number of pixels along each block edge
      * @min-value 1
      * @max-value 100+
@@ -36,6 +36,7 @@ public class BlockFilter extends TransformFilter {
 
     /**
      * Get the pixel block size.
+     *
      * @return the number of pixels along each block edge
      * @see #setBlockSize
      */

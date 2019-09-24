@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * A filter which changes the gain and bias of an image - similar to ContrastFilter.
+ * A filter which changes the gain and bias of an image - similar to
+ * ContrastFilter.
  */
 public class GainFilter extends TransferFilter {
 
@@ -32,6 +33,7 @@ public class GainFilter extends TransferFilter {
 
     /**
      * Set the gain.
+     *
      * @param gain the gain
      * @min-value: 0
      * @max-value: 1
@@ -44,6 +46,7 @@ public class GainFilter extends TransferFilter {
 
     /**
      * Get the gain.
+     *
      * @return the gain
      * @see #setGain
      */
@@ -53,6 +56,7 @@ public class GainFilter extends TransferFilter {
 
     /**
      * Set the bias.
+     *
      * @param bias the bias
      * @min-value: 0
      * @max-value: 1
@@ -65,6 +69,7 @@ public class GainFilter extends TransferFilter {
 
     /**
      * Get the bias.
+     *
      * @return the bias
      * @see #setBias
      */

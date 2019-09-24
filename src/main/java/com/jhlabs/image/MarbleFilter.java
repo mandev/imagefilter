@@ -13,14 +13,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import com.jhlabs.math.Noise;
 import java.awt.Rectangle;
 
 /**
- * This filter applies a marbling effect to an image, displacing pixels by random amounts.
+ * This filter applies a marbling effect to an image, displacing pixels by
+ * random amounts.
  */
 public class MarbleFilter extends TransformFilter {
 
@@ -36,6 +36,7 @@ public class MarbleFilter extends TransformFilter {
 
     /**
      * Set the X scale of the effect.
+     *
      * @param xScale the scale.
      * @see #getXScale
      */
@@ -45,6 +46,7 @@ public class MarbleFilter extends TransformFilter {
 
     /**
      * Get the X scale of the effect.
+     *
      * @return the scale.
      * @see #setXScale
      */
@@ -54,6 +56,7 @@ public class MarbleFilter extends TransformFilter {
 
     /**
      * Set the Y scale of the effect.
+     *
      * @param yScale the scale.
      * @see #getYScale
      */
@@ -63,6 +66,7 @@ public class MarbleFilter extends TransformFilter {
 
     /**
      * Get the Y scale of the effect.
+     *
      * @return the scale.
      * @see #setYScale
      */
@@ -72,6 +76,7 @@ public class MarbleFilter extends TransformFilter {
 
     /**
      * Set the amount of effect.
+     *
      * @param amount the amount
      * @min-value 0
      * @max-value 1
@@ -83,6 +88,7 @@ public class MarbleFilter extends TransformFilter {
 
     /**
      * Get the amount of effect.
+     *
      * @return the amount
      * @see #setAmount
      */
@@ -92,6 +98,7 @@ public class MarbleFilter extends TransformFilter {
 
     /**
      * Specifies the turbulence of the effect.
+     *
      * @param turbulence the turbulence of the effect.
      * @min-value 0
      * @max-value 1
@@ -103,6 +110,7 @@ public class MarbleFilter extends TransformFilter {
 
     /**
      * Returns the turbulence of the effect.
+     *
      * @return the turbulence of the effect.
      * @see #setTurbulence
      */

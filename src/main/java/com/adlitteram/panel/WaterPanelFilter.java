@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
@@ -22,6 +21,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class WaterPanelFilter extends AbstractPanelFilter implements ChangeListener, ActionListener {
+
     //
     private static final String[] INTERPOLATION_ARRAY = {Message.get("Nearest"), Message.get("Bilinear")};
     private static final float DEFAULT_WAVELENGTH = 50f;

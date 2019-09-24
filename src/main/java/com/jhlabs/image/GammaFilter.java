@@ -31,6 +31,7 @@ public class GammaFilter extends TransferFilter {
 
     /**
      * Construct a GammaFilter.
+     *
      * @param gamma the gamma level for all RGB channels
      */
     public GammaFilter(float gamma) {
@@ -39,6 +40,7 @@ public class GammaFilter extends TransferFilter {
 
     /**
      * Construct a GammaFilter.
+     *
      * @param rGamma the gamma level for the red channel
      * @param gGamma the gamma level for the blue channel
      * @param bGamma the gamma level for the green channel
@@ -49,6 +51,7 @@ public class GammaFilter extends TransferFilter {
 
     /**
      * Set the gamma levels.
+     *
      * @param rGamma the gamma level for the red channel
      * @param gGamma the gamma level for the blue channel
      * @param bGamma the gamma level for the green channel
@@ -63,6 +66,7 @@ public class GammaFilter extends TransferFilter {
 
     /**
      * Set the gamma level.
+     *
      * @param gamma the gamma level for all RGB channels
      * @see #getGamma
      */
@@ -72,6 +76,7 @@ public class GammaFilter extends TransferFilter {
 
     /**
      * Get the gamma level.
+     *
      * @return the gamma level for all RGB channels
      * @see #setGamma
      */

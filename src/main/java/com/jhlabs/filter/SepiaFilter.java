@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.jhlabs.filter;
 
 import com.jhlabs.image.PointFilter;
 
 /**
- * A filter which converts an image to grayscale using the NTSC brightness calculation.
+ * A filter which converts an image to grayscale using the NTSC brightness
+ * calculation.
  */
 public class SepiaFilter extends PointFilter {
 
@@ -43,8 +43,12 @@ public class SepiaFilter extends PointFilter {
         int green = average;
         int blue = average - amount;
 
-        if (red > 255) red = 255;
-        if (blue < 0) blue = 0;
+        if (red > 255) {
+            red = 255;
+        }
+        if (blue < 0) {
+            blue = 0;
+        }
         return a | (red << 16) | (green << 8) | blue;
     }
 
@@ -53,5 +57,3 @@ public class SepiaFilter extends PointFilter {
         return "Colors/Sepia";
     }
 }
-
-

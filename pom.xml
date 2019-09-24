@@ -15,7 +15,7 @@
     <repositories>
         <repository>
             <id>local-repo</id>
-            <url>file://${basedir}/maven-repository</url>
+            <url>file://${basedir}/lib</url>
         </repository>
     </repositories>
 

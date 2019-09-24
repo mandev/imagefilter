@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.util.Message;
@@ -14,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class InternalCropPanelFilter extends IdentityPanelFilter {
+
     //
     private JPanel panel;
     private JTextField xField;

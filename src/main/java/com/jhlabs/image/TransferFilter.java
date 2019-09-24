@@ -44,12 +44,11 @@ public abstract class TransferFilter extends PointFilter {
         return table;
     }
 
-    abstract  protected float transferFunction(float v) ;
-    
+    abstract protected float transferFunction(float v);
+
 //    protected float transferFunction(float v) {
 //        return 0;
 //    }
-
     public int[] getLUT() {
         int[] lut = new int[256];
         for (int i = 0; i < 256; i++) {

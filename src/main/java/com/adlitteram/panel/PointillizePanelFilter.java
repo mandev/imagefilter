@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.color.ColorPalette;
@@ -24,6 +23,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class PointillizePanelFilter extends AbstractPanelFilter implements ChangeListener, ActionListener {
+
     //
     private static final String[] gridTypeArray = {
         Message.get("Random"), Message.get("Square"), Message.get("Hexagon"),

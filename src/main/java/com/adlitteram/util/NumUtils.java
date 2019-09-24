@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.adlitteram.util;
 
 import java.math.BigDecimal;
@@ -29,7 +28,9 @@ public class NumUtils {
 
     public static int getUnit(String str) {
         for (int i = 0; i < unitArray.length; i++) {
-            if (unitArray[i].equalsIgnoreCase(str)) return i;
+            if (unitArray[i].equalsIgnoreCase(str)) {
+                return i;
+            }
         }
         return MM;
     }
@@ -48,10 +49,18 @@ public class NumUtils {
         int len = str.length() - 2;
         if (len > 0) {
             String unit = str.substring(len).toLowerCase();
-            if (unit.compareTo("pt") == 0) return Double.parseDouble(str.substring(0, len));
-            if (unit.compareTo("mm") == 0) return MMtoU * Double.parseDouble(str.substring(0, len));
-            if (unit.compareTo("cm") == 0) return CMtoU * Double.parseDouble(str.substring(0, len));
-            if (unit.compareTo("in") == 0) return INtoU * Double.parseDouble(str.substring(0, len));
+            if (unit.compareTo("pt") == 0) {
+                return Double.parseDouble(str.substring(0, len));
+            }
+            if (unit.compareTo("mm") == 0) {
+                return MMtoU * Double.parseDouble(str.substring(0, len));
+            }
+            if (unit.compareTo("cm") == 0) {
+                return CMtoU * Double.parseDouble(str.substring(0, len));
+            }
+            if (unit.compareTo("in") == 0) {
+                return INtoU * Double.parseDouble(str.substring(0, len));
+            }
         }
         return Double.parseDouble(str);
     }
@@ -304,10 +313,18 @@ public class NumUtils {
 
     // Format Size to Byte
     public static String toByteSize(long s) {
-        if (s < 1024) return s + " Bytes";
-        else if (s < 1024 * 1024 * 1024) return Math.round(s / 1024) + " Kb";
-        else if (s < 1024 * 1024 * 1024 * 1024) return Math.round(s / (1024 * 1024)) + " Mb";
-        else return Math.round(s / (1024 * 1024 * 1024)) + " Gb";
+        if (s < 1024) {
+            return s + " Bytes";
+        }
+        else if (s < 1024 * 1024 * 1024) {
+            return Math.round(s / 1024) + " Kb";
+        }
+        else if (s < 1024 * 1024 * 1024 * 1024) {
+            return Math.round(s / (1024 * 1024)) + " Mb";
+        }
+        else {
+            return Math.round(s / (1024 * 1024 * 1024)) + " Gb";
+        }
     }
 
     public static float toDegree(float f) {

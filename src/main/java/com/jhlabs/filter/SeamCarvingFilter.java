@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.jhlabs.filter;
 
 import com.jhlabs.image.AbstractBufferedImageOp;
@@ -65,13 +64,17 @@ public class SeamCarvingFilter extends AbstractBufferedImageOp {
         }
 
         // create output image
-        if (dst == null) dst = createCompatibleDestImage(src, dstWidth, dstHeight);
+        if (dst == null) {
+            dst = createCompatibleDestImage(src, dstWidth, dstHeight);
+        }
         setRGB(dst, 0, 0, dstWidth, dstHeight, inPixels);
         return dst;
     }
 
     private int[] transpose(int[] inPixels, int width, int height, int[] outPixels) {
-        if (outPixels == null) outPixels = new int[height * width];
+        if (outPixels == null) {
+            outPixels = new int[height * width];
+        }
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 outPixels[y + x * height] = inPixels[y * width + x];
@@ -146,10 +149,18 @@ public class SeamCarvingFilter extends AbstractBufferedImageOp {
                 int ny = y + 1; // next y
 
                 // Limit to image dimension
-                if (px < 0) px = 0;
-                if (nx >= width) nx = width - 1;
-                if (py < 0) py = 0;
-                if (ny >= height) ny = height - 1;
+                if (px < 0) {
+                    px = 0;
+                }
+                if (nx >= width) {
+                    nx = width - 1;
+                }
+                if (py < 0) {
+                    py = 0;
+                }
+                if (ny >= height) {
+                    ny = height - 1;
+                }
 
                 // All pixels
                 int p0 = inPixels[py * width + px];
@@ -187,7 +198,9 @@ public class SeamCarvingFilter extends AbstractBufferedImageOp {
                 int ggrady = (g6 - g1) + (g6 - g1) + (g5 - g0) + (g7 - g2);
                 int ggradx = (g4 - g3) + (g4 - g3) + (g2 - g0) + (g7 - g5);
                 int ggrad = ggradx * ggradx + ggrady * ggrady;
-                if (ggrad > rgrad) rgrad = ggrad;
+                if (ggrad > rgrad) {
+                    rgrad = ggrad;
+                }
 
                 int b0 = p0 & 0xFF;
                 int b1 = p1 & 0xFF;
@@ -201,7 +214,9 @@ public class SeamCarvingFilter extends AbstractBufferedImageOp {
                 int bgrady = (b6 - b1) + (b6 - b1) + (b5 - b0) + (b7 - b2);
                 int bgradx = (b4 - b3) + (b4 - b3) + (b2 - b0) + (b7 - b5);
                 int bgrad = bgradx * bgradx + bgrady * bgrady;
-                if (bgrad > rgrad) rgrad = bgrad;
+                if (bgrad > rgrad) {
+                    rgrad = bgrad;
+                }
 
                 energy[y * width + x] = rgrad;
             }
@@ -219,8 +234,12 @@ public class SeamCarvingFilter extends AbstractBufferedImageOp {
         for (int y = 0; y < height - 1; y++) {
 
             // update min/max absolute value
-            if (x < minx) minx = x;
-            if (x > maxx) maxx = x;
+            if (x < minx) {
+                minx = x;
+            }
+            if (x > maxx) {
+                maxx = x;
+            }
 
             // update total energy of the path
             path.energy += energy[y * width + x];

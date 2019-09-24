@@ -1,4 +1,3 @@
-
 package com.jhlabs.filter;
 
 import com.jhlabs.image.AbstractBufferedImageOp;
@@ -8,6 +7,7 @@ import java.awt.image.BufferedImage;
  * A filter which crops an image to a given rectangle.
  */
 public class CropFilterFast extends AbstractBufferedImageOp {
+
     private int x;
     private int y;
     private int width;
@@ -22,6 +22,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Construct a CropFilter.
+     *
      * @param x the left edge of the crop rectangle
      * @param y the top edge of the crop rectangle
      * @param width the width of the crop rectangle
@@ -36,6 +37,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Set the left edge of the crop rectangle.
+     *
      * @param x the left edge of the crop rectangle
      * @see #getX
      */
@@ -45,6 +47,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Get the left edge of the crop rectangle.
+     *
      * @return the left edge of the crop rectangle
      * @see #setX
      */
@@ -54,6 +57,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Set the top edge of the crop rectangle.
+     *
      * @param y the top edge of the crop rectangle
      * @see #getY
      */
@@ -63,6 +67,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Get the top edge of the crop rectangle.
+     *
      * @return the top edge of the crop rectangle
      * @see #setY
      */
@@ -72,6 +77,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Set the width of the crop rectangle.
+     *
      * @param width the width of the crop rectangle
      * @see #getWidth
      */
@@ -81,6 +87,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Get the width of the crop rectangle.
+     *
      * @return the width of the crop rectangle
      * @see #setWidth
      */
@@ -90,6 +97,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Set the height of the crop rectangle.
+     *
      * @param height the height of the crop rectangle
      * @see #getHeight
      */
@@ -99,6 +107,7 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     /**
      * Get the height of the crop rectangle.
+     *
      * @return the height of the crop rectangle
      * @see #setHeight
      */
@@ -118,12 +127,20 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     @Override
     public BufferedImage filterGRAY8(BufferedImage src, BufferedImage dst) {
-        if (x >= src.getWidth()) x = 0;
-        if (y >= src.getHeight()) y = 0;
+        if (x >= src.getWidth()) {
+            x = 0;
+        }
+        if (y >= src.getHeight()) {
+            y = 0;
+        }
         int w = Math.min(width, src.getWidth() - x);
         int h = Math.min(height, src.getHeight() - y);
-        if (w <= 0) w = src.getWidth() - x;
-        if (h <= 0) h = src.getHeight() - y;
+        if (w <= 0) {
+            w = src.getWidth() - x;
+        }
+        if (h <= 0) {
+            h = src.getHeight() - y;
+        }
 
         if (dst == null) {
             dst = createCompatibleDestImage(src, w, h);
@@ -144,12 +161,20 @@ public class CropFilterFast extends AbstractBufferedImageOp {
 
     @Override
     public BufferedImage filterRGB32(BufferedImage src, BufferedImage dst) {
-        if (x >= src.getWidth()) x = 0;
-        if (y >= src.getHeight()) y = 0;
+        if (x >= src.getWidth()) {
+            x = 0;
+        }
+        if (y >= src.getHeight()) {
+            y = 0;
+        }
         int w = Math.min(width, src.getWidth() - x);
         int h = Math.min(height, src.getHeight() - y);
-        if (w <= 0) w = src.getWidth() - x;
-        if (h <= 0) h = src.getHeight() - y;
+        if (w <= 0) {
+            w = src.getWidth() - x;
+        }
+        if (h <= 0) {
+            h = src.getHeight() - y;
+        }
 
         int rgbType = getImageType(src);
 

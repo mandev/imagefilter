@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.util.*;
@@ -35,6 +34,7 @@ public class PlasmaFilter extends WholeImageFilter {
 
     /**
      * Specifies the turbulence of the texture.
+     *
      * @param turbulence the turbulence of the texture.
      * @min-value 0
      * @max-value 10
@@ -46,6 +46,7 @@ public class PlasmaFilter extends WholeImageFilter {
 
     /**
      * Returns the turbulence of the effect.
+     *
      * @return the turbulence of the effect.
      * @see #setTurbulence
      */
@@ -63,6 +64,7 @@ public class PlasmaFilter extends WholeImageFilter {
 
     /**
      * Set the colormap to be used for the filter.
+     *
      * @param colormap the colormap
      * @see #getColormap
      */
@@ -72,6 +74,7 @@ public class PlasmaFilter extends WholeImageFilter {
 
     /**
      * Get the colormap to be used for the filter.
+     *
      * @return the colormap
      * @see #setColormap
      */
@@ -157,8 +160,9 @@ public class PlasmaFilter extends WholeImageFilter {
             mx = (x1 + x2) / 2;
             my = (y1 + y2) / 2;
 
-            if (mx == x1 && mx == x2 && my == y1 && my == y2)
+            if (mx == x1 && mx == x2 && my == y1 && my == y2) {
                 return true;
+            }
 
             if (mx != x1 || mx != x2) {
                 ml = average(tl, bl);
@@ -194,8 +198,9 @@ public class PlasmaFilter extends WholeImageFilter {
                 putPixel(mx, my, mm, pixels, stride);
             }
 
-            if (x2 - x1 < 3 && y2 - y1 < 3)
+            if (x2 - x1 < 3 && y2 - y1 < 3) {
                 return false;
+            }
             return true;
         }
 

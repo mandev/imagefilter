@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.*;
@@ -91,8 +90,9 @@ public class ScratchFilter extends AbstractBufferedImageOp {
     }
 
     public BufferedImage filterRGB32(BufferedImage src, BufferedImage dst) {
-        if (dst == null)
+        if (dst == null) {
             dst = createCompatibleDestImage(src, null);
+        }
 
         int width = src.getWidth();
         int height = src.getHeight();
@@ -131,8 +131,9 @@ public class ScratchFilter extends AbstractBufferedImageOp {
                     for (int i = 0; i < numScratches; i++) {
                         Line2D.Float l = (Line2D.Float) lines.get(i);
                         float dot = (l.x2 - l.x1) * (sx - l.x1) + (l.y2 - l.y1) * (sy - l.y1);
-                        if (dot > 0)
+                        if (dot > 0) {
                             inPixels[index] |= (1 << i);
+                        }
                     }
                     index++;
                 }

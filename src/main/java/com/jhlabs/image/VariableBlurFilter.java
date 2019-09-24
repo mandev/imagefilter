@@ -13,17 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 
-
-
 /**
- * A filter which performs a box blur with a different blur radius at each pixel. The radius can either be specified by
- * providing a blur mask image or by overriding the blurRadiusAt method.
+ * A filter which performs a box blur with a different blur radius at each
+ * pixel. The radius can either be specified by providing a blur mask image or
+ * by overriding the blurRadiusAt method.
  */
 public class VariableBlurFilter extends AbstractBufferedImageOp {
 
@@ -35,6 +33,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set whether to premultiply the alpha channel.
+     *
      * @param premultiplyAlpha true to premultiply the alpha
      * @see #getPremultiplyAlpha
      */
@@ -44,6 +43,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get whether to premultiply the alpha channel.
+     *
      * @return true to premultiply the alpha
      * @see #setPremultiplyAlpha
      */
@@ -55,23 +55,26 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
         int width = src.getWidth();
         int height = src.getHeight();
 
-        if (dst == null)
+        if (dst == null) {
             dst = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        }
 
         int[] inPixels = new int[width * height];
         int[] outPixels = new int[width * height];
         getRGB(src, 0, 0, width, height, inPixels);
 
-        if (premultiplyAlpha && src.getColorModel().hasAlpha() && !src.isAlphaPremultiplied())
+        if (premultiplyAlpha && src.getColorModel().hasAlpha() && !src.isAlphaPremultiplied()) {
             ImageMath.premultiply(inPixels, 0, inPixels.length);
+        }
 
         for (int i = 0; i < iterations; i++) {
             blur(inPixels, outPixels, width, height, hRadius, 1);
             blur(outPixels, inPixels, height, width, vRadius, 2);
         }
 
-        if (premultiplyAlpha && src.getColorModel().hasAlpha() && !src.isAlphaPremultiplied())
+        if (premultiplyAlpha && src.getColorModel().hasAlpha() && !src.isAlphaPremultiplied()) {
             ImageMath.unpremultiply(inPixels, 0, inPixels.length);
+        }
 
         setRGB(dst, 0, 0, width, height, inPixels);
         return dst;
@@ -91,10 +94,12 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
             int outIndex = y;
 
             if (blurMask != null) {
-                if (pass == 1)
+                if (pass == 1) {
                     getRGB(blurMask, 0, y, width, 1, mask);
-                else
+                }
+                else {
                     getRGB(blurMask, y, 0, 1, width, mask);
+                }
             }
 
             for (int x = 0; x < width; x++) {
@@ -115,16 +120,20 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
                 // Get the blur radius at x, y
                 int ra;
                 if (blurMask != null) {
-                    if (pass == 1)
+                    if (pass == 1) {
                         ra = (int) ((mask[x] & 0xff) * hRadius / 255f);
-                    else
+                    }
+                    else {
                         ra = (int) ((mask[x] & 0xff) * vRadius / 255f);
+                    }
                 }
                 else {
-                    if (pass == 1)
+                    if (pass == 1) {
                         ra = (int) (blurRadiusAt(x, y, width, height) * hRadius);
-                    else
+                    }
+                    else {
                         ra = (int) (blurRadiusAt(y, x, height, width) * vRadius);
+                    }
                 }
 
                 int divisor = 2 * ra + 1;
@@ -162,6 +171,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Override this to get a different blur radius at eahc point.
+     *
      * @param x the x coordinate
      * @param y the y coordinate
      * @param width the width of the image
@@ -174,6 +184,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the horizontal size of the blur.
+     *
      * @param hRadius the radius of the blur in the horizontal direction
      * @min-value 0
      * @see #getHRadius
@@ -184,6 +195,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the horizontal size of the blur.
+     *
      * @return the radius of the blur in the horizontal direction
      * @see #setHRadius
      */
@@ -193,6 +205,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the vertical size of the blur.
+     *
      * @param vRadius the radius of the blur in the vertical direction
      * @min-value 0
      * @see #getVRadius
@@ -203,6 +216,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the vertical size of the blur.
+     *
      * @return the radius of the blur in the vertical direction
      * @see #setVRadius
      */
@@ -212,6 +226,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the radius of the effect.
+     *
      * @param radius the radius
      * @min-value 0
      * @see #getRadius
@@ -222,6 +237,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the radius of the effect.
+     *
      * @return the radius
      * @see #setRadius
      */
@@ -231,6 +247,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the number of iterations the blur is performed.
+     *
      * @param iterations the number of iterations
      * @min-value 0
      * @see #getIterations
@@ -241,6 +258,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the number of iterations the blur is performed.
+     *
      * @return the number of iterations
      * @see #setIterations
      */
@@ -250,6 +268,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the mask used to give the amount of blur at each point.
+     *
      * @param blurMask the mask
      * @see #getBlurMask
      */
@@ -259,6 +278,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the mask used to give the amount of blur at each point.
+     *
      * @return the mask
      * @see #setBlurMask
      */

@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import com.jhlabs.math.FBM;
@@ -286,7 +285,6 @@ public class SkyFilter extends PointFilter {
 
 //min = -1.2f;
 //max = 1.2f;
-
         width = src.getWidth();
         height = src.getHeight();
 
@@ -296,8 +294,9 @@ public class SkyFilter extends PointFilter {
             tan[i] = (float) Math.tan(fov * (float) i / h * Math.PI * 0.5);
         }
 
-        if (dst == null)
+        if (dst == null) {
             dst = createCompatibleDestImage(src, null);
+        }
         int t = (int) (63 * time);
 //		skyPixels = getPixelsRGB( skyColors, t, 0, 1, 64, skyPixels );
         Graphics2D g = dst.createGraphics();
@@ -329,8 +328,9 @@ public class SkyFilter extends PointFilter {
         }
 
         remainder = octaves - (int) octaves;
-        if (remainder != 0)
+        if (remainder != 0) {
             value += remainder * Noise.noise3(x, y, t) * exponents[i];
+        }
 
         return value;
     }
@@ -372,8 +372,9 @@ public class SkyFilter extends PointFilter {
 
         // Work out cloud cover
         float c = f - cloudCover;
-        if (c < 0)
+        if (c < 0) {
             c = 0;
+        }
 
         float cloudAlpha = 1 - (float) Math.pow(cloudSharpness, c);
 //cloudAlpha *= amount;
@@ -399,7 +400,6 @@ public class SkyFilter extends PointFilter {
         g += sun * sunG;
         b += sun * sunB;
 
-
 //		float cloudColor = cloudAlpha *sun;
 // Bump map
 /*
@@ -419,8 +419,10 @@ public class SkyFilter extends PointFilter {
         b += (cloudColor-b) * cloudAlpha;
          */
         // Clouds get darker as they get thicker
-        float ca = (1 - cloudAlpha * cloudAlpha * cloudAlpha * cloudAlpha) /** (1 + sun)*/
-           * amount;
+        float ca = (1 - cloudAlpha * cloudAlpha * cloudAlpha * cloudAlpha) /**
+                 * (1 + sun)
+                 */
+                * amount;
         float cloudR = sunR * ca;
         float cloudG = sunG * ca;
         float cloudB = sunB * ca;

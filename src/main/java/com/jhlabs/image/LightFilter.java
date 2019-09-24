@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import com.jhlabs.math.Function2D;
@@ -243,7 +242,6 @@ public class LightFilter extends WholeImageFilter {
                 //GaussianFilter.convolveAndTranspose(0, bumpWidth, kernel, tmpPixels, softPixels, bumpHeight, bumpWidth, true, false, false, GaussianFilter.WRAP_EDGES);
                 GaussianFilter.convolve(kernel, bumpPixels, softPixels, bumpWidth, bumpHeight, true, false, false, GaussianFilter.WRAP_EDGES);
 
-
                 bump = new ImageFunction2D(softPixels, bumpWidth, bumpHeight, ImageFunction2D.CLAMP, bumpSource == BUMPS_FROM_IMAGE_ALPHA);
                 final Function2D bbump = bump;
                 if (bumpShape != 0) {
@@ -339,8 +337,9 @@ public class LightFilter extends WholeImageFilter {
 //               };
 //         }
             }
-            else if (bumpSource != BUMPS_FROM_MAP)
+            else if (bumpSource != BUMPS_FROM_MAP) {
                 bump = new ImageFunction2D(inPixels, width, height, ImageFunction2D.CLAMP, bumpSource == BUMPS_FROM_IMAGE_ALPHA);
+            }
         }
         float reflectivity = material.reflectivity;
         float areflectivity = (1 - reflectivity);
@@ -356,7 +355,7 @@ public class LightFilter extends WholeImageFilter {
         float[][] heightWindow = new float[3][width];
 
         for (int x = 0; x < width;
-           x++) {
+                x++) {
             heightWindow[1][x] = width45 * bump.evaluate(x, 0);      // Loop through each source pixel
         }
 
@@ -392,8 +391,9 @@ public class LightFilter extends WholeImageFilter {
                         v2.z = m4;
                         n.cross(v1, v2);
                         n.normalize();
-                        if (n.z < 0.0)
+                        if (n.z < 0.0) {
                             n.z = -n.z;
+                        }
                         normal.add(n);
                         count++;
                     }
@@ -407,8 +407,9 @@ public class LightFilter extends WholeImageFilter {
                         v2.z = m2;
                         n.cross(v1, v2);
                         n.normalize();
-                        if (n.z < 0.0)
+                        if (n.z < 0.0) {
                             n.z = -n.z;
+                        }
                         normal.add(n);
                         count++;
                     }
@@ -422,8 +423,9 @@ public class LightFilter extends WholeImageFilter {
                         v2.z = m3;
                         n.cross(v1, v2);
                         n.normalize();
-                        if (n.z < 0.0)
+                        if (n.z < 0.0) {
                             n.z = -n.z;
+                        }
                         normal.add(n);
                         count++;
                     }
@@ -437,8 +439,9 @@ public class LightFilter extends WholeImageFilter {
                         v2.z = m4;
                         n.cross(v1, v2);
                         n.normalize();
-                        if (n.z < 0.0)
+                        if (n.z < 0.0) {
                             n.z = -n.z;
+                        }
                         normal.add(n);
                         count++;
                     }
@@ -456,10 +459,12 @@ public class LightFilter extends WholeImageFilter {
 
                 if (normal.z >= 0) {
                     // Get the material colour at this point
-                    if (colorSource == COLORS_FROM_IMAGE)
+                    if (colorSource == COLORS_FROM_IMAGE) {
                         setFromRGB(diffuseColor, inPixels[index]);
-                    else
+                    }
+                    else {
                         setFromRGB(diffuseColor, material.diffuseColor);
+                    }
                     if (reflectivity != 0 && environmentMap != null) {
                         //FIXME-too much normalizing going on here
                         tmpv2.set(viewpoint);
@@ -484,8 +489,9 @@ public class LightFilter extends WholeImageFilter {
                     int rgb = ((int) (c.x * 255) << 16) | ((int) (c.y * 255) << 8) | (int) (c.z * 255);
                     outPixels[index++] = alpha | rgb;
                 }
-                else
+                else {
                     outPixels[index++] = 0;
+                }
             }
             float[] t = heightWindow[0];
             heightWindow[0] = heightWindow[1];
@@ -498,7 +504,7 @@ public class LightFilter extends WholeImageFilter {
     }
 
     protected Color4f phongShade(
-       Vector3f position, Vector3f viewpoint, Vector3f normal, Color4f diffuseColor, Color4f specularColor, Material material, Light[] lightsArray) {
+            Vector3f position, Vector3f viewpoint, Vector3f normal, Color4f diffuseColor, Color4f specularColor, Material material, Light[] lightsArray) {
 
         shadedColor.set(diffuseColor);
         shadedColor.scale(material.ambientIntensity);
@@ -507,8 +513,9 @@ public class LightFilter extends WholeImageFilter {
             Light light = lightsArray[i];
             n.set(normal);
             l.set(light.position);
-            if (light.type != DISTANT)
+            if (light.type != DISTANT) {
                 l.sub(position);
+            }
             l.normalize();
             float nDotL = n.dot(l);
             if (nDotL >= 0.0) {
@@ -521,8 +528,9 @@ public class LightFilter extends WholeImageFilter {
                 // Spotlight
                 if (light.type == SPOT) {
                     dDotL = light.direction.dot(l);
-                    if (dDotL < light.cosConeAngle)
+                    if (dDotL < light.cosConeAngle) {
                         continue;
+                    }
                 }
 
                 n.scale(2.0f * nDotL);
@@ -530,12 +538,13 @@ public class LightFilter extends WholeImageFilter {
                 float rDotV = n.dot(v);
 
                 float rv;
-                if (rDotV < 0.0)
+                if (rDotV < 0.0) {
                     rv = 0.0f;
-                else
-                    //					rv = (float)Math.pow(rDotV, material.highlight);
+                }
+                else //					rv = (float)Math.pow(rDotV, material.highlight);
+                {
                     rv = rDotV / (material.highlight - material.highlight * rDotV + rDotV);	// Fast approximation to pow
-
+                }
                 // Spotlight
                 if (light.type == SPOT) {
                     dDotL = light.cosConeAngle / dDotL;
@@ -573,27 +582,29 @@ public class LightFilter extends WholeImageFilter {
         if (environmentMap != null) {
             float angle = (float) Math.acos(-normal.y);
 
-
             float x, y;
             y = angle / ImageMath.PI;
 
-            if (y == 0.0f || y == 1.0f)
+            if (y == 0.0f || y == 1.0f) {
                 x = 0.0f;
+            }
             else {
                 float f = normal.x / (float) Math.sin(angle);
 
-                if (f > 1.0f)
+                if (f > 1.0f) {
                     f = 1.0f;
-                else if (f < -1.0f)
+                }
+                else if (f < -1.0f) {
                     f = -1.0f;
+                }
 
-                x =
-                   (float) Math.acos(f) / ImageMath.PI;
+                x
+                        = (float) Math.acos(f) / ImageMath.PI;
             }
 // A bit of empirical scaling....
             x = ImageMath.clamp(x * envWidth, 0, envWidth - 1);
-            y =
-               ImageMath.clamp(y * envHeight, 0, envHeight - 1);
+            y
+                    = ImageMath.clamp(y * envHeight, 0, envHeight - 1);
             int ix = (int) x;
             int iy = (int) y;
 
@@ -656,8 +667,8 @@ public class LightFilter extends WholeImageFilter {
     public final static int AMBIENT = 0;
     public final static int DISTANT = 1;
     public final static int POINT = 2;
-    public final static int SPOT =
-       3;
+    public final static int SPOT
+            = 3;
 
     /**
      * A class representing a light.
@@ -745,7 +756,9 @@ public class LightFilter extends WholeImageFilter {
         }
 
         /**
-         * Set the centre of the light in the X direction as a proportion of the image size.
+         * Set the centre of the light in the X direction as a proportion of the
+         * image size.
+         *
          * @param centreX the center
          * @see #getCentreX
          */
@@ -754,7 +767,9 @@ public class LightFilter extends WholeImageFilter {
         }
 
         /**
-         * Get the centre of the light in the X direction as a proportion of the image size.
+         * Get the centre of the light in the X direction as a proportion of the
+         * image size.
+         *
          * @return the center
          * @see #setCentreX
          */
@@ -763,7 +778,9 @@ public class LightFilter extends WholeImageFilter {
         }
 
         /**
-         * Set the centre of the light in the Y direction as a proportion of the image size.
+         * Set the centre of the light in the Y direction as a proportion of the
+         * image size.
+         *
          * @param centreY the center
          * @see #getCentreY
          */
@@ -772,7 +789,9 @@ public class LightFilter extends WholeImageFilter {
         }
 
         /**
-         * Get the centre of the light in the Y direction as a proportion of the image size.
+         * Get the centre of the light in the Y direction as a proportion of the
+         * image size.
+         *
          * @return the center
          * @see #setCentreY
          */
@@ -782,6 +801,7 @@ public class LightFilter extends WholeImageFilter {
 
         /**
          * Prepare the light for rendering.
+         *
          * @param width the output image width
          * @param height the output image height
          */

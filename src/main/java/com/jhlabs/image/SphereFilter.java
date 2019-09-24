@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.geom.Point2D;
@@ -41,6 +40,7 @@ public class SphereFilter extends TransformFilter {
 
     /**
      * Set the index of refaction.
+     *
      * @param refractionIndex the index of refaction
      * @see #getRefractionIndex
      */
@@ -50,6 +50,7 @@ public class SphereFilter extends TransformFilter {
 
     /**
      * Get the index of refaction.
+     *
      * @return the index of refaction
      * @see #setRefractionIndex
      */
@@ -59,6 +60,7 @@ public class SphereFilter extends TransformFilter {
 
     /**
      * Set the radius of the effect.
+     *
      * @param r the radius
      * @min-value 0
      * @see #getRadius
@@ -70,6 +72,7 @@ public class SphereFilter extends TransformFilter {
 
     /**
      * Get the radius of the effect.
+     *
      * @return the radius
      * @see #setRadius
      */
@@ -78,7 +81,9 @@ public class SphereFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the X direction as a proportion of the image size.
+     * Set the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @param centreX the center
      * @see #getCentreX
      */
@@ -91,7 +96,9 @@ public class SphereFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the Y direction as a proportion of the image size.
+     * Set the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @param centreY the center
      * @see #getCentreY
      */
@@ -100,7 +107,9 @@ public class SphereFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the Y direction as a proportion of the image size.
+     * Get the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreY
      */
@@ -110,6 +119,7 @@ public class SphereFilter extends TransformFilter {
 
     /**
      * Set the centre of the effect as a proportion of the image size.
+     *
      * @param centre the center
      * @see #getCentre
      */
@@ -120,6 +130,7 @@ public class SphereFilter extends TransformFilter {
 
     /**
      * Get the centre of the effect as a proportion of the image size.
+     *
      * @return the center
      * @see #setCentre
      */
@@ -132,8 +143,12 @@ public class SphereFilter extends TransformFilter {
         int height = src.getHeight();
         icentreX = width * centreX;
         icentreY = height * centreY;
-        if (a == 0) a = width / 2;
-        if (b == 0) b = height / 2;
+        if (a == 0) {
+            a = width / 2;
+        }
+        if (b == 0) {
+            b = height / 2;
+        }
         a2 = a * a;
         b2 = b * b;
     }

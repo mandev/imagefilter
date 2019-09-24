@@ -12,27 +12,26 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-
+ */
 package com.jhlabs.image;
 
 /**
- * A simple embossing filter. 
+ * A simple embossing filter.
  */
 public class BumpFilter extends ConvolveFilter {
-	
-	private static float[] embossMatrix = {
-		-1.0f, -1.0f,  0.0f,
-		-1.0f,  1.0f,  1.0f,
-		 0.0f,  1.0f,  1.0f
-	};
 
-	public BumpFilter() {
-		super(embossMatrix);
-	}
+    private static float[] embossMatrix = {
+        -1.0f, -1.0f, 0.0f,
+        -1.0f, 1.0f, 1.0f,
+        0.0f, 1.0f, 1.0f
+    };
+
+    public BumpFilter() {
+        super(embossMatrix);
+    }
 
     @Override
-	public String toString() {
-		return "Blur/Emboss Edges";
-	}
+    public String toString() {
+        return "Blur/Emboss Edges";
+    }
 }

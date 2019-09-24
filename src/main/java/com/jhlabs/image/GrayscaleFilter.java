@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * A filter which converts an image to grayscale using the NTSC brightness calculation.
+ * A filter which converts an image to grayscale using the NTSC brightness
+ * calculation.
  */
 public class GrayscaleFilter extends PointFilter {
 

@@ -38,6 +38,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Construct a CropFilter.
+     *
      * @param x the left edge of the crop rectangle
      * @param y the top edge of the crop rectangle
      * @param width the width of the crop rectangle
@@ -52,6 +53,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the left edge of the crop rectangle.
+     *
      * @param x the left edge of the crop rectangle
      * @see #getX
      */
@@ -61,6 +63,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the left edge of the crop rectangle.
+     *
      * @return the left edge of the crop rectangle
      * @see #setX
      */
@@ -70,6 +73,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the top edge of the crop rectangle.
+     *
      * @param y the top edge of the crop rectangle
      * @see #getY
      */
@@ -79,6 +83,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the top edge of the crop rectangle.
+     *
      * @return the top edge of the crop rectangle
      * @see #setY
      */
@@ -88,6 +93,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the width of the crop rectangle.
+     *
      * @param width the width of the crop rectangle
      * @see #getWidth
      */
@@ -97,6 +103,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the width of the crop rectangle.
+     *
      * @return the width of the crop rectangle
      * @see #setWidth
      */
@@ -106,6 +113,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Set the height of the crop rectangle.
+     *
      * @param height the height of the crop rectangle
      * @see #getHeight
      */
@@ -115,6 +123,7 @@ public class CropFilter extends AbstractBufferedImageOp {
 
     /**
      * Get the height of the crop rectangle.
+     *
      * @return the height of the crop rectangle
      * @see #setHeight
      */

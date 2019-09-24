@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.geom.Point2D;
@@ -42,6 +41,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Set the number of sides of the kaleidoscope.
+     *
      * @param sides the number of sides
      * @min-value 2
      * @see #getSides
@@ -52,6 +52,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Get the number of sides of the kaleidoscope.
+     *
      * @return the number of sides
      * @see #setSides
      */
@@ -61,6 +62,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Set the angle of the kaleidoscope.
+     *
      * @param angle the angle of the kaleidoscope.
      * @angle
      * @see #getAngle
@@ -71,6 +73,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Get the angle of the kaleidoscope.
+     *
      * @return the angle of the kaleidoscope.
      * @see #setAngle
      */
@@ -80,6 +83,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Set the secondary angle of the kaleidoscope.
+     *
      * @param angle2 the angle
      * @angle
      * @see #getAngle2
@@ -90,6 +94,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Get the secondary angle of the kaleidoscope.
+     *
      * @return the angle
      * @see #setAngle2
      */
@@ -98,7 +103,9 @@ public class KaleidoscopeFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the X direction as a proportion of the image size.
+     * Set the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @param centreX the center
      * @see #getCentreX
      */
@@ -107,7 +114,9 @@ public class KaleidoscopeFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the X direction as a proportion of the image size.
+     * Get the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreX
      */
@@ -116,7 +125,9 @@ public class KaleidoscopeFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the Y direction as a proportion of the image size.
+     * Set the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @param centreY the center
      * @see #getCentreY
      */
@@ -125,7 +136,9 @@ public class KaleidoscopeFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the Y direction as a proportion of the image size.
+     * Get the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreY
      */
@@ -135,6 +148,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Set the centre of the effect as a proportion of the image size.
+     *
      * @param centre the center
      * @see #getCentre
      */
@@ -145,6 +159,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Get the centre of the effect as a proportion of the image size.
+     *
      * @return the center
      * @see #setCentre
      */
@@ -154,6 +169,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Set the radius of the effect.
+     *
      * @param radius the radius
      * @min-value 0
      * @see #getRadius
@@ -164,6 +180,7 @@ public class KaleidoscopeFilter extends TransformFilter {
 
     /**
      * Get the radius of the effect.
+     *
      * @return the radius
      * @see #setRadius
      */

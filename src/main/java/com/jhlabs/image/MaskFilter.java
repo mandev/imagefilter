@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * Applies a bit mask to each ARGB pixel of an image. You can use this for, say, masking out the red channel.
+ * Applies a bit mask to each ARGB pixel of an image. You can use this for, say,
+ * masking out the red channel.
  */
 public class MaskFilter extends PointFilter {
 

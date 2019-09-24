@@ -13,16 +13,15 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.geom.*;
 import java.awt.image.*;
 
 /**
- * A Filter which distorts an image by twisting it from the centre out.
- * The twisting is centred at the centre of the image and extends out to the smallest of
- * the width and height. Pixels outside this radius are unaffected.
+ * A Filter which distorts an image by twisting it from the centre out. The
+ * twisting is centred at the centre of the image and extends out to the
+ * smallest of the width and height. Pixels outside this radius are unaffected.
  */
 public class TwirlFilter extends TransformFilter {
 
@@ -43,7 +42,9 @@ public class TwirlFilter extends TransformFilter {
 
     /**
      * Set the angle of twirl in radians. 0 means no distortion.
-     * @param angle the angle of twirl. This is the angle by which pixels at the nearest edge of the image will move.
+     *
+     * @param angle the angle of twirl. This is the angle by which pixels at the
+     * nearest edge of the image will move.
      * @see #getAngle
      */
     public void setAngle(float angle) {
@@ -52,6 +53,7 @@ public class TwirlFilter extends TransformFilter {
 
     /**
      * Get the angle of twist.
+     *
      * @return the angle in radians.
      * @see #setAngle
      */
@@ -60,7 +62,9 @@ public class TwirlFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the X direction as a proportion of the image size.
+     * Set the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @param centreX the center
      * @see #getCentreX
      */
@@ -69,7 +73,9 @@ public class TwirlFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the X direction as a proportion of the image size.
+     * Get the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreX
      */
@@ -78,7 +84,9 @@ public class TwirlFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the Y direction as a proportion of the image size.
+     * Set the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @param centreY the center
      * @see #getCentreY
      */
@@ -87,7 +95,9 @@ public class TwirlFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the Y direction as a proportion of the image size.
+     * Get the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreY
      */
@@ -97,6 +107,7 @@ public class TwirlFilter extends TransformFilter {
 
     /**
      * Set the centre of the effect as a proportion of the image size.
+     *
      * @param centre the center
      * @see #getCentre
      */
@@ -107,6 +118,7 @@ public class TwirlFilter extends TransformFilter {
 
     /**
      * Get the centre of the effect as a proportion of the image size.
+     *
      * @return the center
      * @see #setCentre
      */
@@ -116,6 +128,7 @@ public class TwirlFilter extends TransformFilter {
 
     /**
      * Set the radius of the effect.
+     *
      * @param radius the radius
      * @min-value 0
      * @see #getRadius
@@ -126,6 +139,7 @@ public class TwirlFilter extends TransformFilter {
 
     /**
      * Get the radius of the effect.
+     *
      * @return the radius
      * @see #setRadius
      */
@@ -136,8 +150,9 @@ public class TwirlFilter extends TransformFilter {
     private void initialize(BufferedImage src) {
         icentreX = src.getWidth() * centreX;
         icentreY = src.getHeight() * centreY;
-        if (radius == 0)
+        if (radius == 0) {
             radius = Math.min(icentreX, icentreY);
+        }
         radius2 = radius * radius;
     }
 

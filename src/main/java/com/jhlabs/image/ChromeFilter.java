@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.image.*;
@@ -28,6 +27,7 @@ public class ChromeFilter extends LightFilter {
 
     /**
      * Set the amount of effect.
+     *
      * @param amount the amount
      * @min-value 0
      * @max-value 1
@@ -39,6 +39,7 @@ public class ChromeFilter extends LightFilter {
 
     /**
      * Get the amount of chrome.
+     *
      * @return the amount
      * @see #setAmount
      */
@@ -48,6 +49,7 @@ public class ChromeFilter extends LightFilter {
 
     /**
      * Set the exppsure of the effect.
+     *
      * @param exposure the exposure
      * @min-value 0
      * @max-value 1
@@ -59,6 +61,7 @@ public class ChromeFilter extends LightFilter {
 
     /**
      * Get the exppsure of the effect.
+     *
      * @return the exposure
      * @see #setExposure
      */

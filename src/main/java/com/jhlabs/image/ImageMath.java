@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 /**
@@ -39,10 +38,12 @@ public class ImageMath {
     public final static float TWO_PI = (float) Math.PI * 2.0f;
 
     /**
-     * Apply a bias to a number in the unit interval, moving numbers towards 0 or 1
-     * according to the bias parameter.
+     * Apply a bias to a number in the unit interval, moving numbers towards 0
+     * or 1 according to the bias parameter.
+     *
      * @param a the number to bias
-     * @param b the bias parameter. 0.5 means no change, smaller values bias towards 0, larger towards 1.
+     * @param b the bias parameter. 0.5 means no change, smaller values bias
+     * towards 0, larger towards 1.
      * @return the output value
      */
     public static float bias(float a, float b) {
@@ -52,8 +53,10 @@ public class ImageMath {
 
     /**
      * A variant of the gamma function.
+     *
      * @param a the number to apply gain to
-     * @param b the gain parameter. 0.5 means no change, smaller values reduce gain, larger values increase gain.
+     * @param b the gain parameter. 0.5 means no change, smaller values reduce
+     * gain, larger values increase gain.
      * @return the output value
      */
     public static float gain(float a, float b) {
@@ -70,14 +73,17 @@ public class ImageMath {
         return 1.0f - (float)Math.pow(2 * (1. - a), p) / 2;
          */
         float c = (1.0f / b - 2.0f) * (1.0f - 2.0f * a);
-        if (a < 0.5)
+        if (a < 0.5) {
             return a / (c + 1.0f);
-        else
+        }
+        else {
             return (c - a) / (c - 1.0f);
+        }
     }
 
     /**
      * The step function. Returns 0 below a threshold, 1 above.
+     *
      * @param a the threshold position
      * @param x the input parameter
      * @return the output value - 0 or 1
@@ -88,6 +94,7 @@ public class ImageMath {
 
     /**
      * The pulse function. Returns 1 between two thresholds, 0 outside.
+     *
      * @param a the lower threshold position
      * @param b the upper threshold position
      * @param x the input parameter
@@ -98,7 +105,9 @@ public class ImageMath {
     }
 
     /**
-     * A smoothed pulse function. A cubic function is used to smooth the step between two thresholds.
+     * A smoothed pulse function. A cubic function is used to smooth the step
+     * between two thresholds.
+     *
      * @param a1 the lower threshold position for the start of the pulse
      * @param a2 the upper threshold position for the start of the pulse
      * @param b1 the lower threshold position for the end of the pulse
@@ -107,11 +116,13 @@ public class ImageMath {
      * @return the output value
      */
     public static float smoothPulse(float a1, float a2, float b1, float b2, float x) {
-        if (x < a1 || x >= b2)
+        if (x < a1 || x >= b2) {
             return 0;
+        }
         if (x >= a2) {
-            if (x < b1)
+            if (x < b1) {
                 return 1.0f;
+            }
             x = (x - b1) / (b2 - b1);
             return 1.0f - (x * x * (3.0f - 2.0f * x));
         }
@@ -120,23 +131,29 @@ public class ImageMath {
     }
 
     /**
-     * A smoothed step function. A cubic function is used to smooth the step between two thresholds.
+     * A smoothed step function. A cubic function is used to smooth the step
+     * between two thresholds.
+     *
      * @param a the lower threshold position
      * @param b the upper threshold position
      * @param x the input parameter
      * @return the output value
      */
     public static float smoothStep(float a, float b, float x) {
-        if (x < a)
+        if (x < a) {
             return 0;
-        if (x >= b)
+        }
+        if (x >= b) {
             return 1;
+        }
         x = (x - a) / (b - a);
         return x * x * (3 - 2 * x);
     }
 
     /**
-     * A "circle up" function. Returns y on a unit circle given 1-x. Useful for forming bevels.
+     * A "circle up" function. Returns y on a unit circle given 1-x. Useful for
+     * forming bevels.
+     *
      * @param x the input parameter in the range 0..1
      * @return the output value
      */
@@ -146,7 +163,9 @@ public class ImageMath {
     }
 
     /**
-     * A "circle down" function. Returns 1-y on a unit circle given x. Useful for forming bevels.
+     * A "circle down" function. Returns 1-y on a unit circle given x. Useful
+     * for forming bevels.
+     *
      * @param x the input parameter in the range 0..1
      * @return the output value
      */
@@ -156,6 +175,7 @@ public class ImageMath {
 
     /**
      * Clamp a value to an interval.
+     *
      * @param a the lower clamp threshold
      * @param b the upper clamp threshold
      * @param x the input parameter
@@ -167,6 +187,7 @@ public class ImageMath {
 
     /**
      * Clamp a value to an interval.
+     *
      * @param a the lower clamp threshold
      * @param b the upper clamp threshold
      * @param x the input parameter
@@ -176,9 +197,9 @@ public class ImageMath {
         return (x < a) ? a : (x > b) ? b : x;
     }
 
-
     /**
      * Clamp a value to an interval.
+     *
      * @param a the lower clamp threshold
      * @param b the upper clamp threshold
      * @param x the input parameter
@@ -189,7 +210,9 @@ public class ImageMath {
     }
 
     /**
-     * Return a mod b. This differs from the % operator with respect to negative numbers.
+     * Return a mod b. This differs from the % operator with respect to negative
+     * numbers.
+     *
      * @param a the dividend
      * @param b the divisor
      * @return a mod b
@@ -198,13 +221,16 @@ public class ImageMath {
         int n = (int) (a / b);
 
         a -= n * b;
-        if (a < 0)
+        if (a < 0) {
             return a + b;
+        }
         return a;
     }
 
     /**
-     * Return a mod b. This differs from the % operator with respect to negative numbers.
+     * Return a mod b. This differs from the % operator with respect to negative
+     * numbers.
+     *
      * @param a the dividend
      * @param b the divisor
      * @return a mod b
@@ -213,13 +239,16 @@ public class ImageMath {
         int n = (int) (a / b);
 
         a -= n * b;
-        if (a < 0)
+        if (a < 0) {
             return a + b;
+        }
         return a;
     }
 
     /**
-     * Return a mod b. This differs from the % operator with respect to negative numbers.
+     * Return a mod b. This differs from the % operator with respect to negative
+     * numbers.
+     *
      * @param a the dividend
      * @param b the divisor
      * @return a mod b
@@ -228,13 +257,16 @@ public class ImageMath {
         int n = a / b;
 
         a -= n * b;
-        if (a < 0)
+        if (a < 0) {
             return a + b;
+        }
         return a;
     }
 
     /**
-     * The triangle function. Returns a repeating triangle shape in the range 0..1 with wavelength 1.0
+     * The triangle function. Returns a repeating triangle shape in the range
+     * 0..1 with wavelength 1.0
+     *
      * @param x the input parameter
      * @return the output value
      */
@@ -245,6 +277,7 @@ public class ImageMath {
 
     /**
      * Linear interpolation.
+     *
      * @param t the interpolation parameter
      * @param a the lower interpolation range
      * @param b the upper interpolation range
@@ -256,6 +289,7 @@ public class ImageMath {
 
     /**
      * Linear interpolation.
+     *
      * @param t the interpolation parameter
      * @param a the lower interpolation range
      * @param b the upper interpolation range
@@ -267,6 +301,7 @@ public class ImageMath {
 
     /**
      * Linear interpolation of ARGB values.
+     *
      * @param t the interpolation parameter
      * @param rgb1 the lower interpolation range
      * @param rgb2 the upper interpolation range
@@ -290,6 +325,7 @@ public class ImageMath {
 
     /**
      * Bilinear interpolation of ARGB values.
+     *
      * @param x the X interpolation parameter 0..1
      * @param y the y interpolation parameter 0..1
      * @param rgb array of four ARGB values in the order NW, NE, SW, SE
@@ -307,6 +343,7 @@ public class ImageMath {
 
     /**
      * Bilinear interpolation of Gray value.
+     *
      * @param x the X interpolation parameter 0..1
      * @param y the y interpolation parameter 0..1
      * @param rgb array of one G value in the order NW, NE, SW, SE
@@ -321,6 +358,7 @@ public class ImageMath {
 
     /**
      * Return the NTSC gray level of an RGB value.
+     *
      * @param rgb1 the input pixel
      * @return the gray level (0-255)
      */
@@ -350,6 +388,7 @@ public class ImageMath {
 
     /**
      * Compute a Catmull-Rom spline.
+     *
      * @param x the input parameter
      * @param numKnots the number of knots in the spline
      * @param knots the array of knots
@@ -361,13 +400,15 @@ public class ImageMath {
         float k0, k1, k2, k3;
         float c0, c1, c2, c3;
 
-        if (numSpans < 1)
+        if (numSpans < 1) {
             throw new IllegalArgumentException("Too few knots in spline");
+        }
 
         x = clamp(x, 0, 1) * numSpans;
         span = (int) x;
-        if (span > numKnots - 4)
+        if (span > numKnots - 4) {
             span = numKnots - 4;
+        }
         x -= span;
 
         k0 = knots[span];
@@ -385,6 +426,7 @@ public class ImageMath {
 
     /**
      * Compute a Catmull-Rom spline, but with variable knot spacing.
+     *
      * @param x the input parameter
      * @param numKnots the number of knots in the spline
      * @param xknots the array of knot x values
@@ -397,15 +439,18 @@ public class ImageMath {
         float k0, k1, k2, k3;
         float c0, c1, c2, c3;
 
-        if (numSpans < 1)
+        if (numSpans < 1) {
             throw new IllegalArgumentException("Too few knots in spline");
+        }
 
         for (span = 0; span < numSpans; span++) {
-            if (xknots[span + 1] > x)
+            if (xknots[span + 1] > x) {
                 break;
+            }
         }
-        if (span > numKnots - 3)
+        if (span > numKnots - 3) {
             span = numKnots - 3;
+        }
         float t = (float) (x - xknots[span]) / (xknots[span + 1] - xknots[span]);
         span--;
         if (span < 0) {
@@ -428,6 +473,7 @@ public class ImageMath {
 
     /**
      * Compute a Catmull-Rom spline for RGB values.
+     *
      * @param x the input parameter
      * @param numKnots the number of knots in the spline
      * @param knots the array of knots
@@ -439,13 +485,15 @@ public class ImageMath {
         float k0, k1, k2, k3;
         float c0, c1, c2, c3;
 
-        if (numSpans < 1)
+        if (numSpans < 1) {
             throw new IllegalArgumentException("Too few knots in spline");
+        }
 
         x = clamp(x, 0f, 1f) * numSpans;
         span = (int) x;
-        if (span > numKnots - 4)
+        if (span > numKnots - 4) {
             span = numKnots - 4;
+        }
         x -= span;
 
         int v = 0;
@@ -462,10 +510,12 @@ public class ImageMath {
             c1 = m20 * k0 + m21 * k1 + m22 * k2 + m23 * k3;
             c0 = m30 * k0 + m31 * k1 + m32 * k2 + m33 * k3;
             int n = (int) (((c3 * x + c2) * x + c1) * x + c0);
-            if (n < 0)
+            if (n < 0) {
                 n = 0;
-            else if (n > 255)
+            }
+            else if (n > 255) {
                 n = 255;
+            }
             v |= n << shift;
         }
 
@@ -473,7 +523,9 @@ public class ImageMath {
     }
 
     /**
-     * Compute a Catmull-Rom spline for RGB values, but with variable knot spacing.
+     * Compute a Catmull-Rom spline for RGB values, but with variable knot
+     * spacing.
+     *
      * @param x the input parameter
      * @param numKnots the number of knots in the spline
      * @param xknots the array of knot x values
@@ -486,15 +538,18 @@ public class ImageMath {
         float k0, k1, k2, k3;
         float c0, c1, c2, c3;
 
-        if (numSpans < 1)
+        if (numSpans < 1) {
             throw new IllegalArgumentException("Too few knots in spline");
+        }
 
         for (span = 0; span < numSpans; span++) {
-            if (xknots[span + 1] > x)
+            if (xknots[span + 1] > x) {
                 break;
+            }
         }
-        if (span > numKnots - 3)
+        if (span > numKnots - 3) {
             span = numKnots - 3;
+        }
         float t = (float) (x - xknots[span]) / (xknots[span + 1] - xknots[span]);
         span--;
         if (span < 0) {
@@ -516,10 +571,12 @@ public class ImageMath {
             c1 = m20 * k0 + m21 * k1 + m22 * k2 + m23 * k3;
             c0 = m30 * k0 + m31 * k1 + m32 * k2 + m33 * k3;
             int n = (int) (((c3 * t + c2) * t + c1) * t + c0);
-            if (n < 0)
+            if (n < 0) {
                 n = 0;
-            else if (n > 255)
+            }
+            else if (n > 255) {
                 n = 255;
+            }
             v |= n << shift;
         }
 
@@ -528,6 +585,7 @@ public class ImageMath {
 
     /**
      * An implementation of Fant's resampling algorithm.
+     *
      * @param source the source pixels
      * @param dest the destination pixels
      * @param length the length of the scanline to resample
@@ -594,8 +652,9 @@ public class ImageMath {
                 r = nextR;
                 g = nextG;
                 b = nextB;
-                if (srcIndex < lastIndex)
+                if (srcIndex < lastIndex) {
                     rgb = source[srcIndex];
+                }
                 nextA = (rgb >> 24) & 0xff;
                 nextR = (rgb >> 16) & 0xff;
                 nextG = (rgb >> 8) & 0xff;
@@ -607,11 +666,11 @@ public class ImageMath {
                 rSum += (rIntensity * outSegment);
                 gSum += (gIntensity * outSegment);
                 bSum += (bIntensity * outSegment);
-                dest[destIndex] =
-                   ((int) Math.min(aSum / sizfac, 255) << 24)
-                   | ((int) Math.min(rSum / sizfac, 255) << 16)
-                   | ((int) Math.min(gSum / sizfac, 255) << 8)
-                   | (int) Math.min(bSum / sizfac, 255);
+                dest[destIndex]
+                        = ((int) Math.min(aSum / sizfac, 255) << 24)
+                        | ((int) Math.min(rSum / sizfac, 255) << 16)
+                        | ((int) Math.min(gSum / sizfac, 255) << 8)
+                        | (int) Math.min(bSum / sizfac, 255);
                 destIndex += stride;
                 aSum = rSum = gSum = bSum = 0.0f;
                 inSegment -= outSegment;
@@ -657,12 +716,15 @@ public class ImageMath {
                 r *= f;
                 g *= f;
                 b *= f;
-                if (r > 255)
+                if (r > 255) {
                     r = 255;
-                if (g > 255)
+                }
+                if (g > 255) {
                     g = 255;
-                if (b > 255)
+                }
+                if (b > 255) {
                     b = 255;
+                }
                 p[i] = (a << 24) | (r << 16) | (g << 8) | b;
             }
         }

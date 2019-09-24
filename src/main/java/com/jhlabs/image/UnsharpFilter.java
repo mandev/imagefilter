@@ -107,7 +107,7 @@ public class UnsharpFilter extends GaussianFilter {
 
     private void unsharp(int start, int end, int[] inPixels, int[] outPixels, int width, int height) {
         float a = 4 * amount;
-        int index = start * width ;
+        int index = start * width;
         for (int y = start; y < end; y++) {
             for (int x = 0; x < width; x++) {
                 int rgb1 = inPixels[index];

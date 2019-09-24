@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.util.Message;
@@ -18,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 public class DiffusionPanelFilter extends AbstractPanelFilter implements ActionListener {
+
     //
     private JPanel panel;
     private JComboBox ditherCombo;

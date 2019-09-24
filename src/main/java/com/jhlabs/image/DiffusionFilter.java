@@ -13,13 +13,13 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.Rectangle;
 
 /**
- * A filter which uses Floyd-Steinberg error diffusion dithering to halftone an image.
+ * A filter which uses Floyd-Steinberg error diffusion dithering to halftone an
+ * image.
  */
 public class DiffusionFilter extends WholeImageFilter {
 
@@ -41,7 +41,9 @@ public class DiffusionFilter extends WholeImageFilter {
     }
 
     /**
-     * Set whether to use a serpentine pattern for return or not. This can reduce 'avalanche' artifacts in the output.
+     * Set whether to use a serpentine pattern for return or not. This can
+     * reduce 'avalanche' artifacts in the output.
+     *
      * @param serpentine true to use serpentine pattern
      * @see #getSerpentine
      */
@@ -51,6 +53,7 @@ public class DiffusionFilter extends WholeImageFilter {
 
     /**
      * Return the serpentine setting.
+     *
      * @return the current setting
      * @see #setSerpentine
      */
@@ -60,6 +63,7 @@ public class DiffusionFilter extends WholeImageFilter {
 
     /**
      * Set whether to use a color dither.
+     *
      * @param colorDither true to use a color dither
      * @see #getColorDither
      */
@@ -69,6 +73,7 @@ public class DiffusionFilter extends WholeImageFilter {
 
     /**
      * Get whether to use a color dither.
+     *
      * @return true to use a color dither
      * @see #setColorDither
      */
@@ -78,6 +83,7 @@ public class DiffusionFilter extends WholeImageFilter {
 
     /**
      * Set the dither matrix.
+     *
      * @param matrix the dither matrix
      * @see #getMatrix
      */
@@ -91,6 +97,7 @@ public class DiffusionFilter extends WholeImageFilter {
 
     /**
      * Get the dither matrix.
+     *
      * @return the dither matrix
      * @see #setMatrix
      */
@@ -100,6 +107,7 @@ public class DiffusionFilter extends WholeImageFilter {
 
     /**
      * Set the number of dither levels.
+     *
      * @param levels the number of levels
      * @see #getLevels
      */
@@ -109,6 +117,7 @@ public class DiffusionFilter extends WholeImageFilter {
 
     /**
      * Get the number of dither levels.
+     *
      * @return the number of levels
      * @see #setLevels
      */
@@ -148,8 +157,9 @@ public class DiffusionFilter extends WholeImageFilter {
                 int g1 = (rgb1 >> 8) & 0xff;
                 int b1 = rgb1 & 0xff;
 
-                if (!colorDither)
+                if (!colorDither) {
                     r1 = g1 = b1 = (r1 + g1 + b1) / 3;
+                }
 
                 int r2 = map[div[r1]];
                 int g2 = map[div[g1]];
@@ -166,12 +176,14 @@ public class DiffusionFilter extends WholeImageFilter {
                     if (0 <= iy && iy < height) {
                         for (int j = -1; j <= 1; j++) {
                             int jx = j + x;
-                            if ( jx >= 0 && jx < width) {
+                            if (jx >= 0 && jx < width) {
                                 int w;
-                                if (reverse)
+                                if (reverse) {
                                     w = matrix[(i + 1) * 3 - j + 1];
-                                else
+                                }
+                                else {
                                     w = matrix[(i + 1) * 3 + j + 1];
+                                }
                                 if (w != 0) {
                                     int k = reverse ? index - j : index + j;
                                     rgb1 = inPixels[k];

@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * A filter which allows the red, green and blue channels of an image to be mixed into each other.
+ * A filter which allows the red, green and blue channels of an image to be
+ * mixed into each other.
  */
 public class ChannelMixFilter extends PointFilter {
 

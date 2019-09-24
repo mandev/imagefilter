@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
@@ -22,6 +21,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class TwirlPanelFilter extends AbstractPanelFilter implements ChangeListener, ActionListener {
+
     //
     private static final String[] INTERPOLATION_ARRAY = {Message.get("Nearest"), Message.get("Bilinear")};
     private static final float DEFAULT_ANGLE = 0f;
@@ -111,7 +111,7 @@ public class TwirlPanelFilter extends AbstractPanelFilter implements ChangeListe
     public AbstractBufferedImageOp getFilter(float scale) {
         float angle = NumUtils.toRadian(angleSlider.getFloatValue());
         float centreX = centreXSlider.getFloatValue();
-        float centreY = 1f-centreYSlider.getFloatValue();
+        float centreY = 1f - centreYSlider.getFloatValue();
         float radius = radiusSlider.getFloatValue() * scale;
         int interpolation = (interpolationCombo.getSelectedIndex() == 0) ? StraightenFilter.NEAREST_NEIGHBOUR : StraightenFilter.BILINEAR;
 

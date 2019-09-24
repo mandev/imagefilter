@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.*;
@@ -57,6 +56,7 @@ public class FieldWarpFilter extends TransformFilter {
 
     /**
      * Set the amount of warp.
+     *
      * @param amount the amount
      * @min-value 0
      * @max-value 1
@@ -68,6 +68,7 @@ public class FieldWarpFilter extends TransformFilter {
 
     /**
      * Get the amount of warp.
+     *
      * @return the amount
      * @see #setAmount
      */
@@ -132,17 +133,20 @@ public class FieldWarpFilter extends TransformFilter {
 
             fraction = (dx * l.dx + dy * l.dy) / l.lengthSquared;
             fdist = (dy * l.dx - dx * l.dy) / l.length;
-            if (fraction <= 0)
+            if (fraction <= 0) {
                 distance = (float) Math.sqrt(dx * dx + dy * dy);
+            }
             else if (fraction >= 1) {
                 dx = x - l.x2;
                 dy = y - l.y2;
                 distance = (float) Math.sqrt(dx * dx + dy * dy);
             }
-            else if (fdist >= 0)
+            else if (fdist >= 0) {
                 distance = fdist;
-            else
+            }
+            else {
                 distance = -fdist;
+            }
             u = l1.x1 + fraction * l1.dx - fdist * l1.dy / l1.length;
             v = l1.y1 + fraction * l1.dy + fdist * l1.dx / l1.length;
 
@@ -164,10 +168,10 @@ public class FieldWarpFilter extends TransformFilter {
         intermediateLines = new Line[inLines.length];
         for (int line = 0; line < inLines.length; line++) {
             Line l = intermediateLines[line] = new Line(
-               ImageMath.lerp(amount, inLines[line].x1, outLines[line].x1),
-               ImageMath.lerp(amount, inLines[line].y1, outLines[line].y1),
-               ImageMath.lerp(amount, inLines[line].x2, outLines[line].x2),
-               ImageMath.lerp(amount, inLines[line].y2, outLines[line].y2));
+                    ImageMath.lerp(amount, inLines[line].x1, outLines[line].x1),
+                    ImageMath.lerp(amount, inLines[line].y1, outLines[line].y1),
+                    ImageMath.lerp(amount, inLines[line].x2, outLines[line].x2),
+                    ImageMath.lerp(amount, inLines[line].y2, outLines[line].y2));
             l.setup();
             inLines[line].setup();
         }

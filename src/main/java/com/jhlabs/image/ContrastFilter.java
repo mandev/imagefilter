@@ -30,6 +30,7 @@ public class ContrastFilter extends TransferFilter {
 
     /**
      * Set the filter brightness.
+     *
      * @param brightness the brightness in the range 0 to 1
      * @min-value 0
      * @max-value 0
@@ -42,6 +43,7 @@ public class ContrastFilter extends TransferFilter {
 
     /**
      * Get the filter brightness.
+     *
      * @return the brightness in the range 0 to 1
      * @see #setBrightness
      */
@@ -51,6 +53,7 @@ public class ContrastFilter extends TransferFilter {
 
     /**
      * Set the filter contrast.
+     *
      * @param contrast the contrast in the range 0 to 1
      * @min-value 0
      * @max-value 0
@@ -63,6 +66,7 @@ public class ContrastFilter extends TransferFilter {
 
     /**
      * Get the filter contrast.
+     *
      * @return the contrast in the range 0 to 1
      * @see #setContrast
      */

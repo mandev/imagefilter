@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.JSpinSlider;
@@ -17,6 +16,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class GaussianPanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     private JPanel panel;
     private JSpinSlider radiusSlider;
 

@@ -37,6 +37,7 @@ public class RescaleFilter extends TransferFilter {
 
     /**
      * Specifies the scale factor.
+     *
      * @param scale the scale factor.
      * @min-value 1
      * @max-value 5+
@@ -49,6 +50,7 @@ public class RescaleFilter extends TransferFilter {
 
     /**
      * Returns the scale factor.
+     *
      * @return the scale factor.
      * @see #setScale
      */

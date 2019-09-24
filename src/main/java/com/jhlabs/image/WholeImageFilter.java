@@ -13,15 +13,14 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.*;
 import java.awt.image.*;
 
 /**
- * A filter which acts as a superclass for filters which need to have the whole image in memory
- * to do their stuff.
+ * A filter which acts as a superclass for filters which need to have the whole
+ * image in memory to do their stuff.
  */
 public abstract class WholeImageFilter extends AbstractBufferedImageOp {
 
@@ -49,7 +48,9 @@ public abstract class WholeImageFilter extends AbstractBufferedImageOp {
         transformedSpace = new Rectangle(0, 0, width, height);
         transformSpace(transformedSpace);
 
-        if (dst == null) dst = createCompatibleDestImage(src, transformedSpace.width, transformedSpace.height);
+        if (dst == null) {
+            dst = createCompatibleDestImage(src, transformedSpace.width, transformedSpace.height);
+        }
 
         // Get a copy of the internal array
         int[] inPixels = getRGB(src, 0, 0, width, height, null);
@@ -61,6 +62,7 @@ public abstract class WholeImageFilter extends AbstractBufferedImageOp {
 
     /**
      * Calculate output bounds for given input bounds.
+     *
      * @param rect input and output rectangle
      */
     protected void transformSpace(Rectangle rect) {
@@ -68,6 +70,7 @@ public abstract class WholeImageFilter extends AbstractBufferedImageOp {
 
     /**
      * Actually filter the pixels.
+     *
      * @param width the image width
      * @param height the image height
      * @param inPixels the image pixels
@@ -76,4 +79,3 @@ public abstract class WholeImageFilter extends AbstractBufferedImageOp {
      */
     protected abstract int[] filterPixels(int width, int height, int[] inPixels, Rectangle transformedSpace);
 }
-

@@ -19,7 +19,7 @@ public class ThreadUtils {
 //            return task.invoke();
 //        }
 //        else {
-            return FORK_JOIN_POOL.invoke(task);
+        return FORK_JOIN_POOL.invoke(task);
 //        }
     }
 
@@ -37,7 +37,8 @@ public class ThreadUtils {
         for (Thread thread : threads) {
             try {
                 thread.join();
-            }catch (InterruptedException ex) {
+            }
+            catch (InterruptedException ex) {
             }
         }
     }

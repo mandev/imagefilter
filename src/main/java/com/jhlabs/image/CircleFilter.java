@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.geom.Point2D;
@@ -44,6 +43,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Set the height of the arc.
+     *
      * @param height the height
      * @see #getHeight
      */
@@ -53,6 +53,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Get the height of the arc.
+     *
      * @return the height
      * @see #setHeight
      */
@@ -62,6 +63,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Set the angle of the arc.
+     *
      * @param angle the angle of the arc.
      * @angle
      * @see #getAngle
@@ -72,6 +74,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Returns the angle of the arc.
+     *
      * @return the angle of the arc.
      * @see #setAngle
      */
@@ -81,6 +84,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Set the spread angle of the arc.
+     *
      * @param spreadAngle the angle
      * @angle
      * @see #getSpreadAngle
@@ -91,6 +95,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Get the spread angle of the arc.
+     *
      * @return the angle
      * @angle
      * @see #setSpreadAngle
@@ -101,6 +106,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Set the radius of the effect.
+     *
      * @param radius the radius
      * @min-value 0
      * @see #getRadius
@@ -111,6 +117,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Get the radius of the effect.
+     *
      * @return the radius
      * @see #setRadius
      */
@@ -119,7 +126,9 @@ public class CircleFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the Y direction as a proportion of the image size.
+     * Set the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @param centreX the center
      * @see #getCentreX
      */
@@ -128,7 +137,9 @@ public class CircleFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the X direction as a proportion of the image size.
+     * Get the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreX
      */
@@ -137,7 +148,9 @@ public class CircleFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the Y direction as a proportion of the image size.
+     * Set the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @param centreY the center
      * @see #getCentreY
      */
@@ -146,7 +159,9 @@ public class CircleFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the Y direction as a proportion of the image size.
+     * Get the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreY
      */
@@ -156,6 +171,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Set the centre of the effect as a proportion of the image size.
+     *
      * @param centre the center
      * @see #getCentre
      */
@@ -166,6 +182,7 @@ public class CircleFilter extends TransformFilter {
 
     /**
      * Get the centre of the effect as a proportion of the image size.
+     *
      * @return the center
      * @see #setCentre
      */

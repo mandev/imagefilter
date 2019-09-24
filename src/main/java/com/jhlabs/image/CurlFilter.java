@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.Rectangle;
@@ -180,10 +179,12 @@ public class CurlFilter extends TransformFilter {
                 g = (int) (g * shade);
                 b = (int) (b * shade);
                 rgb = (rgb & 0xff000000) | (r << 16) | (g << 8) | b;
-                if (out[3] != 0)
+                if (out[3] != 0) {
                     outPixels[x] = PixelUtils.combinePixels(rgb, inPixels[srcWidth * y + x], PixelUtils.NORMAL);
-                else
+                }
+                else {
                     outPixels[x] = rgb;
+                }
             }
             setRGB(dst, 0, y, outWidth, 1, outPixels);
         }

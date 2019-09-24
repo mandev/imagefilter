@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
@@ -16,6 +15,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class RGBAdjustPanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     private JPanel panel;
     private FloatJSpinSlider redSlider;
     private FloatJSpinSlider greenSlider;

@@ -163,21 +163,23 @@ public class DitherFilter extends PointFilter {
         matrix = ditherMagic4x4Matrix;
         levels = 6;
         colorDither = true;
-        initialize() ;
+        initialize();
     }
 
     /**
      * Set the dither matrix.
+     *
      * @param matrix the dither matrix
      * @see #getMatrix
      */
     public void setMatrix(int[] matrix) {
         this.matrix = matrix;
-        initialize() ;
+        initialize();
     }
 
     /**
      * Get the dither matrix.
+     *
      * @return the dither matrix
      * @see #setMatrix
      */
@@ -187,16 +189,18 @@ public class DitherFilter extends PointFilter {
 
     /**
      * Set the number of dither levels.
+     *
      * @param levels the number of levels
      * @see #getLevels
      */
     public void setLevels(int levels) {
         this.levels = levels;
-        initialize() ;
+        initialize();
     }
 
     /**
      * Get the number of dither levels.
+     *
      * @return the number of levels
      * @see #setLevels
      */
@@ -206,16 +210,18 @@ public class DitherFilter extends PointFilter {
 
     /**
      * Set whether to use a color dither.
+     *
      * @param colorDither whether to use a color dither
      * @see #getColorDither
      */
     public void setColorDither(boolean colorDither) {
         this.colorDither = colorDither;
-        initialize() ;
+        initialize();
     }
 
     /**
      * Get whether to use a color dither.
+     *
      * @return whether to use a color dither
      * @see #getColorDither
      */
@@ -227,19 +233,19 @@ public class DitherFilter extends PointFilter {
      * Initialize the filter.
      */
     protected void initialize() {
-            rows = cols = (int) Math.sqrt(matrix.length);
-            map = new int[levels];
-            for (int i = 0; i < levels; i++) {
-                int v = 255 * i / (levels - 1);
-                map[i] = v;
-            }
-            div = new int[256];
-            mod = new int[256];
-            int rc = (rows * cols + 1);
-            for (int i = 0; i < 256; i++) {
-                div[i] = (levels - 1) * i / 256;
-                mod[i] = i * rc / 256;
-            }
+        rows = cols = (int) Math.sqrt(matrix.length);
+        map = new int[levels];
+        for (int i = 0; i < levels; i++) {
+            int v = 255 * i / (levels - 1);
+            map[i] = v;
+        }
+        div = new int[256];
+        mod = new int[256];
+        int rc = (rows * cols + 1);
+        for (int i = 0; i < 256; i++) {
+            div[i] = (levels - 1) * i / 256;
+            mod[i] = i * rc / 256;
+        }
     }
 
     public int filterRGB(int x, int y, int rgb) {

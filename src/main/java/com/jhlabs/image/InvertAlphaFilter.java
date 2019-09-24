@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 /**
- * A Filter to invert the alpha channel of an image. This is really only useful for inverting selections, where we only use the alpha channel.
+ * A Filter to invert the alpha channel of an image. This is really only useful
+ * for inverting selections, where we only use the alpha channel.
  */
 public class InvertAlphaFilter extends PointFilter {
 

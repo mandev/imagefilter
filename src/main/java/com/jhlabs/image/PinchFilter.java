@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-
 package com.jhlabs.image;
 
 import java.awt.geom.*;
@@ -38,7 +37,9 @@ public class PinchFilter extends TransformFilter {
 
     /**
      * Set the angle of twirl in radians. 0 means no distortion.
-     * @param angle the angle of twirl. This is the angle by which pixels at the nearest edge of the image will move.
+     *
+     * @param angle the angle of twirl. This is the angle by which pixels at the
+     * nearest edge of the image will move.
      * @see #getAngle
      */
     public void setAngle(float angle) {
@@ -47,6 +48,7 @@ public class PinchFilter extends TransformFilter {
 
     /**
      * Get the angle of twist.
+     *
      * @return the angle in radians.
      * @see #setAngle
      */
@@ -55,7 +57,9 @@ public class PinchFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the X direction as a proportion of the image size.
+     * Set the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @param centreX the center
      * @see #getCentreX
      */
@@ -64,7 +68,9 @@ public class PinchFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the X direction as a proportion of the image size.
+     * Get the centre of the effect in the X direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreX
      */
@@ -73,7 +79,9 @@ public class PinchFilter extends TransformFilter {
     }
 
     /**
-     * Set the centre of the effect in the Y direction as a proportion of the image size.
+     * Set the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @param centreY the center
      * @see #getCentreY
      */
@@ -82,7 +90,9 @@ public class PinchFilter extends TransformFilter {
     }
 
     /**
-     * Get the centre of the effect in the Y direction as a proportion of the image size.
+     * Get the centre of the effect in the Y direction as a proportion of the
+     * image size.
+     *
      * @return the center
      * @see #setCentreY
      */
@@ -92,6 +102,7 @@ public class PinchFilter extends TransformFilter {
 
     /**
      * Set the centre of the effect as a proportion of the image size.
+     *
      * @param centre the center
      * @see #getCentre
      */
@@ -102,6 +113,7 @@ public class PinchFilter extends TransformFilter {
 
     /**
      * Get the centre of the effect as a proportion of the image size.
+     *
      * @return the center
      * @see #setCentre
      */
@@ -111,6 +123,7 @@ public class PinchFilter extends TransformFilter {
 
     /**
      * Set the radius of the effect.
+     *
      * @param radius the radius
      * @min-value 0
      * @see #getRadius
@@ -121,6 +134,7 @@ public class PinchFilter extends TransformFilter {
 
     /**
      * Get the radius of the effect.
+     *
      * @return the radius
      * @see #setRadius
      */
@@ -130,6 +144,7 @@ public class PinchFilter extends TransformFilter {
 
     /**
      * Set the amount of pinch.
+     *
      * @param amount the amount
      * @min-value -1
      * @max-value 1
@@ -141,6 +156,7 @@ public class PinchFilter extends TransformFilter {
 
     /**
      * Get the amount of pinch.
+     *
      * @return the amount
      * @see #setAmount
      */
@@ -151,8 +167,9 @@ public class PinchFilter extends TransformFilter {
     private void initialize(BufferedImage src) {
         icentreX = src.getWidth() * centreX;
         icentreY = src.getHeight() * centreY;
-        if (radius == 0)
+        if (radius == 0) {
             radius = Math.min(icentreX, icentreY);
+        }
         radius2 = radius * radius;
     }
 

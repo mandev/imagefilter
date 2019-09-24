@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
@@ -20,6 +19,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class ThresholdPanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     //
     private JPanel panel;
     private FloatJSpinSlider lowerThresholdSlider;

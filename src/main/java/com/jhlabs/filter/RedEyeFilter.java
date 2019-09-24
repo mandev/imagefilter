@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.jhlabs.filter;
 
 import com.jhlabs.image.PointFilter;
@@ -38,7 +37,6 @@ public class RedEyeFilter extends PointFilter {
         int g = (rgb >> 8) & 0xff;
         int b = rgb & 0xff;
 
-
         if (r > g * 3 || r > b * 3) {
             r = (g + b) / 2;
         }
@@ -56,5 +54,3 @@ public class RedEyeFilter extends PointFilter {
         return "Colors/RedEye";
     }
 }
-
-

@@ -12,21 +12,19 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-*/
-
+ */
 package com.jhlabs.math;
 
 public class CompositeFunction1D implements Function1D {
 
-	private Function1D f1, f2;
-	
-	public CompositeFunction1D(Function1D f1, Function1D f2) {
-		this.f1 = f1;
-		this.f2 = f2;
-	}
-	
-	public float evaluate(float v) {
-		return f1.evaluate(f2.evaluate(v));
-	}
-}
+    private Function1D f1, f2;
 
+    public CompositeFunction1D(Function1D f1, Function1D f2) {
+        this.f1 = f1;
+        this.f2 = f2;
+    }
+
+    public float evaluate(float v) {
+        return f1.evaluate(f2.evaluate(v));
+    }
+}

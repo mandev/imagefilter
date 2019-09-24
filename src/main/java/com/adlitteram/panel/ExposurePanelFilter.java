@@ -1,4 +1,3 @@
-
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
@@ -18,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ExposurePanelFilter extends AbstractPanelFilter implements ChangeListener {
+
     //
     private static final Logger logger = LoggerFactory.getLogger(ExposurePanelFilter.class);
     //
