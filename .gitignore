@@ -137,7 +137,6 @@ pom.xml.releaseBackup
 # Directories
 ######################
 /bin/
-/deploy/
 
 ######################
 # Logs
