@@ -4,7 +4,7 @@
  */
 package com.jhlabs.filter;
 
-import com.adlitteram.imagetool.icc.IccUtils;
+import com.adlitteram.jasmin.image.icc.IccUtils;
 import com.jhlabs.image.AbstractBufferedImageOp;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;

@@ -27,11 +27,6 @@
         </dependency>
         <dependency>
             <groupId>com.adlitteram</groupId>
-            <artifactId>imagetool</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.adlitteram</groupId>
             <artifactId>jasmin</artifactId>
             <version>1.0</version>
             <type>jar</type>
