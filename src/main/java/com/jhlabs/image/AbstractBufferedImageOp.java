@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractBufferedImageOp implements BufferedImageOp, Cloneable {
 
     private static final Logger logger = LoggerFactory.getLogger(AbstractBufferedImageOp.class);
-    //
+
     public static final int RGB32_TYPE = 1; // RGB (24 bits) or ARGB (32 bits)
     public static final int GRAY8_TYPE = 2; // GRAY (8 bits)
     public static final int GRAY_2X8_TYPE = 3; // AGRAY (2x8 bits)
@@ -123,7 +123,6 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
     public static BufferedImage createBufferedImage(ColorModel colorModel, int width, int height, int[] pixels) {
         // RGB
         if (colorModel instanceof DirectColorModel) {
-            System.err.println("createBufferedImage - DirectColorModel");
             DataBuffer intBuffer = new DataBufferInt(pixels, pixels.length);
             SampleModel sampleModel = colorModel.createCompatibleSampleModel(width, height);
             WritableRaster raster = Raster.createWritableRaster(sampleModel, intBuffer, null);
@@ -144,7 +143,6 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
             return new BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied(), null);
         }
 
-        System.err.println("createBufferedImage - other");
         WritableRaster raster = colorModel.createCompatibleWritableRaster(width, height);
         BufferedImage bi = new BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied(), null);
         bi.setRGB(0, 0, width, height, pixels, 0, width);
@@ -190,7 +188,6 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
 
     public static int getImageType(BufferedImage image) {
         ColorModel colorModel = image.getColorModel();
-        //logger.info(colorModel.getClass().getName() + " Type: " + colorModel.getTransferType() + " Num: " + colorModel.getNumComponents());
 
         if (colorModel instanceof DirectColorModel) {
             return RGB32_TYPE;

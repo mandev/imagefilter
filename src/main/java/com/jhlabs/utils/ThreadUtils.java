@@ -14,13 +14,7 @@ public class ThreadUtils {
     private static final int PROCESSORS = Runtime.getRuntime().availableProcessors();
 
     public static <T> T forkJoin(ForkJoinTask<T> task) {
-//        if (ForkJoinTask.inForkJoinPool()) {
-//            System.err.println("inForkJoinPool!");
-//            return task.invoke();
-//        }
-//        else {
         return FORK_JOIN_POOL.invoke(task);
-//        }
     }
 
     public static int getAvailableProcessors() {

@@ -28,7 +28,6 @@ import org.slf4j.LoggerFactory;
 public class StraightenFilter extends TransformFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(StraightenFilter.class);
-    //
 
     private float angle;
     private float cos;

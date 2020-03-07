@@ -248,11 +248,11 @@ public class FlipFilterFast extends AbstractBufferedImageOp {
 
     private class FlipAction_GRAY8 extends RecursiveAction {
 
-        private int threshold;
-        private int start;
-        private int end;
-        private BufferedImage src;
-        private BufferedImage dst;
+        private final int start;
+        private final int end;
+        private final BufferedImage src;
+        private final BufferedImage dst;
+        private final int threshold;
 
         public FlipAction_GRAY8(int start, int end, BufferedImage src, BufferedImage dst, int threshold) {
             this.start = start;
@@ -376,11 +376,11 @@ public class FlipFilterFast extends AbstractBufferedImageOp {
 
     private class FlipAction_RGB32 extends RecursiveAction {
 
-        private int threshold;
-        private int start;
-        private int end;
-        private BufferedImage src;
-        private BufferedImage dst;
+        private final int start;
+        private final int end;
+        private final BufferedImage src;
+        private final BufferedImage dst;
+        private final int threshold;
 
         public FlipAction_RGB32(int start, int end, BufferedImage src, BufferedImage dst, int threshold) {
             this.start = start;

@@ -107,18 +107,18 @@ public class GaussianFilter extends ConvolveFilter {
 
     private static class GaussianAction extends RecursiveAction {
 
-        private int threshold;
-        private int start;
-        private int end;
-        private Kernel kernel;
-        private int[] inPixels;
-        private int[] outPixels;
-        private int width;
-        private int height;
-        private boolean alpha;
-        private boolean premultiply;
-        private boolean unpremultiply;
-        private int edgeAction;
+        private final int start;
+        private final int end;
+        private final Kernel kernel;
+        private final int[] inPixels;
+        private final int[] outPixels;
+        private final int width;
+        private final int height;
+        private final boolean alpha;
+        private final boolean premultiply;
+        private final boolean unpremultiply;
+        private final int edgeAction;
+        private final int threshold;
 
         private GaussianAction(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height,
                 boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction, int threshold) {
@@ -153,12 +153,16 @@ public class GaussianFilter extends ConvolveFilter {
     /**
      * Blur and transpose a block of ARGB pixels.
      *
+     * @param start
+     * @param end
      * @param kernel the blur kernel
      * @param inPixels the input pixels
      * @param outPixels the output pixels
      * @param width the width of the pixel array
      * @param height the height of the pixel array
      * @param alpha whether to blur the alpha channel
+     * @param premultiply
+     * @param unpremultiply
      * @param edgeAction what to do at the edges
      */
     public static void convolveAndTranspose(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height,
@@ -190,11 +194,8 @@ public class GaussianFilter extends ConvolveFilter {
             convolveAndTransposeFFFC(start, end, kernel, inPixels, outPixels, width, height);
         }
         else {
-            System.err.println("convolveAndTranspose() - ");
             convolveAndTranspose2(start, end, kernel, inPixels, outPixels, width, height, alpha, premultiply, unpremultiply, edgeAction);
         }
-
-        //System.err.println("convolveAndTranspose - time: " + (System.currentTimeMillis() - time));
     }
 
     private static void convolveAndTranspose2(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height,

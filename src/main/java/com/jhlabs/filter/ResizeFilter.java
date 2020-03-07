@@ -20,7 +20,7 @@ public class ResizeFilter extends AbstractBufferedImageOp {
     public static final int BILINEAR = 1;
     public static final int BICUBIC = 2;
     public static final int MULTISTEP = 3;
-    //
+  
     private static final Object[] RENDERING_HINTS = {
         RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR,
         RenderingHints.VALUE_INTERPOLATION_BILINEAR,
