@@ -146,13 +146,14 @@ public class TransitionFilter extends AbstractBufferedImageOp {
      */
     public void prepareFilter(float transition) {
         try {
-            method.invoke(filter, new Object[]{new Float(transition)});
+            method.invoke(filter, new Object[]{Float.valueOf(transition)});
         }
         catch (Exception e) {
             throw new IllegalArgumentException("Error setting value for property: " + property);
         }
     }
 
+    @Override
     public BufferedImage filterRGB32(BufferedImage src, BufferedImage dst) {
         if (dst == null) {
             dst = createCompatibleDestImage(src, null);
