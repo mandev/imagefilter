@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -69,7 +69,7 @@ public class CurlFilter extends TransformFilter {
 
         private int edgeAction;
         private int width, height;
-        private int[] inPixels;
+        private final int[] inPixels;
 
         public Sampler(BufferedImage image) {
             int w = image.getWidth();
@@ -92,8 +92,7 @@ public class CurlFilter extends TransformFilter {
                 ne = inPixels[i + 1];
                 sw = inPixels[i + width];
                 se = inPixels[i + width + 1];
-            }
-            else {
+            } else {
                 // Some of the corners are off the image
                 nw = getPixel(inPixels, srcX, srcY, width, height);
                 ne = getPixel(inPixels, srcX + 1, srcY, width, height);
@@ -162,8 +161,7 @@ public class CurlFilter extends TransformFilter {
                     ne = inPixels[i + 1];
                     sw = inPixels[i + srcWidth];
                     se = inPixels[i + srcWidth + 1];
-                }
-                else {
+                } else {
                     // Some of the corners are off the image
                     nw = getPixel_RGB32(inPixels, srcX, srcY, srcWidth, srcHeight);
                     ne = getPixel_RGB32(inPixels, srcX + 1, srcY, srcWidth, srcHeight);
@@ -181,8 +179,7 @@ public class CurlFilter extends TransformFilter {
                 rgb = (rgb & 0xff000000) | (r << 16) | (g << 8) | b;
                 if (out[3] != 0) {
                     outPixels[x] = PixelUtils.combinePixels(rgb, inPixels[srcWidth * y + x], PixelUtils.NORMAL);
-                }
-                else {
+                } else {
                     outPixels[x] = rgb;
                 }
             }
@@ -252,8 +249,7 @@ public class CurlFilter extends TransformFilter {
 
         if (outside) {
             out[0] = out[1] = -1;
-        }
-        else {
+        } else {
             out[0] = px;
             out[1] = py;
         }

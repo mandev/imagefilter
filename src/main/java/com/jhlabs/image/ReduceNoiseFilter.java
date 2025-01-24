@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.Rectangle;
+import java.awt.*;
 
 /**
  * A filter which performs reduces noise by looking at each pixel's 8
@@ -76,16 +76,14 @@ public class ReduceNoiseFilter extends WholeImageFilter {
                                 r[k] = (rgb >> 16) & 0xff;
                                 g[k] = (rgb >> 8) & 0xff;
                                 b[k] = rgb & 0xff;
-                            }
-                            else {
+                            } else {
                                 r[k] = ir;
                                 g[k] = ig;
                                 b[k] = ib;
                             }
                             k++;
                         }
-                    }
-                    else {
+                    } else {
                         for (int dx = -1; dx <= 1; dx++) {
                             r[k] = ir;
                             g[k] = ig;

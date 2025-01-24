@@ -15,14 +15,13 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.util.*;
 import java.awt.*;
-import java.awt.image.*;
-import com.jhlabs.math.*;
+import java.util.Date;
+import java.util.Random;
 
 public class QuiltFilter extends WholeImageFilter {
 
-    private Random randomGenerator;
+    private final Random randomGenerator;
     private long seed = 567;
     private int iterations = 25000;
     private float a = -0.59f;

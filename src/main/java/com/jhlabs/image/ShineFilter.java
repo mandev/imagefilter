@@ -16,9 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import com.jhlabs.composite.AddComposite;
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Graphics2D;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class ShineFilter extends AbstractBufferedImageOp {

@@ -6,24 +6,20 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.DiffusionFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 public class DiffusionPanelFilter extends AbstractPanelFilter implements ActionListener {
 
-    //
     private JPanel panel;
-    private JComboBox ditherCombo;
+    private JComboBox<String> ditherCombo;
     private JCheckBox serpentineCheck;
     private JCheckBox colorCheck;
-    private static final String[] ditherArray = {"2", "4", "5", "6", "8", "16", "64", "256"};
+    private static final String[] DITHER_ARRAY = {"2", "4", "5", "6", "8", "16", "64", "256"};
 
     @Override
     public String getName() {
@@ -51,7 +47,7 @@ public class DiffusionPanelFilter extends AbstractPanelFilter implements ActionL
     public JPanel getPanel() {
         if (panel == null) {
 
-            ditherCombo = new JComboBox(ditherArray);
+            ditherCombo = new JComboBox<>(DITHER_ARRAY);
             ditherCombo.setSelectedItem("8");
             ditherCombo.addActionListener(this);
 
@@ -61,8 +57,8 @@ public class DiffusionPanelFilter extends AbstractPanelFilter implements ActionL
             colorCheck = new JCheckBox(Message.get("ColorDither"), true);
             colorCheck.addActionListener(this);
 
-            int w[] = {10, 0, 5, 0, 10};
-            int h[] = {10, 0, 10, 0, 5, 0, 10};
+            int[] w = {10, 0, 5, 0, 10};
+            int[] h = {10, 0, 10, 0, 5, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

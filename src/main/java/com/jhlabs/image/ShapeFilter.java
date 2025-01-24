@@ -16,7 +16,6 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
 
 // original code Copyright (C) Jerry Huxtable 1998
 //
@@ -127,8 +126,7 @@ public class ShapeFilter extends WholeImageFilter {
                 if (map[offset] > 0) {
                     if (x < 2 || x > xmax || y < 2 || y > ymax) {
                         v = setEdgeValue(x, y, map, width, offset, xmax, ymax);
-                    }
-                    else {
+                    } else {
                         v = setValue(map, width, offset);
                     }
                     if (v > max) {
@@ -143,8 +141,7 @@ public class ShapeFilter extends WholeImageFilter {
                 if (map[offset] > 0) {
                     if (x < 2 || x > xmax || y < 2 || y > ymax) {
                         v = setEdgeValue(x, y, map, width, offset, xmax, ymax);
-                    }
-                    else {
+                    } else {
                         v = setValue(map, width, offset);
                     }
                     if (v > max) {
@@ -182,8 +179,7 @@ public class ShapeFilter extends WholeImageFilter {
                     // default color
                     sa = sr = sg = sb = 0;
                     sa = (pixels[offset] >> 24) & 0xff;
-                }
-                else {
+                } else {
                     // get V from map
                     v = ImageMath.clamp(factor * m / max, 0, 1);
                     switch (type) {
@@ -200,8 +196,7 @@ public class ShapeFilter extends WholeImageFilter {
 
                     if (colormap == null) {
                         sr = sg = sb = (int) (v * 255);
-                    }
-                    else {
+                    } else {
                         int c = (colormap.getColor(v));
 
                         sr = (c >> 16) & 0xFF;
@@ -230,9 +225,9 @@ public class ShapeFilter extends WholeImageFilter {
                     int g = (col & 0xFF00) >> 8;
                     int b = (col & 0xFF);
 
-                    r = (int) ((sr * r / transp));
-                    g = (int) ((sg * g / transp));
-                    b = (int) ((sb * b / transp));
+                    r = (sr * r / transp);
+                    g = (sg * g / transp);
+                    b = (sb * b / transp);
 
                     // clip colors
                     if (r < 0) {
@@ -255,8 +250,7 @@ public class ShapeFilter extends WholeImageFilter {
                     }
 
                     pixels[offset] = (a << 24) | (r << 16) | (g << 8) | b;
-                }
-                else {
+                } else {
                     // write gray shades
                     pixels[offset] = (sa << 24) | (sr << 16) | (sg << 8) | sb;
                 }

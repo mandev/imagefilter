@@ -15,8 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.image.*;
-import com.jhlabs.math.*;
+import com.jhlabs.math.Noise;
 
 /**
  * A filter which produces a simulated wood texture. This is a bit of a hack,
@@ -241,8 +240,7 @@ public class WoodFilter extends PointFilter {
         int v;
         if (colormap != null) {
             v = colormap.getColor(f);
-        }
-        else {
+        } else {
             v = PixelUtils.clamp((int) (f * 255));
             int r = v << 16;
             int g = v << 8;

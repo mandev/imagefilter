@@ -46,7 +46,7 @@ public abstract class TransferFilter extends PointFilter {
 
     abstract protected float transferFunction(float v);
 
-//    protected float transferFunction(float v) {
+    //    protected float transferFunction(float v) {
 //        return 0;
 //    }
     public int[] getLUT() {

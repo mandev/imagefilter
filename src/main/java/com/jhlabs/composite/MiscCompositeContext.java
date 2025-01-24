@@ -16,27 +16,26 @@ limitations under the License.
 package com.jhlabs.composite;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-import java.awt.color.*;
-import java.net.*;
-import java.io.*;
+import java.awt.color.ColorSpace;
+import java.awt.image.ColorModel;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 public class MiscCompositeContext implements CompositeContext {
 
-    private int rule;
-    private float alpha;
-    private ColorModel srcColorModel;
-    private ColorModel dstColorModel;
-    private ColorSpace srcColorSpace;
-    private ColorSpace dstColorSpace;
+    private final int rule;
+    private final float alpha;
+    private final ColorModel srcColorModel;
+    private final ColorModel dstColorModel;
+    private final ColorSpace srcColorSpace;
+    private final ColorSpace dstColorSpace;
     private boolean srcNeedsConverting;
     private boolean dstNeedsConverting;
 
     public MiscCompositeContext(int rule,
-            float alpha,
-            ColorModel srcColorModel,
-            ColorModel dstColorModel) {
+                                float alpha,
+                                ColorModel srcColorModel,
+                                ColorModel dstColorModel) {
         this.rule = rule;
         this.alpha = alpha;
         this.srcColorModel = srcColorModel;
@@ -173,24 +172,21 @@ public class MiscCompositeContext implements CompositeContext {
                         if (dir < 128) {
                             t = dir * sr + 0x80;
                             dor = 2 * (((t >> 8) + t) >> 8);
-                        }
-                        else {
+                        } else {
                             t = (255 - dir) * (255 - sr) + 0x80;
                             dor = 2 * (255 - (((t >> 8) + t) >> 8));
                         }
                         if (dig < 128) {
                             t = dig * sg + 0x80;
                             dog = 2 * (((t >> 8) + t) >> 8);
-                        }
-                        else {
+                        } else {
                             t = (255 - dig) * (255 - sg) + 0x80;
                             dog = 2 * (255 - (((t >> 8) + t) >> 8));
                         }
                         if (dib < 128) {
                             t = dib * sb + 0x80;
                             dob = 2 * (((t >> 8) + t) >> 8);
-                        }
-                        else {
+                        } else {
                             t = (255 - dib) * (255 - sb) + 0x80;
                             dob = 2 * (255 - (((t >> 8) + t) >> 8));
                         }
@@ -252,42 +248,36 @@ public class MiscCompositeContext implements CompositeContext {
 
                     case MiscComposite.BURN:
                         if (dir != 255) {
-                            dor = clamp(255 - (((int) (255 - sr) << 8) / (dir + 1)));
-                        }
-                        else {
+                            dor = clamp(255 - (((255 - sr) << 8) / (dir + 1)));
+                        } else {
                             dor = sr;
                         }
                         if (dig != 255) {
-                            dog = clamp(255 - (((int) (255 - sg) << 8) / (dig + 1)));
-                        }
-                        else {
+                            dog = clamp(255 - (((255 - sg) << 8) / (dig + 1)));
+                        } else {
                             dog = sg;
                         }
                         if (dib != 255) {
-                            dob = clamp(255 - (((int) (255 - sb) << 8) / (dib + 1)));
-                        }
-                        else {
+                            dob = clamp(255 - (((255 - sb) << 8) / (dib + 1)));
+                        } else {
                             dob = sb;
                         }
                         break;
 
                     case MiscComposite.COLOR_BURN:
                         if (sr != 0) {
-                            dor = Math.max(255 - (((int) (255 - dir) << 8) / sr), 0);
-                        }
-                        else {
+                            dor = Math.max(255 - (((255 - dir) << 8) / sr), 0);
+                        } else {
                             dor = sr;
                         }
                         if (sg != 0) {
-                            dog = Math.max(255 - (((int) (255 - dig) << 8) / sg), 0);
-                        }
-                        else {
+                            dog = Math.max(255 - (((255 - dig) << 8) / sg), 0);
+                        } else {
                             dog = sg;
                         }
                         if (sb != 0) {
-                            dob = Math.max(255 - (((int) (255 - dib) << 8) / sb), 0);
-                        }
-                        else {
+                            dob = Math.max(255 - (((255 - dib) << 8) / sb), 0);
+                        } else {
                             dob = sb;
                         }
                         break;
@@ -301,20 +291,17 @@ public class MiscCompositeContext implements CompositeContext {
                     case MiscComposite.COLOR_DODGE:
                         if (sr != 255) {
                             dor = Math.min((dir << 8) / (255 - sr), 255);
-                        }
-                        else {
+                        } else {
                             dor = sr;
                         }
                         if (sg != 255) {
                             dog = Math.min((dig << 8) / (255 - sg), 255);
-                        }
-                        else {
+                        } else {
                             dog = sg;
                         }
                         if (sb != 255) {
                             dob = Math.min((dib << 8) / (255 - sb), 255);
-                        }
-                        else {
+                        } else {
                             dob = sb;
                         }
                         break;
@@ -332,20 +319,17 @@ public class MiscCompositeContext implements CompositeContext {
                     case MiscComposite.HARD_LIGHT:
                         if (sr > 127) {
                             dor = 255 - 2 * multiply255(255 - sr, 255 - dir);
-                        }
-                        else {
+                        } else {
                             dor = 2 * multiply255(sr, dir);
                         }
                         if (sg > 127) {
                             dog = 255 - 2 * multiply255(255 - sg, 255 - dig);
-                        }
-                        else {
+                        } else {
                             dog = 2 * multiply255(sg, dig);
                         }
                         if (sb > 127) {
                             dob = 255 - 2 * multiply255(255 - sb, 255 - dib);
-                        }
-                        else {
+                        } else {
                             dob = 2 * multiply255(sb, dib);
                         }
                         break;

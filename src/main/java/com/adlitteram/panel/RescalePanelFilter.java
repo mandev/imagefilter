@@ -6,21 +6,18 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.RescaleFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class RescalePanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider rescaleSlider;
-    //
-    private float defaultScale = 1f;
+    private static final float DEFAULT_SCALE = 1f;
 
     @Override
     public String getName() {
@@ -34,7 +31,7 @@ public class RescalePanelFilter extends AbstractPanelFilter implements ChangeLis
 
     @Override
     public void reset() {
-        rescaleSlider.setFloatValue(defaultScale);
+        rescaleSlider.setFloatValue(DEFAULT_SCALE);
     }
 
     @Override
@@ -46,11 +43,11 @@ public class RescalePanelFilter extends AbstractPanelFilter implements ChangeLis
     public JPanel getPanel() {
         if (panel == null) {
 
-            rescaleSlider = new FloatJSpinSlider(defaultScale, 0f, 5f, 0.1f, 0.1f, 10);
+            rescaleSlider = new FloatJSpinSlider(DEFAULT_SCALE, 0f, 5f, 0.1f, 0.1f, 10);
             rescaleSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

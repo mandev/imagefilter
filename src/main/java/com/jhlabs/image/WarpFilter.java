@@ -16,8 +16,7 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter for warping images using the gridwarp algorithm. You need to supply
@@ -44,7 +43,7 @@ public class WarpFilter extends WholeImageFilter {
      * Create a WarpFilter with two warp grids.
      *
      * @param sourceGrid the source grid
-     * @param destGrid the destination grid
+     * @param destGrid   the destination grid
      */
     public WarpFilter(WarpGrid sourceGrid, WarpGrid destGrid) {
         this.sourceGrid = sourceGrid;
@@ -129,11 +128,9 @@ public class WarpFilter extends WholeImageFilter {
         if (morphImage != null) {
             int[] morphPixels = getRGB(morphImage, 0, 0, width, height, null);
             morph(inPixels, morphPixels, outPixels, sourceGrid, destGrid, width, height, time);
-        }
-        else if (frames <= 1) {
+        } else if (frames <= 1) {
             sourceGrid.warp(inPixels, width, height, sourceGrid, destGrid, outPixels);
-        }
-        else {
+        } else {
             WarpGrid newGrid = new WarpGrid(sourceGrid.rows, sourceGrid.cols, width, height);
             for (int i = 0; i < frames; i++) {
                 float t = (float) i / (frames - 1);

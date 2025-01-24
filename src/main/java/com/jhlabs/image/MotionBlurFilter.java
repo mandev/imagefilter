@@ -15,8 +15,9 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.image.*;
-import java.awt.geom.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which produces motion blur the slow, but higher-quality way.
@@ -24,7 +25,7 @@ import java.awt.geom.*;
 public class MotionBlurFilter extends AbstractBufferedImageOp {
 
     private float angle = 0.0f;
-    private float falloff = 1.0f;
+    private final float falloff = 1.0f;
     private float distance = 1.0f;
     private float zoom = 0.0f;
     private float rotation = 0.0f;
@@ -41,9 +42,9 @@ public class MotionBlurFilter extends AbstractBufferedImageOp {
      * Construct a MotionBlurFilter.
      *
      * @param distance the distance of blur.
-     * @param angle the angle of blur.
+     * @param angle    the angle of blur.
      * @param rotation the angle of rotation.
-     * @param zoom the zoom factor.
+     * @param zoom     the zoom factor.
      */
     public MotionBlurFilter(float distance, float angle, float rotation, float zoom) {
         this.distance = distance;
@@ -224,16 +225,14 @@ public class MotionBlurFilter extends AbstractBufferedImageOp {
                     if (newX < 0 || newX >= width) {
                         if (wrapEdges) {
                             newX = ImageMath.mod(newX, width);
-                        }
-                        else {
+                        } else {
                             break;
                         }
                     }
                     if (newY < 0 || newY >= height) {
                         if (wrapEdges) {
                             newY = ImageMath.mod(newY, height);
-                        }
-                        else {
+                        } else {
                             break;
                         }
                     }
@@ -247,12 +246,11 @@ public class MotionBlurFilter extends AbstractBufferedImageOp {
                 }
                 if (count == 0) {
                     outPixels[index] = inPixels[index];
-                }
-                else {
-                    a = PixelUtils.clamp((int) (a / count));
-                    r = PixelUtils.clamp((int) (r / count));
-                    g = PixelUtils.clamp((int) (g / count));
-                    b = PixelUtils.clamp((int) (b / count));
+                } else {
+                    a = PixelUtils.clamp(a / count);
+                    r = PixelUtils.clamp(r / count);
+                    g = PixelUtils.clamp(g / count);
+                    b = PixelUtils.clamp(b / count);
                     outPixels[index] = (a << 24) | (r << 16) | (g << 8) | b;
                 }
                 index++;

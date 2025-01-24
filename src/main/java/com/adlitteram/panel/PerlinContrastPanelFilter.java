@@ -3,21 +3,18 @@ package com.adlitteram.panel;
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
 import com.adlitteram.util.Message;
 import com.jhlabs.filter.PerlinContrastFilter;
-
 import com.jhlabs.image.AbstractBufferedImageOp;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class PerlinContrastPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider contrastSlider;
 
@@ -48,8 +45,8 @@ public class PerlinContrastPanelFilter extends AbstractPanelFilter implements Ch
             contrastSlider = new FloatJSpinSlider(.5f, 0f, 1f, .01f, .5f, 10);
             contrastSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

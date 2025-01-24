@@ -3,22 +3,19 @@ package com.adlitteram.panel;
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
 import com.adlitteram.jasmin.gui.widget.JSpinSlider;
 import com.adlitteram.util.Message;
-
 import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.UnsharpFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class UnsharpMaskPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider radiusSlider;
     private JSpinSlider amountSlider;
@@ -59,8 +56,8 @@ public class UnsharpMaskPanelFilter extends AbstractPanelFilter implements Chang
             thresholdSlider = new JSpinSlider(2, 0, 255, 1, 255, 10);
             thresholdSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

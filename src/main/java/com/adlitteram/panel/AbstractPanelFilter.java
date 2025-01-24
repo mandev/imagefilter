@@ -1,18 +1,16 @@
 package com.adlitteram.panel;
 
 import com.jhlabs.image.AbstractBufferedImageOp;
-import java.awt.Shape;
-import java.util.ArrayList;
-import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractPanelFilter implements PanelFilter {
-    //
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
-    private static final Logger logger = LoggerFactory.getLogger(AbstractPanelFilter.class);
-    //
-    private ArrayList<FilterListener> listeners = new ArrayList<>();
+public abstract class AbstractPanelFilter implements PanelFilter {
+
+    private final ArrayList<FilterListener> listeners = new ArrayList<>();
 
     @Override
     public void addFilterListener(FilterListener listener) {
@@ -55,12 +53,4 @@ public abstract class AbstractPanelFilter implements PanelFilter {
         return false;
     }
 
-    @Override
-    abstract public String getName();
-
-    @Override
-    abstract public JPanel getPanel();
-
-    @Override
-    abstract public AbstractBufferedImageOp getFilter(float scale);
 }

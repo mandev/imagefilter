@@ -16,11 +16,12 @@
 package com.jhlabs.image;
 
 import com.jhlabs.utils.ThreadUtils;
-import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.util.concurrent.RecursiveAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.concurrent.RecursiveAction;
 
 /**
  * An abstract superclass for filters which distort images in some way. The
@@ -112,8 +113,8 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
      * Inverse transform a point. This method needs to be overriden by all
      * subclasses.
      *
-     * @param x the X position of the pixel in the output image
-     * @param y the Y position of the pixel in the output image
+     * @param x   the X position of the pixel in the output image
+     * @param y   the Y position of the pixel in the output image
      * @param out the position of the pixel in the input image
      */
     protected abstract void transformInverse(int x, int y, float[] out);
@@ -177,15 +178,12 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
                 if (out[0] < 0 || srcX >= srcWidth || out[1] < 0 || srcY >= srcHeight) {
                     if (edgeAction == ZERO) {
                         outPixels[x] = 0;
-                    }
-                    else if (edgeAction == WRAP) {
+                    } else if (edgeAction == WRAP) {
                         outPixels[x] = inPixels[(ImageMath.mod(srcY, srcHeight) * srcWidth) + ImageMath.mod(srcX, srcWidth)];
-                    }
-                    else { // CLAMP
+                    } else { // CLAMP
                         outPixels[x] = inPixels[(ImageMath.clamp(srcY, 0, srcHeight - 1) * srcWidth) + ImageMath.clamp(srcX, 0, srcWidth - 1)];
                     }
-                }
-                else {
+                } else {
                     outPixels[x] = inPixels[srcWidth * srcY + srcX];
                 }
             }
@@ -223,8 +221,7 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
                             xWeight, yWeight,
                             inPixels[i], inPixels[i + 1],
                             inPixels[i + srcWidth], inPixels[i + srcWidth + 1]);
-                }
-                else {
+                } else {
                     // Some of the corners are off the image
                     outPixels[x] = ImageMath.bilinearInterpolateGray(xWeight, yWeight,
                             getPixel_GRAY8(inPixels, srcX, srcY, srcWidth, srcHeight),
@@ -243,11 +240,9 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
         if (x < 0 || x >= width || y < 0 || y >= height) {
             if (edgeAction == ZERO) {
                 return 0;
-            }
-            else if (edgeAction == WRAP) {
+            } else if (edgeAction == WRAP) {
                 return pixels[(ImageMath.mod(y, height) * width) + ImageMath.mod(x, width)];
-            }
-            else {
+            } else {
                 return pixels[(ImageMath.clamp(y, 0, height - 1) * width) + ImageMath.clamp(x, 0, width - 1)];
             }
         }
@@ -256,13 +251,13 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
 
     private class TransformAction_GRAY8 extends RecursiveAction {
 
-        private int threshold;
-        private int start;
-        private int end;
-        private byte[] srcPixels;
-        private BufferedImage dst;
-        private int width;
-        private int height;
+        private final int threshold;
+        private final int start;
+        private final int end;
+        private final byte[] srcPixels;
+        private final BufferedImage dst;
+        private final int width;
+        private final int height;
 
         private TransformAction_GRAY8(int start, int end, byte[] srcPixels, int width, int height, BufferedImage dst, int threshold) {
             this.start = start;
@@ -280,12 +275,10 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
             if (t < threshold) {
                 if (interpolation == NEAREST_NEIGHBOUR) {
                     filterNearest_GRAY8(start, end, dst, width, height, srcPixels);
-                }
-                else {
+                } else {
                     filterBilinear_GRAY8(start, end, dst, width, height, srcPixels);
                 }
-            }
-            else {
+            } else {
                 int split = (end - start) / 2;
                 invokeAll(new TransformAction_GRAY8(start, start + split, srcPixels, width, height, dst, threshold),
                         new TransformAction_GRAY8(start + split, end, srcPixels, width, height, dst, threshold));
@@ -343,8 +336,7 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
                             xWeight, yWeight,
                             inPixels[i], inPixels[i + 1],
                             inPixels[i + srcWidth], inPixels[i + srcWidth + 1]);
-                }
-                else {
+                } else {
                     // Some of the corners are off the image
                     outPixels[x] = ImageMath.bilinearInterpolate(xWeight, yWeight,
                             getPixel_RGB32(inPixels, srcX, srcY, srcWidth, srcHeight),
@@ -382,15 +374,12 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
                 if (out[0] < 0 || srcX >= srcWidth || out[1] < 0 || srcY >= srcHeight) {
                     if (edgeAction == ZERO) {
                         outPixels[x] = 0;
-                    }
-                    else if (edgeAction == WRAP) {
+                    } else if (edgeAction == WRAP) {
                         outPixels[x] = inPixels[(ImageMath.mod(srcY, srcHeight) * srcWidth) + ImageMath.mod(srcX, srcWidth)];
-                    }
-                    else { // CLAMP
+                    } else { // CLAMP
                         outPixels[x] = inPixels[(ImageMath.clamp(srcY, 0, srcHeight - 1) * srcWidth) + ImageMath.clamp(srcX, 0, srcWidth - 1)];
                     }
-                }
-                else {
+                } else {
                     outPixels[x] = inPixels[srcWidth * srcY + srcX];
                 }
             }
@@ -403,11 +392,9 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
         if (x < 0 || x >= width || y < 0 || y >= height) {
             if (edgeAction == ZERO) {
                 return 0;
-            }
-            else if (edgeAction == WRAP) {
+            } else if (edgeAction == WRAP) {
                 return pixels[(ImageMath.mod(y, height) * width) + ImageMath.mod(x, width)];
-            }
-            else { // CLAMP
+            } else { // CLAMP
                 return pixels[(ImageMath.clamp(y, 0, height - 1) * width) + ImageMath.clamp(x, 0, width - 1)];
             }
         }
@@ -416,13 +403,13 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
 
     private class TransformAction_RGB32 extends RecursiveAction {
 
-        private int threshold;
-        private int start;
-        private int end;
-        private int[] srcPixels;
-        private BufferedImage dst;
-        private int width;
-        private int height;
+        private final int threshold;
+        private final int start;
+        private final int end;
+        private final int[] srcPixels;
+        private final BufferedImage dst;
+        private final int width;
+        private final int height;
 
         private TransformAction_RGB32(int start, int end, int[] srcPixels, int width, int height, BufferedImage dst, int threshold) {
             this.start = start;
@@ -440,12 +427,10 @@ public abstract class TransformFilter extends AbstractBufferedImageOp {
             if (t < threshold) {
                 if (interpolation == NEAREST_NEIGHBOUR) {
                     filterNearest_RGB32(start, end, dst, width, height, srcPixels);
-                }
-                else {
+                } else {
                     filterBilinear_RGB32(start, end, dst, width, height, srcPixels);
                 }
-            }
-            else {
+            } else {
                 int split = (end - start) / 2;
                 invokeAll(new TransformAction_RGB32(start, start + split, srcPixels, width, height, dst, threshold),
                         new TransformAction_RGB32(start + split, end, srcPixels, width, height, dst, threshold));

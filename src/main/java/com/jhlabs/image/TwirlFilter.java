@@ -15,8 +15,8 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.geom.*;
-import java.awt.image.*;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 /**
  * A Filter which distorts an image by twisting it from the centre out. The
@@ -44,7 +44,7 @@ public class TwirlFilter extends TransformFilter {
      * Set the angle of twirl in radians. 0 means no distortion.
      *
      * @param angle the angle of twirl. This is the angle by which pixels at the
-     * nearest edge of the image will move.
+     *              nearest edge of the image will move.
      * @see #getAngle
      */
     public void setAngle(float angle) {
@@ -175,8 +175,7 @@ public class TwirlFilter extends TransformFilter {
         if (distance > radius2) {
             out[0] = x;
             out[1] = y;
-        }
-        else {
+        } else {
             distance = (float) Math.sqrt(distance);
             float a = (float) Math.atan2(dy, dx) + angle * (radius - distance) / radius;
             out[0] = icentreX + distance * (float) Math.cos(a);

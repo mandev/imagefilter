@@ -5,17 +5,15 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.GrayscaleFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class GrayPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
 
     @Override
@@ -32,8 +30,8 @@ public class GrayPanelFilter extends AbstractPanelFilter implements ChangeListen
     public JPanel getPanel() {
         if (panel == null) {
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 15};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 15};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

@@ -16,6 +16,7 @@ limitations under the License.
 package com.jhlabs.image;
 
 import com.jhlabs.utils.ThreadUtils;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -39,8 +40,8 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
     /**
      * Construct a BoxBlurFilter.
      *
-     * @param hRadius the horizontal radius of blur
-     * @param vRadius the vertical radius of blur
+     * @param hRadius    the horizontal radius of blur
+     * @param vRadius    the vertical radius of blur
      * @param iterations the number of time to iterate the blur
      */
     public BoxBlurFilter(float hRadius, float vRadius, int iterations) {
@@ -137,14 +138,14 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
 
     private static class FilterThread extends Thread {
 
-        private int start;
-        private int end;
-        private int[] inPixels;
-        private int[] outPixels;
-        private int width;
-        private int height;
-        private float radius;
-        private boolean fractionnal;
+        private final int start;
+        private final int end;
+        private final int[] inPixels;
+        private final int[] outPixels;
+        private final int width;
+        private final int height;
+        private final float radius;
+        private final boolean fractionnal;
 
         public FilterThread(int start, int end, int[] inPixels, int[] outPixels, int width, int height, float radius, boolean fractionnal) {
 
@@ -162,8 +163,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
         public void run() {
             if (fractionnal) {
                 BoxBlurFilter.blurFractional(start, end, inPixels, outPixels, width, height, radius);
-            }
-            else {
+            } else {
                 BoxBlurFilter.blur(start, end, inPixels, outPixels, width, height, radius);
             }
         }
@@ -172,9 +172,9 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
     /**
      * Blur and transpose a block of ARGB pixels.
      *
-     * @param in the input pixels
-     * @param out the output pixels
-     * @param width the width of the pixel array
+     * @param in     the input pixels
+     * @param out    the output pixels
+     * @param width  the width of the pixel array
      * @param height the height of the pixel array
      * @param radius the radius of blur
      */
@@ -182,7 +182,7 @@ public class BoxBlurFilter extends AbstractBufferedImageOp {
         int widthMinus1 = width - 1;
         int r = (int) radius;
         int tableSize = 2 * r + 1;
-        int divide[] = new int[256 * tableSize];
+        int[] divide = new int[256 * tableSize];
 
         for (int i = 0; i < 256 * tableSize; i++) {
             divide[i] = i / tableSize;

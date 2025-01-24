@@ -15,10 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-import com.jhlabs.composite.*;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which renders "glints" on bright parts of the image.
@@ -198,8 +195,7 @@ public class GlintFilter extends AbstractBufferedImageOp {
                 int l = r + g + b;
                 if (l < threshold3) {
                     pixels[x] = 0xff000000;
-                }
-                else {
+                } else {
                     l /= 3;
                     pixels[x] = a | (l << 16) | (l << 8) | l;
                 }
@@ -217,8 +213,7 @@ public class GlintFilter extends AbstractBufferedImageOp {
         int[] dstPixels;
         if (glintOnly) {
             dstPixels = new int[width * height];
-        }
-        else {
+        } else {
             dstPixels = getRGB(src, 0, 0, width, height, null);//FIXME - only need 2*length
         }
         for (int y = 0; y < height; y++) {

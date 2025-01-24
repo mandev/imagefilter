@@ -42,38 +42,31 @@ public class Spectrum {
             r = 0.0f;
             g = 0.0f;
             b = 0.0f;
-        }
-        else if (w < 440) {
+        } else if (w < 440) {
             r = -(wavelength - 440) / (440 - 380);
             g = 0.0f;
             b = 1.0f;
-        }
-        else if (w < 490) {
+        } else if (w < 490) {
             r = 0.0f;
             g = (wavelength - 440) / (490 - 440);
             b = 1.0f;
-        }
-        else if (w < 510) {
+        } else if (w < 510) {
             r = 0.0f;
             g = 1.0f;
             b = -(wavelength - 510) / (510 - 490);
-        }
-        else if (w < 580) {
+        } else if (w < 580) {
             r = (wavelength - 510) / (580 - 510);
             g = 1.0f;
             b = 0.0f;
-        }
-        else if (w < 645) {
+        } else if (w < 645) {
             r = 1.0f;
             g = -(wavelength - 645) / (645 - 580);
             b = 0.0f;
-        }
-        else if (w <= 780) {
+        } else if (w <= 780) {
             r = 1.0f;
             g = 0.0f;
             b = 0.0f;
-        }
-        else {
+        } else {
             r = 0.0f;
             g = 0.0f;
             b = 0.0f;
@@ -82,14 +75,11 @@ public class Spectrum {
         // Let the intensity fall off near the vision limits
         if (380 <= w && w <= 419) {
             factor = 0.3f + 0.7f * (wavelength - 380) / (420 - 380);
-        }
-        else if (420 <= w && w <= 700) {
+        } else if (420 <= w && w <= 700) {
             factor = 1.0f;
-        }
-        else if (701 <= w && w <= 780) {
+        } else if (701 <= w && w <= 780) {
             factor = 0.3f + 0.7f * (780 - wavelength) / (780 - 700);
-        }
-        else {
+        } else {
             factor = 0.0f;
         }
 

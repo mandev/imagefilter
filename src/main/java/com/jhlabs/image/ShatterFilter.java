@@ -16,9 +16,10 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-import java.util.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
+import java.util.Random;
 
 public class ShatterFilter extends AbstractBufferedImageOp {
 

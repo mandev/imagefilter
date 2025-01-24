@@ -6,27 +6,25 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.MaskFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class MaskPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider alphaSlider;
     private FloatJSpinSlider redSlider;
     private FloatJSpinSlider greenSlider;
     private FloatJSpinSlider blueSlider;
-    //
-    private float defaultAlpha = 100f;
-    private float defaultRed = 100f;
-    private float defaultGreen = 100f;
-    private float defaultBlue = 100f;
+
+    private static final float DEFAULT_ALPHA = 100f;
+    private static final float DEFAULT_RED = 100f;
+    private static final float DEFAULT_GREEN = 100f;
+    private static final float DEFAULT_BLUE = 100f;
 
     @Override
     public String getName() {
@@ -40,10 +38,10 @@ public class MaskPanelFilter extends AbstractPanelFilter implements ChangeListen
 
     @Override
     public void reset() {
-        alphaSlider.setFloatValue(defaultAlpha);
-        redSlider.setFloatValue(defaultRed);
-        greenSlider.setFloatValue(defaultGreen);
-        blueSlider.setFloatValue(defaultBlue);
+        alphaSlider.setFloatValue(DEFAULT_ALPHA);
+        redSlider.setFloatValue(DEFAULT_RED);
+        greenSlider.setFloatValue(DEFAULT_GREEN);
+        blueSlider.setFloatValue(DEFAULT_BLUE);
     }
 
     @Override
@@ -55,20 +53,20 @@ public class MaskPanelFilter extends AbstractPanelFilter implements ChangeListen
     public JPanel getPanel() {
         if (panel == null) {
 
-            alphaSlider = new FloatJSpinSlider(defaultAlpha, 0f, 100f, 1f, 1f, 10);
+            alphaSlider = new FloatJSpinSlider(DEFAULT_ALPHA, 0f, 100f, 1f, 1f, 10);
             alphaSlider.addChangeListener(this);
 
-            redSlider = new FloatJSpinSlider(defaultRed, 0f, 100f, 1f, 1f, 10);
+            redSlider = new FloatJSpinSlider(DEFAULT_RED, 0f, 100f, 1f, 1f, 10);
             redSlider.addChangeListener(this);
 
-            greenSlider = new FloatJSpinSlider(defaultGreen, 0f, 100f, 1f, 1f, 10);
+            greenSlider = new FloatJSpinSlider(DEFAULT_GREEN, 0f, 100f, 1f, 1f, 10);
             greenSlider.addChangeListener(this);
 
-            blueSlider = new FloatJSpinSlider(defaultBlue, 0f, 100f, 1f, 1f, 10);
+            blueSlider = new FloatJSpinSlider(DEFAULT_BLUE, 0f, 100f, 1f, 1f, 10);
             blueSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

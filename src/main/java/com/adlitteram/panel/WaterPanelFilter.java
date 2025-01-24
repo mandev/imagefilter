@@ -6,23 +6,22 @@ import com.adlitteram.util.Message;
 import com.adlitteram.util.NumUtils;
 import com.jhlabs.filter.StraightenFilter;
 import com.jhlabs.image.AbstractBufferedImageOp;
+import com.jhlabs.image.TransformFilter;
 import com.jhlabs.image.WaterFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class WaterPanelFilter extends AbstractPanelFilter implements ChangeListener, ActionListener {
 
-    //
+
     private static final String[] INTERPOLATION_ARRAY = {Message.get("Nearest"), Message.get("Bilinear")};
     private static final float DEFAULT_WAVELENGTH = 50f;
     private static final float DEFAULT_AMPLITUDE = 1f;
@@ -30,7 +29,7 @@ public class WaterPanelFilter extends AbstractPanelFilter implements ChangeListe
     private static final float DEFAULT_CENTREX = 0.5f;
     private static final float DEFAULT_CENTREY = 0.5f;
     private static final float DEFAULT_RADIUS = 0f;
-    //
+
     private JPanel panel;
     private FloatJSpinSlider wavelengthSlider;
     private FloatJSpinSlider amplitudeSlider;
@@ -38,7 +37,7 @@ public class WaterPanelFilter extends AbstractPanelFilter implements ChangeListe
     private FloatJSpinSlider centreXSlider;
     private FloatJSpinSlider centreYSlider;
     private FloatJSpinSlider radiusSlider;
-    private JComboBox interpolationCombo;
+    private JComboBox<String> interpolationCombo;
 
     @Override
     public String getName() {
@@ -93,12 +92,12 @@ public class WaterPanelFilter extends AbstractPanelFilter implements ChangeListe
             radiusSlider = new FloatJSpinSlider(DEFAULT_RADIUS, 0f, 10000f, 10f, 10f, 5);
             radiusSlider.addChangeListener(this);
 
-            interpolationCombo = new JComboBox(INTERPOLATION_ARRAY);
+            interpolationCombo = new JComboBox<>(INTERPOLATION_ARRAY);
             interpolationCombo.setSelectedIndex(1);
             interpolationCombo.addActionListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);
@@ -131,7 +130,7 @@ public class WaterPanelFilter extends AbstractPanelFilter implements ChangeListe
         float centreX = centreXSlider.getFloatValue();
         float centreY = centreYSlider.getFloatValue();
         float radius = radiusSlider.getFloatValue() * scale;
-        int interpolation = (interpolationCombo.getSelectedIndex() == 0) ? StraightenFilter.NEAREST_NEIGHBOUR : StraightenFilter.BILINEAR;
+        int interpolation = (interpolationCombo.getSelectedIndex() == 0) ? TransformFilter.NEAREST_NEIGHBOUR : TransformFilter.BILINEAR;
 
         WaterFilter filter = new WaterFilter();
         filter.setWavelength(wavelength);

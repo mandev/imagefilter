@@ -15,24 +15,14 @@
  */
 package com.jhlabs.image;
 
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ColorModel;
-import java.awt.image.ComponentColorModel;
-import java.awt.image.DataBuffer;
-import java.awt.image.DataBufferByte;
-import java.awt.image.DataBufferInt;
-import java.awt.image.DirectColorModel;
-import java.awt.image.Raster;
-import java.awt.image.SampleModel;
-import java.awt.image.WritableRaster;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.awt.image.*;
 
 /**
  * A convenience class which implements those methods of BufferedImageOp which
@@ -53,7 +43,6 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
     @Override
     public BufferedImage filter(BufferedImage src, BufferedImage dst) {
         int imageType = getImageType(src);
-        //logger.info("ImageType: " + imageType) ;
 
         if (dst != null && getImageType(dst) != imageType) {
             imageType = UNKNOWN_TYPE;
@@ -131,13 +120,13 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
 
         // GRAY
         if (colorModel instanceof ComponentColorModel && colorModel.getTransferType() == DataBuffer.TYPE_BYTE && colorModel.getNumComponents() == 1) {
-            byte byteArray[] = new byte[width * height];
+            byte[] byteArray = new byte[width * height];
             for (int j = 0, i = 0; i < pixels.length; i++) {
                 int rgb = pixels[i];
                 byteArray[j++] = (byte) ((float) (((rgb >> 16) & 0xff) + ((rgb >> 8) & 0xff) + (rgb & 0xff)) / 3f + .49f);
             }
 
-            DataBuffer byteBuffer = new DataBufferByte(byteArray, width * height * 1);
+            DataBuffer byteBuffer = new DataBufferByte(byteArray, width * height);
             SampleModel sampleModel = colorModel.createCompatibleSampleModel(width, height);
             WritableRaster raster = Raster.createWritableRaster(sampleModel, byteBuffer, null);
             return new BufferedImage(colorModel, raster, colorModel.isAlphaPremultiplied(), null);
@@ -172,18 +161,14 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
     public Object clone() throws CloneNotSupportedException {
         try {
             return super.clone();
-        }
-        catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException e) {
             return null;
         }
     }
 
     @Override
     public String toString() {
-        StringBuilder toStringBuilder = new StringBuilder();
-        toStringBuilder.append(super.toString());
-        toStringBuilder.append("\n");
-        return toStringBuilder.toString();
+        return super.toString() + "\n";
     }
 
     public static int getImageType(BufferedImage image) {
@@ -346,10 +331,10 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
      * avoid the performance penalty of BufferedImage.setRGB unmanaging the
      * image.
      *
-     * @param image a BufferedImage object
-     * @param sx the left edge of the pixel block
-     * @param sy the right edge of the pixel block
-     * @param width the width of the pixel arry
+     * @param image  a BufferedImage object
+     * @param sx     the left edge of the pixel block
+     * @param sy     the right edge of the pixel block
+     * @param width  the width of the pixel arry
      * @param height the height of the pixel arry
      * @param pixels the array of pixels to set
      * @see #getPixelsRGB
@@ -391,7 +376,7 @@ public abstract class AbstractBufferedImageOp implements BufferedImageOp, Clonea
     public static void setRGB2(BufferedImage image, int sx, int sy, int width, int height, int[] pixels) {
         WritableRaster raster = image.getRaster();
         final float INV3 = 1f / 3f;
-        byte[] row = new byte[1 * width];
+        byte[] row = new byte[width];
 
         for (int i = 0, y = 0; y < height; y++) {
             for (int j = 0, x = 0; x < width; x++) {

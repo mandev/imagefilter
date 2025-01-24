@@ -15,7 +15,9 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 
 /**
  * A filter which flips images or rotates by multiples of 90 degrees.
@@ -160,7 +162,6 @@ public class FlipFilter extends AbstractBufferedImageOp {
                     case FLIP_90CW:
                         newRow = col;
                         newCol = h - row - 1;
-                        ;
                         break;
                     case FLIP_90CCW:
                         newRow = w - col - 1;

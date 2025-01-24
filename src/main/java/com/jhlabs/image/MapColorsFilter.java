@@ -22,8 +22,8 @@ package com.jhlabs.image;
  */
 public class MapColorsFilter extends PointFilter {
 
-    private int oldColor;
-    private int newColor;
+    private final int oldColor;
+    private final int newColor;
 
     /**
      * Construct a MapColorsFilter.

@@ -17,5 +17,5 @@ package com.jhlabs.math;
 
 public interface Function3D {
 
-    public float evaluate(float x, float y, float z);
+    float evaluate(float x, float y, float z);
 }

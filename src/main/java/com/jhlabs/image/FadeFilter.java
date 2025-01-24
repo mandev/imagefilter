@@ -99,11 +99,9 @@ public class FadeFilter extends PointFilter {
         float ny = m10 * x + m11 * y;
         if (sides == 2) {
             nx = (float) Math.sqrt(nx * nx + ny * ny);
-        }
-        else if (sides == 3) {
+        } else if (sides == 3) {
             nx = ImageMath.mod(nx, 16);
-        }
-        else if (sides == 4) {
+        } else if (sides == 4) {
             nx = symmetry(nx, 16);
         }
         int alpha = (int) (ImageMath.smoothStep(fadeStart, fadeStart + fadeWidth, nx) * 255);

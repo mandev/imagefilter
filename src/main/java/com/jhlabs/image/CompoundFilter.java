@@ -15,7 +15,8 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
 
 /**
  * A BufferedImageOp which combines two other BufferedImageOps, one after the
@@ -23,8 +24,8 @@ import java.awt.image.*;
  */
 public class CompoundFilter extends AbstractBufferedImageOp {
 
-    private BufferedImageOp filter1;
-    private BufferedImageOp filter2;
+    private final BufferedImageOp filter1;
+    private final BufferedImageOp filter2;
 
     /**
      * Construct a CompoundFilter.

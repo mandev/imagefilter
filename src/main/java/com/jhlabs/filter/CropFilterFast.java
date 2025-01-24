@@ -1,6 +1,7 @@
 package com.jhlabs.filter;
 
 import com.jhlabs.image.AbstractBufferedImageOp;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -23,9 +24,9 @@ public class CropFilterFast extends AbstractBufferedImageOp {
     /**
      * Construct a CropFilter.
      *
-     * @param x the left edge of the crop rectangle
-     * @param y the top edge of the crop rectangle
-     * @param width the width of the crop rectangle
+     * @param x      the left edge of the crop rectangle
+     * @param y      the top edge of the crop rectangle
+     * @param width  the width of the crop rectangle
      * @param height the height of the crop rectangle
      */
     public CropFilterFast(int x, int y, int width, int height) {

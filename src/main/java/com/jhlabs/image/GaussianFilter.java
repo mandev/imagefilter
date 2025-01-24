@@ -16,6 +16,7 @@
 package com.jhlabs.image;
 
 import com.jhlabs.utils.ThreadUtils;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
 import java.util.concurrent.RecursiveAction;
@@ -97,7 +98,7 @@ public class GaussianFilter extends ConvolveFilter {
     }
 
     public static void convolve(Kernel kernel, int[] inPixels, int[] outPixels, int width, int height,
-            boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction) {
+                                boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction) {
 
         int[] tmpPixels = new int[inPixels.length];
         int threshold = Math.max(ThreadUtils.THRESHOLD, (width * height) / (ThreadUtils.getAvailableProcessors() * 10));
@@ -121,7 +122,7 @@ public class GaussianFilter extends ConvolveFilter {
         private final int threshold;
 
         private GaussianAction(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height,
-                boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction, int threshold) {
+                               boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction, int threshold) {
             this.start = start;
             this.end = end;
             this.kernel = kernel;
@@ -141,8 +142,7 @@ public class GaussianFilter extends ConvolveFilter {
             int t = (end - start) * width;
             if (t < threshold) {
                 GaussianFilter.convolveAndTranspose(start, end, kernel, inPixels, outPixels, width, height, alpha, premultiply, unpremultiply, edgeAction);
-            }
-            else {
+            } else {
                 int split = (end - start) / 2;
                 invokeAll(new GaussianAction(start, start + split, kernel, inPixels, outPixels, width, height, alpha, premultiply, unpremultiply, edgeAction, threshold),
                         new GaussianAction(start + split, end, kernel, inPixels, outPixels, width, height, alpha, premultiply, unpremultiply, edgeAction, threshold));
@@ -155,51 +155,43 @@ public class GaussianFilter extends ConvolveFilter {
      *
      * @param start
      * @param end
-     * @param kernel the blur kernel
-     * @param inPixels the input pixels
-     * @param outPixels the output pixels
-     * @param width the width of the pixel array
-     * @param height the height of the pixel array
-     * @param alpha whether to blur the alpha channel
+     * @param kernel        the blur kernel
+     * @param inPixels      the input pixels
+     * @param outPixels     the output pixels
+     * @param width         the width of the pixel array
+     * @param height        the height of the pixel array
+     * @param alpha         whether to blur the alpha channel
      * @param premultiply
      * @param unpremultiply
-     * @param edgeAction what to do at the edges
+     * @param edgeAction    what to do at the edges
      */
     public static void convolveAndTranspose(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height,
-            boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction) {
+                                            boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction) {
         //long time = System.currentTimeMillis();
 
         if (alpha && !premultiply && !unpremultiply & edgeAction == WRAP_EDGES) {
             convolveAndTransposeTFFW(start, end, kernel, inPixels, outPixels, width, height);
-        }
-        else if (alpha && premultiply && !unpremultiply & edgeAction == WRAP_EDGES) {
+        } else if (alpha && premultiply && !unpremultiply & edgeAction == WRAP_EDGES) {
             convolveAndTransposeTTFW(start, end, kernel, inPixels, outPixels, width, height);
-        }
-        else if (alpha && !premultiply && unpremultiply & edgeAction == WRAP_EDGES) {
+        } else if (alpha && !premultiply && unpremultiply & edgeAction == WRAP_EDGES) {
             convolveAndTransposeTFTW(start, end, kernel, inPixels, outPixels, width, height);
-        }
-        else if (!alpha && !premultiply && !unpremultiply & edgeAction == WRAP_EDGES) {
+        } else if (!alpha && !premultiply && !unpremultiply & edgeAction == WRAP_EDGES) {
             convolveAndTransposeFFFW(start, end, kernel, inPixels, outPixels, width, height);
-        }
-        else if (alpha && !premultiply && !unpremultiply & edgeAction == CLAMP_EDGES) {
+        } else if (alpha && !premultiply && !unpremultiply & edgeAction == CLAMP_EDGES) {
             convolveAndTransposeTFFC(start, end, kernel, inPixels, outPixels, width, height);
-        }
-        else if (alpha && premultiply && !unpremultiply & edgeAction == CLAMP_EDGES) {
+        } else if (alpha && premultiply && !unpremultiply & edgeAction == CLAMP_EDGES) {
             convolveAndTransposeTTFC(start, end, kernel, inPixels, outPixels, width, height);
-        }
-        else if (alpha && !premultiply && unpremultiply & edgeAction == CLAMP_EDGES) {
+        } else if (alpha && !premultiply && unpremultiply & edgeAction == CLAMP_EDGES) {
             convolveAndTransposeTFTC(start, end, kernel, inPixels, outPixels, width, height);
-        }
-        else if (!alpha && !premultiply && !unpremultiply & edgeAction == CLAMP_EDGES) {
+        } else if (!alpha && !premultiply && !unpremultiply & edgeAction == CLAMP_EDGES) {
             convolveAndTransposeFFFC(start, end, kernel, inPixels, outPixels, width, height);
-        }
-        else {
+        } else {
             convolveAndTranspose2(start, end, kernel, inPixels, outPixels, width, height, alpha, premultiply, unpremultiply, edgeAction);
         }
     }
 
     private static void convolveAndTranspose2(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height,
-            boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction) {
+                                              boolean alpha, boolean premultiply, boolean unpremultiply, int edgeAction) {
         float[] matrix = kernel.getKernelData(null);
         int cols = kernel.getWidth();
         int cols2 = cols / 2;
@@ -218,16 +210,13 @@ public class GaussianFilter extends ConvolveFilter {
                         if (ix < 0) {
                             if (edgeAction == CLAMP_EDGES) {
                                 ix = 0;
-                            }
-                            else if (edgeAction == WRAP_EDGES) {
+                            } else if (edgeAction == WRAP_EDGES) {
                                 ix = (x + width) % width;
                             }
-                        }
-                        else if (ix >= width) {
+                        } else if (ix >= width) {
                             if (edgeAction == CLAMP_EDGES) {
                                 ix = width - 1;
-                            }
-                            else if (edgeAction == WRAP_EDGES) {
+                            } else if (edgeAction == WRAP_EDGES) {
                                 ix = (x + width) % width;
                             }
                         }
@@ -280,8 +269,7 @@ public class GaussianFilter extends ConvolveFilter {
                         int ix = x + col;
                         if (ix < 0) {
                             ix = 0;
-                        }
-                        else if (ix >= width) {
+                        } else if (ix >= width) {
                             ix = width - 1;
                         }
 
@@ -321,8 +309,7 @@ public class GaussianFilter extends ConvolveFilter {
                         int ix = x + col;
                         if (ix < 0) {
                             ix = 0;
-                        }
-                        else if (ix >= width) {
+                        } else if (ix >= width) {
                             ix = width - 1;
                         }
                         int rgb = inPixels[ioffset + ix];
@@ -369,8 +356,7 @@ public class GaussianFilter extends ConvolveFilter {
                         int ix = x + col;
                         if (ix < 0) {
                             ix = 0;
-                        }
-                        else if (ix >= width) {
+                        } else if (ix >= width) {
                             ix = width - 1;
                         }
                         int rgb = inPixels[ioffset + ix];
@@ -412,8 +398,7 @@ public class GaussianFilter extends ConvolveFilter {
                         int ix = x + col;
                         if (ix < 0) {
                             ix = 0;
-                        }
-                        else if (ix >= width) {
+                        } else if (ix >= width) {
                             ix = width - 1;
                         }
                         int rgb = inPixels[ioffset + ix];

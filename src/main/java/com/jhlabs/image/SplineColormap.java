@@ -15,10 +15,6 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.Color;
-import java.util.Vector;
-import java.io.*;
-
 /**
  * A Colormap implemented using Catmull-Rom colour splines. The map has a
  * variable number of knots with a minimum of four. The first and last knots
@@ -29,10 +25,10 @@ public class SplineColormap extends ArrayColormap {
 
     private int numKnots = 4;
     private int[] xKnots = {
-        0, 0, 255, 255
+            0, 0, 255, 255
     };
     private int[] yKnots = {
-        0xff000000, 0xff000000, 0xffffffff, 0xffffffff,};
+            0xff000000, 0xff000000, 0xffffffff, 0xffffffff,};
 
     /**
      * Construct a SplineColormap.
@@ -57,7 +53,7 @@ public class SplineColormap extends ArrayColormap {
     /**
      * Set a knot color.
      *
-     * @param n the knot index
+     * @param n     the knot index
      * @param color the color
      * @see #getKnot
      */
@@ -80,7 +76,7 @@ public class SplineColormap extends ArrayColormap {
     /**
      * Add a new knot.
      *
-     * @param x the knot position
+     * @param x     the knot position
      * @param color the color
      * @see #removeKnot
      */

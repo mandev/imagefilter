@@ -24,37 +24,37 @@ public class EdgeFilter extends WholeImageFilter {
 
     public final static float R2 = (float) Math.sqrt(2);
     public final static float[] ROBERTS_V = {
-        0, 0, -1,
-        0, 1, 0,
-        0, 0, 0,};
+            0, 0, -1,
+            0, 1, 0,
+            0, 0, 0,};
     public final static float[] ROBERTS_H = {
-        -1, 0, 0,
-        0, 1, 0,
-        0, 0, 0,};
+            -1, 0, 0,
+            0, 1, 0,
+            0, 0, 0,};
     public final static float[] PREWITT_V = {
-        -1, 0, 1,
-        -1, 0, 1,
-        -1, 0, 1,};
+            -1, 0, 1,
+            -1, 0, 1,
+            -1, 0, 1,};
     public final static float[] PREWITT_H = {
-        -1, -1, -1,
-        0, 0, 0,
-        1, 1, 1,};
+            -1, -1, -1,
+            0, 0, 0,
+            1, 1, 1,};
     public final static float[] SOBEL_V = {
-        -1, 0, 1,
-        -2, 0, 2,
-        -1, 0, 1,};
+            -1, 0, 1,
+            -2, 0, 2,
+            -1, 0, 1,};
     public static float[] SOBEL_H = {
-        -1, -2, -1,
-        0, 0, 0,
-        1, 2, 1,};
+            -1, -2, -1,
+            0, 0, 0,
+            1, 2, 1,};
     public final static float[] FREI_CHEN_V = {
-        -1, 0, 1,
-        -R2, 0, R2,
-        -1, 0, 1,};
+            -1, 0, 1,
+            -R2, 0, R2,
+            -1, 0, 1,};
     public static float[] FREI_CHEN_H = {
-        -1, -R2, -1,
-        0, 0, 0,
-        1, R2, 1,};
+            -1, -R2, -1,
+            0, 0, 0,
+            1, R2, 1,};
     protected float[] vEdgeMatrix = SOBEL_V;
     protected float[] hEdgeMatrix = SOBEL_H;
 
@@ -94,8 +94,7 @@ public class EdgeFilter extends WholeImageFilter {
                     int ioffset;
                     if (0 <= iy && iy < height) {
                         ioffset = iy * width;
-                    }
-                    else {
+                    } else {
                         ioffset = y * width;
                     }
                     int moffset = 3 * (row + 1) + 1;

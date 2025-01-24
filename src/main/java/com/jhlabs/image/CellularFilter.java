@@ -17,7 +17,8 @@ package com.jhlabs.image;
 
 import com.jhlabs.math.Function2D;
 import com.jhlabs.math.Noise;
-import java.awt.Rectangle;
+
+import java.awt.*;
 import java.util.Random;
 
 /**
@@ -306,7 +307,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
 
     private float checkCube(float x, float y, int cubeX, int cubeY, Point[] results) {
         int numPoints;
-        random.setSeed(571 * cubeX + 23 * cubeY);
+        random.setSeed(571L * cubeX + 23L * cubeY);
         switch (gridType) {
             case RANDOM:
             default:
@@ -344,8 +345,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
                     if ((cubeX & 1) == 0) {
                         px = 0.75f;
                         py = 0;
-                    }
-                    else {
+                    } else {
                         px = 0.75f;
                         py = 0.5f;
                     }
@@ -376,18 +376,15 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
                         if (i == 0) {
                             px = 0.25f;
                             py = 0.35f;
-                        }
-                        else {
+                        } else {
                             px = 0.75f;
                             py = 0.65f;
                         }
-                    }
-                    else {
+                    } else {
                         if (i == 0) {
                             px = 0.75f;
                             py = 0.35f;
-                        }
-                        else {
+                        } else {
                             px = 0.25f;
                             py = 0.65f;
                         }
@@ -398,18 +395,16 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
                     }
                     break;
             }
-            float dx = (float) Math.abs(x - px);
-            float dy = (float) Math.abs(y - py);
+            float dx = Math.abs(x - px);
+            float dy = Math.abs(y - py);
             float d;
             dx *= weight;
             dy *= weight;
             if (distancePower == 1.0f) {
                 d = dx + dy;
-            }
-            else if (distancePower == 2.0f) {
+            } else if (distancePower == 2.0f) {
                 d = (float) Math.sqrt(dx * dx + dy * dy);
-            }
-            else {
+            } else {
                 d = (float) Math.pow((float) Math.pow(dx, distancePower) + (float) Math.pow(dy, distancePower), 1 / distancePower);
             }
 
@@ -424,8 +419,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
                 p.dy = dy;
                 p.x = cubeX + px;
                 p.y = cubeY + py;
-            }
-            else if (d < results[1].distance) {
+            } else if (d < results[1].distance) {
                 Point p = results[2];
                 results[2] = results[1];
                 results[1] = p;
@@ -434,8 +428,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
                 p.dy = dy;
                 p.x = cubeX + px;
                 p.y = cubeY + py;
-            }
-            else if (d < results[2].distance) {
+            } else if (d < results[2].distance) {
                 Point p = results[2];
                 p.distance = d;
                 p.dx = dx;
@@ -518,7 +511,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
         nx /= scale;
         ny /= scale * stretch;
         nx += 1000;
-        ny += 1000;	// Reduce artifacts around 0,0
+        ny += 1000;    // Reduce artifacts around 0,0
         float f = turbulence == 1.0f ? evaluate(nx, ny) : turbulence2(nx, ny, turbulence);
         // Normalize to 0..1
 //		f = (f-min)/(max-min);
@@ -537,8 +530,7 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
                 v = ImageMath.mixColors(f, 0xff000000, v);
             }
             return v;
-        }
-        else {
+        } else {
             v = PixelUtils.clamp((int) (f * 255));
             int r = v << 16;
             int g = v << 8;
@@ -567,8 +559,8 @@ public class CellularFilter extends WholeImageFilter implements Function2D, Clon
     @Override
     public Object clone() throws CloneNotSupportedException {
         CellularFilter f = (CellularFilter) super.clone();
-        f.coefficients = (float[]) coefficients.clone();
-        f.results = (Point[]) results.clone();
+        f.coefficients = coefficients.clone();
+        f.results = results.clone();
         f.random = new Random();
         return f;
     }

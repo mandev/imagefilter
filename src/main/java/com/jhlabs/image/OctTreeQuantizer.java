@@ -15,10 +15,8 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.util.*;
-import java.io.*;
-import java.awt.*;
-import java.awt.image.*;
+import java.io.PrintStream;
+import java.util.Vector;
 
 /**
  * An image Quantizer based on the Octree algorithm. This is a very basic
@@ -40,7 +38,7 @@ public class OctTreeQuantizer implements Quantizer {
         int children;
         int level;
         OctTreeNode parent;
-        OctTreeNode leaf[] = new OctTreeNode[8];
+        OctTreeNode[] leaf = new OctTreeNode[8];
         boolean isLeaf;
         int count;
         int totalRed;
@@ -57,8 +55,7 @@ public class OctTreeQuantizer implements Quantizer {
             }
             if (count == 0) {
                 System.out.println(index + ": count=" + count);
-            }
-            else {
+            } else {
                 System.out.println(index + ": count=" + count + " red=" + (totalRed / count) + " green=" + (totalGreen / count) + " blue=" + (totalBlue / count));
             }
             for (int i = 0; i < 8; i++) {
@@ -70,11 +67,11 @@ public class OctTreeQuantizer implements Quantizer {
     }
 
     private int nodes = 0;
-    private OctTreeNode root;
+    private final OctTreeNode root;
     private int reduceColors;
     private int maximumColors;
     private int colors = 0;
-    private Vector[] colorList;
+    private final Vector[] colorList;
 
     public OctTreeQuantizer() {
         setup(256);
@@ -100,7 +97,7 @@ public class OctTreeQuantizer implements Quantizer {
      *
      * @param pixels the array of ARGB pixels
      * @param offset the offset into the array
-     * @param count the count of pixels
+     * @param count  the count of pixels
      */
     public void addPixels(int[] pixels, int offset, int count) {
         for (int i = 0; i < count; i++) {
@@ -143,11 +140,9 @@ public class OctTreeQuantizer implements Quantizer {
 
             if (child == null) {
                 return node.index;
-            }
-            else if (child.isLeaf) {
+            } else if (child.isLeaf) {
                 return child.index;
-            }
-            else {
+            } else {
                 node = child;
             }
         }
@@ -202,15 +197,13 @@ public class OctTreeQuantizer implements Quantizer {
                 }
 
                 node = child;
-            }
-            else if (child.isLeaf) {
+            } else if (child.isLeaf) {
                 child.count++;
                 child.totalRed += red;
                 child.totalGreen += green;
                 child.totalBlue += blue;
                 return;
-            }
-            else {
+            } else {
                 node = child;
             }
         }
@@ -270,7 +263,7 @@ public class OctTreeQuantizer implements Quantizer {
      * pass in the pixels.
      *
      * @param inPixels the input colors
-     * @param table the output color table
+     * @param table    the output color table
      */
     public void buildColorTable(int[] inPixels, int[] table) {
         int count = inPixels.length;
@@ -299,8 +292,7 @@ public class OctTreeQuantizer implements Quantizer {
                     | ((node.totalGreen / count) << 8)
                     | node.totalBlue / count;
             node.index = index++;
-        }
-        else {
+        } else {
             for (int i = 0; i < 8; i++) {
                 if (node.leaf[i] != null) {
                     node.index = index;

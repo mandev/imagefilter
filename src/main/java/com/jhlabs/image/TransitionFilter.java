@@ -16,10 +16,13 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
-import java.lang.reflect.*;
-import java.beans.*;
-import java.util.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Method;
 
 /**
  * A filter which uses another filter to perform a transition. e.g. to create a
@@ -57,7 +60,7 @@ public class TransitionFilter extends AbstractBufferedImageOp {
     /**
      * Construct a TransitionFilter.
      *
-     * @param filter the filter to use
+     * @param filter   the filter to use
      * @param property the filter property which is changed over the transition
      * @param minValue the start value for the filter property
      * @param maxValue the end value for the filter property
@@ -80,8 +83,7 @@ public class TransitionFilter extends AbstractBufferedImageOp {
             if (method == null) {
                 throw new IllegalArgumentException("No such property in object: " + property);
             }
-        }
-        catch (IntrospectionException e) {
+        } catch (IntrospectionException e) {
             throw new IllegalArgumentException(e.toString());
         }
     }
@@ -137,6 +139,7 @@ public class TransitionFilter extends AbstractBufferedImageOp {
 		return filter;
 	}
      */
+
     /**
      * Prepare the filter for the transiton at a given time. The default
      * implementation sets the given filter property, but you could override
@@ -146,9 +149,8 @@ public class TransitionFilter extends AbstractBufferedImageOp {
      */
     public void prepareFilter(float transition) {
         try {
-            method.invoke(filter, new Object[]{Float.valueOf(transition)});
-        }
-        catch (Exception e) {
+            method.invoke(filter, Float.valueOf(transition));
+        } catch (Exception e) {
             throw new IllegalArgumentException("Error setting value for property: " + property);
         }
     }

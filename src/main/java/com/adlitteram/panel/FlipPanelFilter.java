@@ -6,19 +6,17 @@ import com.jhlabs.filter.IdentityFilter;
 import com.jhlabs.image.AbstractBufferedImageOp;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.BorderFactory;
-import javax.swing.JCheckBox;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FlipPanelFilter extends AbstractPanelFilter implements ChangeListener, ActionListener {
 
-    //
     private JPanel panel;
     private JCheckBox horCheck;
     private JCheckBox verCheck;
@@ -59,8 +57,8 @@ public class FlipPanelFilter extends AbstractPanelFilter implements ChangeListen
             verCheck = new JCheckBox(Message.get("Vertical"), false);
             verCheck.addActionListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 5, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 5, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

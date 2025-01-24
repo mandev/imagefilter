@@ -15,8 +15,8 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.image.*;
-import com.jhlabs.math.*;
+import com.jhlabs.math.Function2D;
+import com.jhlabs.math.Noise;
 
 public class TextureFilter extends PointFilter {
 
@@ -203,8 +203,7 @@ public class TextureFilter extends PointFilter {
         int v;
         if (colormap != null) {
             v = colormap.getColor(f);
-        }
-        else {
+        } else {
             v = PixelUtils.clamp((int) (f * 255));
             int r = v << 16;
             int g = v << 8;

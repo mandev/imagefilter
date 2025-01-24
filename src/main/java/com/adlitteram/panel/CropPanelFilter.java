@@ -6,21 +6,15 @@ import com.jhlabs.filter.CropFilterFast;
 import com.jhlabs.image.AbstractBufferedImageOp;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class CropPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private JSpinner xField;
     private JSpinner yField;
@@ -39,10 +33,10 @@ public class CropPanelFilter extends AbstractPanelFilter implements ChangeListen
 
     @Override
     public void reset() {
-        xField.setValue(Integer.valueOf(0));
-        yField.setValue(Integer.valueOf(0));
-        wField.setValue(Integer.valueOf(0));
-        hField.setValue(Integer.valueOf(0));
+        xField.setValue(0);
+        yField.setValue(0);
+        wField.setValue(0);
+        hField.setValue(0);
     }
 
     @Override
@@ -54,10 +48,10 @@ public class CropPanelFilter extends AbstractPanelFilter implements ChangeListen
     public void setRoiShape(Shape shape) {
         if (shape != null) {
             Rectangle r = shape.getBounds();
-            xField.setValue(Integer.valueOf(r.x));
-            yField.setValue(Integer.valueOf(r.x));
-            wField.setValue(Integer.valueOf(r.width));
-            hField.setValue(Integer.valueOf(r.height));
+            xField.setValue(r.x);
+            yField.setValue(r.x);
+            wField.setValue(r.width);
+            hField.setValue(r.height);
         }
     }
 
@@ -65,9 +59,9 @@ public class CropPanelFilter extends AbstractPanelFilter implements ChangeListen
     public JPanel getPanel() {
         if (panel == null) {
 
-            Integer min = Integer.valueOf(0);
-            Integer max = Integer.valueOf(999999);
-            Integer step = Integer.valueOf(1);
+            Integer min = 0;
+            Integer max = 999999;
+            Integer step = 1;
 
             xField = new JSpinner(new SpinnerNumberModel(Integer.valueOf(0), min, max, step));
             xField.addChangeListener(this);
@@ -81,11 +75,10 @@ public class CropPanelFilter extends AbstractPanelFilter implements ChangeListen
             hField = new JSpinner(new SpinnerNumberModel(Integer.valueOf(1), min, max, step));
             hField.addChangeListener(this);
 
-            int w[] = {10, 0, 5, 0, 5, 0, 10};
-            int h[] = {10, 0, 5, 0, 5, 0, 5, 0, 10};
+            int[] w = {10, 0, 5, 0, 5, 0, 10};
+            int[] h = {10, 0, 5, 0, 5, 0, 5, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
-            //l.setColumnWeight(2, 1);
 
             panel = new JPanel(l);
             panel.setBorder(new TitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), getName()));
@@ -115,7 +108,6 @@ public class CropPanelFilter extends AbstractPanelFilter implements ChangeListen
         int y = NumUtils.intValue(yField.getValue(), 0);
         int w = NumUtils.intValue(wField.getValue(), 0);
         int h = NumUtils.intValue(hField.getValue(), 0);
-        //if ( w == 0 || h == 0 ) return new IdentityFilter();
         return new CropFilterFast(x, y, w, h);
     }
 }

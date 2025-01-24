@@ -15,10 +15,10 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
+import com.jhlabs.math.Noise;
+
 import java.awt.*;
-import java.awt.image.*;
-import java.util.*;
-import com.jhlabs.math.*;
+import java.util.Random;
 
 /**
  * A filter which simulates underwater caustics. This can be animated to get a
@@ -27,7 +27,7 @@ import com.jhlabs.math.*;
 public class CausticsFilter extends WholeImageFilter {
 
     private float scale = 32;
-    private float angle = 0.0f;
+    private final float angle = 0.0f;
     private int brightness = 10;
     private float amount = 1.0f;
     private float turbulence = 1.0f;
@@ -258,8 +258,7 @@ public class CausticsFilter extends WholeImageFilter {
                             float srcY = sy + scale * focus * yDisplacement * ca;
 
                             if (srcX < 0 || srcX >= outWidth - 1 || srcY < 0 || srcY >= outHeight - 1) {
-                            }
-                            else {
+                            } else {
                                 int i = ((int) srcY) * outWidth + (int) srcX;
                                 int rgb = pixels[i];
                                 int r = (rgb >> 16) & 0xff;
@@ -267,11 +266,9 @@ public class CausticsFilter extends WholeImageFilter {
                                 int b = rgb & 0xff;
                                 if (c == 2) {
                                     r += v;
-                                }
-                                else if (c == 1) {
+                                } else if (c == 1) {
                                     g += v;
-                                }
-                                else {
+                                } else {
                                     b += v;
                                 }
                                 if (r > 255) {
@@ -286,14 +283,12 @@ public class CausticsFilter extends WholeImageFilter {
                                 pixels[i] = 0xff000000 | (r << 16) | (g << 8) | b;
                             }
                         }
-                    }
-                    else {
+                    } else {
                         float srcX = sx + scale * focus * xDisplacement;
                         float srcY = sy + scale * focus * yDisplacement;
 
                         if (srcX < 0 || srcX >= outWidth - 1 || srcY < 0 || srcY >= outHeight - 1) {
-                        }
-                        else {
+                        } else {
                             int i = ((int) srcY) * outWidth + (int) srcX;
                             int rgb = pixels[i];
                             int r = (rgb >> 16) & 0xff;
@@ -345,11 +340,9 @@ public class CausticsFilter extends WholeImageFilter {
         int b = rgb & 0xff;
         if (c == 2) {
             r += brightness;
-        }
-        else if (c == 1) {
+        } else if (c == 1) {
             g += brightness;
-        }
-        else {
+        } else {
             b += brightness;
         }
         if (r > 255) {

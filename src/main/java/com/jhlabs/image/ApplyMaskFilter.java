@@ -15,9 +15,9 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.*;
-import java.awt.image.*;
-import java.util.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 /**
  * A filter which uses the alpha channel of a "mask" image to interpolate
@@ -37,7 +37,7 @@ public class ApplyMaskFilter extends AbstractBufferedImageOp {
     /**
      * Construct an ApplyMaskFIlter.
      *
-     * @param maskImage the mask image
+     * @param maskImage   the mask image
      * @param destination the destination image
      */
     public ApplyMaskFilter(BufferedImage maskImage, BufferedImage destination) {
@@ -99,9 +99,9 @@ public class ApplyMaskFilter extends AbstractBufferedImageOp {
         int w = src.getWidth();
         int h = src.getHeight();
 
-        int srcRGB[] = null;
-        int selRGB[] = null;
-        int dstRGB[] = null;
+        int[] srcRGB = null;
+        int[] selRGB = null;
+        int[] dstRGB = null;
 
         for (int i = 0; i < h; i++) {
             srcRGB = src.getPixels(x, y, w, 1, srcRGB);
@@ -135,20 +135,12 @@ public class ApplyMaskFilter extends AbstractBufferedImageOp {
     }
 
     public BufferedImage filterRGB32(BufferedImage src, BufferedImage dst) {
-        int width = src.getWidth();
-        int height = src.getHeight();
-        int type = src.getType();
-        WritableRaster srcRaster = src.getRaster();
-
         if (dst == null) {
             dst = createCompatibleDestImage(src, null);
         }
-        WritableRaster dstRaster = dst.getRaster();
-
         if (destination != null && maskImage != null) {
             composeThroughMask(src.getRaster(), dst.getRaster(), maskImage.getRaster());
         }
-
         return dst;
     }
 

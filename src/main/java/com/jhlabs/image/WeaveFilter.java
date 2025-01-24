@@ -15,28 +15,25 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.*;
-import java.awt.image.*;
-
 public class WeaveFilter extends PointFilter {
 
     private float xWidth = 16;
     private float yWidth = 16;
     private float xGap = 6;
     private float yGap = 6;
-    private int rows = 4;
-    private int cols = 4;
-    private int rgbX = 0xffff8080;
-    private int rgbY = 0xff8080ff;
+    private final int rows = 4;
+    private final int cols = 4;
+    private final int rgbX = 0xffff8080;
+    private final int rgbY = 0xff8080ff;
     private boolean useImageColors = true;
     private boolean roundThreads = false;
     private boolean shadeCrossings = true;
 
     public int[][] matrix = {
-        {0, 1, 0, 1},
-        {1, 0, 1, 0},
-        {0, 1, 0, 1},
-        {1, 0, 1, 0},};
+            {0, 1, 0, 1},
+            {1, 0, 1, 0},
+            {0, 1, 0, 1},
+            {1, 0, 1, 0},};
 
     public WeaveFilter() {
     }
@@ -121,23 +118,20 @@ public class WeaveFilter extends PointFilter {
         if (roundThreads) {
             dX = Math.abs(xWidth / 2 - nx) / xWidth / 2;
             dY = Math.abs(yWidth / 2 - ny) / yWidth / 2;
-        }
-        else {
+        } else {
             dX = dY = 0;
         }
 
         if (shadeCrossings) {
             cX = ImageMath.smoothStep(xWidth / 2, xWidth / 2 + xGap, Math.abs(xWidth / 2 - nx));
             cY = ImageMath.smoothStep(yWidth / 2, yWidth / 2 + yGap, Math.abs(yWidth / 2 - ny));
-        }
-        else {
+        } else {
             cX = cY = 0;
         }
 
         if (useImageColors) {
             lrgbX = lrgbY = rgb;
-        }
-        else {
+        } else {
             lrgbX = rgbX;
             lrgbY = rgbY;
         }
@@ -149,8 +143,7 @@ public class WeaveFilter extends PointFilter {
             if (inY) {
                 v = m == 1 ? lrgbX : lrgbY;
                 v = ImageMath.mixColors(2 * (m == 1 ? dX : dY), v, 0xff000000);
-            }
-            else {
+            } else {
                 if (shadeCrossings) {
                     if (m != matrix[(iy + 1) % rows][ixc]) {
                         if (m == 0) {
@@ -158,15 +151,13 @@ public class WeaveFilter extends PointFilter {
                         }
                         cY *= 0.5f;
                         lrgbX = ImageMath.mixColors(cY, lrgbX, 0xff000000);
-                    }
-                    else if (m == 0) {
+                    } else if (m == 0) {
                         lrgbX = ImageMath.mixColors(0.5f, lrgbX, 0xff000000);
                     }
                 }
                 v = ImageMath.mixColors(2 * dX, lrgbX, 0xff000000);
             }
-        }
-        else if (inY) {
+        } else if (inY) {
             if (shadeCrossings) {
                 if (m != matrix[iyr][(ix + 1) % cols]) {
                     if (m == 1) {
@@ -174,14 +165,12 @@ public class WeaveFilter extends PointFilter {
                     }
                     cX *= 0.5f;
                     lrgbY = ImageMath.mixColors(cX, lrgbY, 0xff000000);
-                }
-                else if (m == 1) {
+                } else if (m == 1) {
                     lrgbY = ImageMath.mixColors(0.5f, lrgbY, 0xff000000);
                 }
             }
             v = ImageMath.mixColors(2 * dY, lrgbY, 0xff000000);
-        }
-        else {
+        } else {
             v = 0x00000000;
         }
         return v;

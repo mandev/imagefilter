@@ -16,6 +16,7 @@
 package com.jhlabs.image;
 
 import com.jhlabs.utils.ThreadUtils;
+
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
 import java.util.concurrent.RecursiveAction;
@@ -77,9 +78,9 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
     /**
      * Construct a filter with the given kernel.
      *
-     * @param rows	the number of rows in the kernel
-     * @param cols	the number of columns in the kernel
-     * @param matrix	an array of rows*cols floats containing the kernel
+     * @param rows   the number of rows in the kernel
+     * @param cols   the number of columns in the kernel
+     * @param matrix an array of rows*cols floats containing the kernel
      */
     public ConvolveFilter(int rows, int cols, float[] matrix) {
         this(new Kernel(cols, rows, matrix));
@@ -256,8 +257,7 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
             int t = (end - start) * width;
             if (t < threshold) {
                 ConvolveFilter.convolve(start, end, kernel, inPixels, outPixels, width, height, alpha, edgeAction);
-            }
-            else {
+            } else {
                 int split = (end - start) / 2;
                 invokeAll(new ConvolveAction(start, start + split, kernel, inPixels, outPixels, width, height, alpha, edgeAction, threshold),
                         new ConvolveAction(start + split, end, kernel, inPixels, outPixels, width, height, alpha, edgeAction, threshold));
@@ -271,22 +271,20 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
      *
      * @param start
      * @param end
-     * @param kernel the kernel
-     * @param inPixels the input pixels
-     * @param outPixels the output pixels
-     * @param width the width
-     * @param height the height
-     * @param alpha include alpha channel
+     * @param kernel     the kernel
+     * @param inPixels   the input pixels
+     * @param outPixels  the output pixels
+     * @param width      the width
+     * @param height     the height
+     * @param alpha      include alpha channel
      * @param edgeAction what to do at the edges
      */
     public static void convolve(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height, boolean alpha, int edgeAction) {
         if (kernel.getHeight() == 1) {
             convolveH(start, end, kernel, inPixels, outPixels, width, height, alpha, edgeAction);
-        }
-        else if (kernel.getWidth() == 1) {
+        } else if (kernel.getWidth() == 1) {
             convolveV(start, end, kernel, inPixels, outPixels, width, height, alpha, edgeAction);
-        }
-        else {
+        } else {
             convolveHV(start, end, kernel, inPixels, outPixels, width, height, alpha, edgeAction);
         }
     }
@@ -296,12 +294,12 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
      *
      * @param start
      * @param end
-     * @param kernel the kernel
-     * @param inPixels the input pixels
-     * @param outPixels the output pixels
-     * @param width the width
-     * @param height the height
-     * @param alpha include alpha channel
+     * @param kernel     the kernel
+     * @param inPixels   the input pixels
+     * @param outPixels  the output pixels
+     * @param width      the width
+     * @param height     the height
+     * @param alpha      include alpha channel
      * @param edgeAction what to do at the edges
      */
     public static void convolveHV(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height, boolean alpha, int edgeAction) {
@@ -321,14 +319,11 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
                     int ioffset;
                     if (0 <= iy && iy < height) {
                         ioffset = iy * width;
-                    }
-                    else if (edgeAction == CLAMP_EDGES) {
+                    } else if (edgeAction == CLAMP_EDGES) {
                         ioffset = y * width;
-                    }
-                    else if (edgeAction == WRAP_EDGES) {
+                    } else if (edgeAction == WRAP_EDGES) {
                         ioffset = ((iy + height) % height) * width;
-                    }
-                    else {
+                    } else {
                         continue;
                     }
 
@@ -341,11 +336,9 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
                             if (!(0 <= ix && ix < width)) {
                                 if (edgeAction == CLAMP_EDGES) {
                                     ix = x;
-                                }
-                                else if (edgeAction == WRAP_EDGES) {
+                                } else if (edgeAction == WRAP_EDGES) {
                                     ix = (x + width) % width;
-                                }
-                                else {
+                                } else {
                                     continue;
                                 }
                             }
@@ -371,12 +364,12 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
      *
      * @param start
      * @param end
-     * @param kernel the kernel
-     * @param inPixels the input pixels
-     * @param outPixels the output pixels
-     * @param width the width
-     * @param height the height
-     * @param alpha include alpha channel
+     * @param kernel     the kernel
+     * @param inPixels   the input pixels
+     * @param outPixels  the output pixels
+     * @param width      the width
+     * @param height     the height
+     * @param alpha      include alpha channel
      * @param edgeAction what to do at the edges
      */
     public static void convolveH(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height, boolean alpha, int edgeAction) {
@@ -398,16 +391,13 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
                         if (ix < 0) {
                             if (edgeAction == CLAMP_EDGES) {
                                 ix = 0;
-                            }
-                            else if (edgeAction == WRAP_EDGES) {
+                            } else if (edgeAction == WRAP_EDGES) {
                                 ix = (x + width) % width;
                             }
-                        }
-                        else if (ix >= width) {
+                        } else if (ix >= width) {
                             if (edgeAction == CLAMP_EDGES) {
                                 ix = width - 1;
-                            }
-                            else if (edgeAction == WRAP_EDGES) {
+                            } else if (edgeAction == WRAP_EDGES) {
                                 ix = (x + width) % width;
                             }
                         }
@@ -432,12 +422,12 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
      *
      * @param start
      * @param end
-     * @param kernel the kernel
-     * @param inPixels the input pixels
-     * @param outPixels the output pixels
-     * @param width the width
-     * @param height the height
-     * @param alpha include alpha channel
+     * @param kernel     the kernel
+     * @param inPixels   the input pixels
+     * @param outPixels  the output pixels
+     * @param width      the width
+     * @param height     the height
+     * @param alpha      include alpha channel
      * @param edgeAction what to do at the edges
      */
     public static void convolveV(int start, int end, Kernel kernel, int[] inPixels, int[] outPixels, int width, int height, boolean alpha, int edgeAction) {
@@ -456,26 +446,20 @@ public class ConvolveFilter extends AbstractBufferedImageOp {
                     if (iy < 0) {
                         if (edgeAction == CLAMP_EDGES) {
                             ioffset = 0;
-                        }
-                        else if (edgeAction == WRAP_EDGES) {
+                        } else if (edgeAction == WRAP_EDGES) {
                             ioffset = ((y + height) % height) * width;
-                        }
-                        else {
+                        } else {
                             ioffset = iy * width;
                         }
-                    }
-                    else if (iy >= height) {
+                    } else if (iy >= height) {
                         if (edgeAction == CLAMP_EDGES) {
                             ioffset = (height - 1) * width;
-                        }
-                        else if (edgeAction == WRAP_EDGES) {
+                        } else if (edgeAction == WRAP_EDGES) {
                             ioffset = ((y + height) % height) * width;
-                        }
-                        else {
+                        } else {
                             ioffset = iy * width;
                         }
-                    }
-                    else {
+                    } else {
                         ioffset = iy * width;
                     }
 

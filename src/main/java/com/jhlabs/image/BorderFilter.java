@@ -16,8 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter to add a border around an image using the supplied Paint, which may
@@ -38,11 +38,11 @@ public class BorderFilter extends AbstractBufferedImageOp {
     /**
      * Construct a BorderFilter.
      *
-     * @param leftBorder the left border value
-     * @param topBorder the top border value
-     * @param rightBorder the right border value
+     * @param leftBorder   the left border value
+     * @param topBorder    the top border value
+     * @param rightBorder  the right border value
      * @param bottomBorder the bottom border value
-     * @param borderPaint the paint with which to fill the border
+     * @param borderPaint  the paint with which to fill the border
      */
     public BorderFilter(int leftBorder, int topBorder, int rightBorder, int bottomBorder, Paint borderPaint) {
         this.leftBorder = leftBorder;

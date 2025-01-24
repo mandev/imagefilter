@@ -16,10 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.*;
-import java.util.*;
-import com.jhlabs.image.*;
 
 /**
  * A class containing some static utility methods for dealing with
@@ -39,8 +37,7 @@ public abstract class ImageUtils {
         PixelGrabber pg = new PixelGrabber(producer, 0, 0, -1, -1, null, 0, 0);
         try {
             pg.grabPixels();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException("Image fetch interrupted");
         }
         if ((pg.status() & ImageObserver.ABORT) != 0) {
@@ -77,10 +74,10 @@ public abstract class ImageUtils {
      * problems associated with BufferedImage.getSubimage.
      *
      * @param image the image
-     * @param x the x position
-     * @param y the y position
-     * @param w the width
-     * @param h the height
+     * @param x     the x position
+     * @param y     the y position
+     * @param w     the width
+     * @param h     the height
      * @return the subimage
      */
     public static BufferedImage getSubimage(BufferedImage image, int x, int y, int w, int h) {
@@ -109,11 +106,11 @@ public abstract class ImageUtils {
      * Paint a check pattern, used for a background to indicate image
      * transparency.
      *
-     * @param c the component to draw into
-     * @param g the Graphics objects
-     * @param x the x position
-     * @param y the y position
-     * @param width the width
+     * @param c      the component to draw into
+     * @param g      the Graphics objects
+     * @param x      the x position
+     * @param y      the y position
+     * @param width  the width
      * @param height the height
      */
     public static void paintCheckedBackground(Component c, Graphics g, int x, int y, int width, int height) {
@@ -234,9 +231,9 @@ public abstract class ImageUtils {
         int w = src.getWidth();
         int h = src.getHeight();
 
-        int srcRGB[] = null;
-        int selRGB[] = null;
-        int dstRGB[] = null;
+        int[] srcRGB = null;
+        int[] selRGB = null;
+        int[] dstRGB = null;
 
         for (int i = 0; i < h; i++) {
             srcRGB = src.getPixels(x, y, w, 1, srcRGB);
@@ -274,10 +271,10 @@ public abstract class ImageUtils {
      * avoid the performance penalty of BufferedImage.getRGB unmanaging the
      * image.
      *
-     * @param image a BufferedImage object
-     * @param x the left edge of the pixel block
-     * @param y the right edge of the pixel block
-     * @param width the width of the pixel arry
+     * @param image  a BufferedImage object
+     * @param x      the left edge of the pixel block
+     * @param y      the right edge of the pixel block
+     * @param width  the width of the pixel arry
      * @param height the height of the pixel arry
      * @param pixels the array to hold the returned pixels. May be null.
      * @return the pixels
@@ -296,10 +293,10 @@ public abstract class ImageUtils {
      * avoid the performance penalty of BufferedImage.setRGB unmanaging the
      * image.
      *
-     * @param image a BufferedImage object
-     * @param x the left edge of the pixel block
-     * @param y the right edge of the pixel block
-     * @param width the width of the pixel arry
+     * @param image  a BufferedImage object
+     * @param x      the left edge of the pixel block
+     * @param y      the right edge of the pixel block
+     * @param width  the width of the pixel arry
      * @param height the height of the pixel arry
      * @param pixels the array of pixels to set
      * @see #getRGB
@@ -308,8 +305,7 @@ public abstract class ImageUtils {
         int type = image.getType();
         if (type == BufferedImage.TYPE_INT_ARGB || type == BufferedImage.TYPE_INT_RGB) {
             image.getRaster().setDataElements(x, y, width, height, pixels);
-        }
-        else {
+        } else {
             image.setRGB(x, y, width, height, pixels, 0, width);
         }
     }

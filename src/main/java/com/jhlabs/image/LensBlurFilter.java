@@ -15,11 +15,9 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-import java.awt.color.*;
-import com.jhlabs.math.*;
+import com.jhlabs.math.FFT;
+
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which use FFTs to simulate lens blur on an image.
@@ -29,7 +27,7 @@ public class LensBlurFilter extends AbstractBufferedImageOp {
     private float radius = 10;
     private float bloom = 2;
     private float bloomThreshold = 192;
-    private float angle = 0;
+    private final float angle = 0;
     private int sides = 5;
 
     /**
@@ -121,8 +119,8 @@ public class LensBlurFilter extends AbstractBufferedImageOp {
         int tileWidth = 128;
         int tileHeight = tileWidth;
 
-        int adjustedWidth = (int) (width + iradius * 2);
-        int adjustedHeight = (int) (height + iradius * 2);
+        int adjustedWidth = width + iradius * 2;
+        int adjustedHeight = height + iradius * 2;
 
         tileWidth = iradius < 32 ? Math.min(128, width + 2 * iradius) : Math.min(256, width + 2 * iradius);
         tileHeight = iradius < 32 ? Math.min(128, height + 2 * iradius) : Math.min(256, height + 2 * iradius);
@@ -171,8 +169,7 @@ public class LensBlurFilter extends AbstractBufferedImageOp {
                         double a = Math.atan2(dy, dx) + rangle;
                         a = ImageMath.mod(a, polyAngle * 2) - polyAngle;
                         f = Math.cos(a) * polyScale;
-                    }
-                    else {
+                    } else {
                         f = 1;
                     }
                     f = f * r < radius ? 1 : 0;
@@ -230,11 +227,9 @@ public class LensBlurFilter extends AbstractBufferedImageOp {
                     int j;
                     if (imageY < 0) {
                         j = fy;
-                    }
-                    else if (imageY > height) {
+                    } else if (imageY > height) {
                         j = fy + th - 1;
-                    }
-                    else {
+                    } else {
                         j = y;
                     }
                     j *= w;
@@ -243,11 +238,9 @@ public class LensBlurFilter extends AbstractBufferedImageOp {
                         int k;
                         if (imageX < 0) {
                             k = fx;
-                        }
-                        else if (imageX > width) {
+                        } else if (imageX > width) {
                             k = fx + tw - 1;
-                        }
-                        else {
+                        } else {
                             k = x;
                         }
                         k += j;

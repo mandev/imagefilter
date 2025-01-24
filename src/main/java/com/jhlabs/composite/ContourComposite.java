@@ -16,8 +16,9 @@ limitations under the License.
 package com.jhlabs.composite;
 
 import java.awt.*;
-import java.awt.image.*;
-import java.awt.color.*;
+import java.awt.image.ColorModel;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 /**
  * A special Composite used for drawing "marching ants". It draws the ants at
@@ -26,7 +27,7 @@ import java.awt.color.*;
  */
 public final class ContourComposite implements Composite {
 
-    private int offset;
+    private final int offset;
 
     public ContourComposite(int offset) {
         this.offset = offset;
@@ -41,17 +42,14 @@ public final class ContourComposite implements Composite {
     }
 
     public boolean equals(Object o) {
-        if (!(o instanceof ContourComposite)) {
-            return false;
-        }
-        return true;
+        return o instanceof ContourComposite;
     }
 
 }
 
 class ContourCompositeContext implements CompositeContext {
 
-    private int offset;
+    private final int offset;
 
     public ContourCompositeContext(int offset, ColorModel srcColorModel, ColorModel dstColorModel) {
         this.offset = offset;
@@ -86,15 +84,13 @@ class ContourCompositeContext implements CompositeContext {
                         dstOutPix[k] = 0x00;
                         dstOutPix[k + 1] = 0x00;
                         dstOutPix[k + 2] = 0x00;
-                    }
-                    else {
+                    } else {
                         dstOutPix[k] = 0xff;
                         dstOutPix[k + 1] = 0xff;
                         dstOutPix[k + 2] = 0x7f;
                     }
                     dstOutPix[k + 3] = 0xff;
-                }
-                else {
+                } else {
                     dstOutPix[k] = dstInPix[k];
                     dstOutPix[k + 1] = dstInPix[k + 1];
                     dstOutPix[k + 2] = dstInPix[k + 2];

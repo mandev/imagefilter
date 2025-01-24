@@ -1,25 +1,25 @@
 package com.adlitteram.panel;
 
 import com.jhlabs.image.AbstractBufferedImageOp;
-import java.awt.Shape;
-import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 public interface PanelFilter {
 
-    //
-    public String getName();
+    String getName();
 
-    public JPanel getPanel();
+    JPanel getPanel();
 
-    public void reset();
+    void reset();
 
-    public void setRoiShape(Shape shape);
+    void setRoiShape(Shape shape);
 
-    public boolean isParametrable();
+    boolean isParametrable();
 
-    public AbstractBufferedImageOp getFilter(float scale);
+    AbstractBufferedImageOp getFilter(float scale);
 
-    public void addFilterListener(FilterListener listener);
+    void addFilterListener(FilterListener listener);
 
-    public void removeFilterListener(FilterListener listener);
+    void removeFilterListener(FilterListener listener);
 }

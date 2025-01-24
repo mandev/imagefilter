@@ -16,7 +16,6 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
 
 /**
  * A filter which performs one round of the game of Life on an image.
@@ -56,8 +55,7 @@ public class LifeFilter extends BinaryFilter {
 
                 if (blackFunction.isBlack(pixel)) {
                     outPixels[index++] = (neighbours == 2 || neighbours == 3) ? pixel : 0xffffffff;
-                }
-                else {
+                } else {
                     outPixels[index++] = neighbours == 3 ? 0xff000000 : pixel;
                 }
             }

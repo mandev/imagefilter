@@ -16,7 +16,6 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorModel;
 
 /**
  * A filter which performs a box blur with a different blur radius at each
@@ -96,8 +95,7 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
             if (blurMask != null) {
                 if (pass == 1) {
                     getRGB(blurMask, 0, y, width, 1, mask);
-                }
-                else {
+                } else {
                     getRGB(blurMask, y, 0, 1, width, mask);
                 }
             }
@@ -122,16 +120,13 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
                 if (blurMask != null) {
                     if (pass == 1) {
                         ra = (int) ((mask[x] & 0xff) * hRadius / 255f);
-                    }
-                    else {
+                    } else {
                         ra = (int) ((mask[x] & 0xff) * vRadius / 255f);
                     }
-                }
-                else {
+                } else {
                     if (pass == 1) {
                         ra = (int) (blurRadiusAt(x, y, width, height) * hRadius);
-                    }
-                    else {
+                    } else {
                         ra = (int) (blurRadiusAt(y, x, height, width) * vRadius);
                     }
                 }
@@ -172,9 +167,9 @@ public class VariableBlurFilter extends AbstractBufferedImageOp {
     /**
      * Override this to get a different blur radius at eahc point.
      *
-     * @param x the x coordinate
-     * @param y the y coordinate
-     * @param width the width of the image
+     * @param x      the x coordinate
+     * @param y      the y coordinate
+     * @param width  the width of the image
      * @param height the height of the image
      * @return the blur radius
      */

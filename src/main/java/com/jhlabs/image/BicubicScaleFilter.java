@@ -16,7 +16,7 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Scales an image using bi-cubic interpolation, which can't be done with
@@ -24,8 +24,8 @@ import java.awt.image.*;
  */
 public class BicubicScaleFilter extends AbstractBufferedImageOp {
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     /**
      * Construct a BicubicScaleFilter which resizes to 32x32 pixels.
@@ -40,7 +40,7 @@ public class BicubicScaleFilter extends AbstractBufferedImageOp {
      * bicubic actually looks worse than bilinear interpolation on most Java
      * implementations, but you can be the judge.
      *
-     * @param width the width of the output image
+     * @param width  the width of the output image
      * @param height the height of the output image
      */
     public BicubicScaleFilter(int width, int height) {

@@ -15,16 +15,15 @@ limitations under the License.
  */
 package com.jhlabs.math;
 
-import java.awt.image.*;
-import java.util.*;
+import java.util.Random;
 
 public class CellularFunction2D implements Function2D {
 
     public float distancePower = 2;
     public boolean cells = false;
     public boolean angular = false;
-    private float[] coefficients = {1, 0, 0, 0};
-    private Random random = new Random();
+    private final float[] coefficients = {1, 0, 0, 0};
+    private final Random random = new Random();
     private Point[] results = null;
 
     public CellularFunction2D() {
@@ -50,7 +49,7 @@ public class CellularFunction2D implements Function2D {
     }
 
     private float checkCube(float x, float y, int cubeX, int cubeY, Point[] results) {
-        random.setSeed(571 * cubeX + 23 * cubeY);
+        random.setSeed(571L * cubeX + 23L * cubeY);
         int numPoints = 3 + random.nextInt() % 4;
         numPoints = 4;
 
@@ -62,11 +61,9 @@ public class CellularFunction2D implements Function2D {
             float d;
             if (distancePower == 1.0f) {
                 d = dx + dy;
-            }
-            else if (distancePower == 2.0f) {
+            } else if (distancePower == 2.0f) {
                 d = (float) Math.sqrt(dx * dx + dy * dy);
-            }
-            else {
+            } else {
                 d = (float) Math.pow(Math.pow(dx, distancePower) + Math.pow(dy, distancePower), 1 / distancePower);
             }
 
@@ -79,8 +76,7 @@ public class CellularFunction2D implements Function2D {
                     last.y = py;
                     results[j] = last;
                     break;
-                }
-                else if (d < results[j].distance) {
+                } else if (d < results[j].distance) {
                     Point last = results[results.length - 1];
                     for (int k = results.length - 1; k > j; k--) {
                         results[k] = results[k - 1];

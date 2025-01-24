@@ -16,7 +16,6 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
 
 /**
  * Given a binary image, this filter converts it to its outline, replacing all
@@ -50,8 +49,7 @@ public class OutlineFilter extends BinaryFilter {
                                     if (blackFunction.isBlack(rgb)) {
                                         neighbours++;
                                     }
-                                }
-                                else {
+                                } else {
                                     neighbours++;
                                 }
                             }

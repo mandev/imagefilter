@@ -15,10 +15,9 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.util.*;
 import java.awt.*;
-import java.awt.image.*;
-import com.jhlabs.math.*;
+import java.util.Date;
+import java.util.Random;
 
 public class SmearFilter extends WholeImageFilter {
 
@@ -27,12 +26,12 @@ public class SmearFilter extends WholeImageFilter {
     public final static int CIRCLES = 2;
     public final static int SQUARES = 3;
 
-    private Colormap colormap = new LinearColormap();
+    private final Colormap colormap = new LinearColormap();
     private float angle = 0;
     private float density = 0.5f;
     private float scatter = 0.0f;
     private int distance = 8;
-    private Random randomGenerator;
+    private final Random randomGenerator;
     private long seed = 567;
     private int shape = LINES;
     private float mix = 0.5f;
@@ -187,14 +186,12 @@ public class SmearFilter extends WholeImageFilter {
 
                     if (x1 < x0) {
                         ddx = -1;
-                    }
-                    else {
+                    } else {
                         ddx = 1;
                     }
                     if (y1 < y0) {
                         ddy = -1;
-                    }
-                    else {
+                    } else {
                         ddy = 1;
                     }
                     dx = x1 - x0;
@@ -216,8 +213,7 @@ public class SmearFilter extends WholeImageFilter {
                         while (x != x1) {
                             if (d <= 0) {
                                 d += incrE;
-                            }
-                            else {
+                            } else {
                                 d += incrNE;
                                 y += ddy;
                             }
@@ -227,8 +223,7 @@ public class SmearFilter extends WholeImageFilter {
                                 outPixels[y * width + x] = ImageMath.mixColors(mix, rgb2, rgb);
                             }
                         }
-                    }
-                    else {
+                    } else {
                         d = 2 * dx - dy;
                         incrE = 2 * dx;
                         incrNE = 2 * (dx - dy);
@@ -236,8 +231,7 @@ public class SmearFilter extends WholeImageFilter {
                         while (y != y1) {
                             if (d <= 0) {
                                 d += incrE;
-                            }
-                            else {
+                            } else {
                                 d += incrNE;
                                 x += ddx;
                             }
@@ -264,8 +258,7 @@ public class SmearFilter extends WholeImageFilter {
                             int f;
                             if (shape == CIRCLES) {
                                 f = (x - sx) * (x - sx) + (y - sy) * (y - sy);
-                            }
-                            else {
+                            } else {
                                 f = 0;
                             }
                             if (x >= 0 && x < width && y >= 0 && y < height && f <= radius2) {

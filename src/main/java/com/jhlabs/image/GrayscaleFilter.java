@@ -31,7 +31,7 @@ public class GrayscaleFilter extends PointFilter {
         int g = (rgb >> 8) & 0xff;
         int b = rgb & 0xff;
 //		rgb = (r + g + b) / 3;	// simple average
-        rgb = (r * 77 + g * 151 + b * 28) >> 8;	// NTSC luma
+        rgb = (r * 77 + g * 151 + b * 28) >> 8;    // NTSC luma
         return a | (rgb << 16) | (rgb << 8) | rgb;
     }
 

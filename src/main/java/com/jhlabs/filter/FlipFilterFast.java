@@ -5,15 +5,12 @@
 package com.jhlabs.filter;
 
 import com.jhlabs.image.AbstractBufferedImageOp;
-import static com.jhlabs.image.AbstractBufferedImageOp.getImageType;
-import static com.jhlabs.image.AbstractBufferedImageOp.getRGB0;
-import static com.jhlabs.image.AbstractBufferedImageOp.setRGB0;
 import com.jhlabs.utils.ThreadUtils;
-import java.awt.image.BufferedImage;
-import static java.util.concurrent.ForkJoinTask.invokeAll;
-import java.util.concurrent.RecursiveAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.awt.image.BufferedImage;
+import java.util.concurrent.RecursiveAction;
 
 public class FlipFilterFast extends AbstractBufferedImageOp {
 
@@ -268,12 +265,10 @@ public class FlipFilterFast extends AbstractBufferedImageOp {
             if (t < threshold) {
                 if (operation == FLIP_90CW) {
                     getFlip90CW_GRAY8(start, end, src, dst);
-                }
-                else if (operation == FLIP_90CCW) {
+                } else if (operation == FLIP_90CCW) {
                     getFlip90CCW_GRAY8(start, end, src, dst);
                 }
-            }
-            else {
+            } else {
                 int split = (end - start) / 2;
                 invokeAll(new FlipAction_GRAY8(start, start + split, src, dst, threshold),
                         new FlipAction_GRAY8(start + split, end, src, dst, threshold));
@@ -396,12 +391,10 @@ public class FlipFilterFast extends AbstractBufferedImageOp {
             if (t < threshold) {
                 if (operation == FLIP_90CW) {
                     getFlip90CW_RGB32(start, end, src, dst);
-                }
-                else if (operation == FLIP_90CCW) {
+                } else if (operation == FLIP_90CCW) {
                     getFlip90CCW_RGB32(start, end, src, dst);
                 }
-            }
-            else {
+            } else {
                 int split = (end - start) / 2;
                 invokeAll(new FlipAction_RGB32(start, start + split, src, dst, threshold),
                         new FlipAction_RGB32(start + split, end, src, dst, threshold));

@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.Rectangle;
+import java.awt.*;
 
 /**
  * A filter which allows levels adjustment on an image.
@@ -82,8 +82,7 @@ public class LevelsFilter extends WholeImageFilter {
                     lut[i][j] = PixelUtils.clamp((int) (255 * (lowOutputLevel + (highOutputLevel - lowOutputLevel) * (j - low) / (high - low))));
                 }
             }
-        }
-        else {
+        } else {
             lut = null;
         }
 

@@ -6,21 +6,18 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.OpacityFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class OpacityPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider opacitySlider;
-    //
-    private float defaultOpacity = 100f;
+    private static final float DEFAULT_OPACITY = 100f;
 
     @Override
     public String getName() {
@@ -34,7 +31,7 @@ public class OpacityPanelFilter extends AbstractPanelFilter implements ChangeLis
 
     @Override
     public void reset() {
-        opacitySlider.setFloatValue(defaultOpacity);
+        opacitySlider.setFloatValue(DEFAULT_OPACITY);
     }
 
     @Override
@@ -46,11 +43,11 @@ public class OpacityPanelFilter extends AbstractPanelFilter implements ChangeLis
     public JPanel getPanel() {
         if (panel == null) {
 
-            opacitySlider = new FloatJSpinSlider(defaultOpacity, 0f, 100f, 1f, 1f, 10);
+            opacitySlider = new FloatJSpinSlider(DEFAULT_OPACITY, 0f, 100f, 1f, 1f, 10);
             opacitySlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

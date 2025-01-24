@@ -16,7 +16,6 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
 
 /**
  * This filter tries to apply the Swing "flush 3D" effect to the black lines in

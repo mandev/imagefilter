@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import com.jhlabs.math.*;
+import com.jhlabs.math.Noise;
 
 public class MarbleTexFilter extends PointFilter {
 
@@ -105,8 +105,7 @@ public class MarbleTexFilter extends PointFilter {
             float perturb = (float) Math.sin(40. * chaos);
             f += .2 * perturb;
             return colormap.getColor(f);
-        }
-        else {
+        } else {
             float red, grn, blu;
             float chaos, brownLayer, greenLayer;
             float perturb, brownPerturb, greenPerturb, grnPerturb;
@@ -118,7 +117,7 @@ public class MarbleTexFilter extends PointFilter {
             greenLayer = brownLayer = Math.abs(t);
 
             perturb = (float) Math.sin(40. * chaos);
-            perturb = (float) Math.abs(perturb);
+            perturb = Math.abs(perturb);
 
             brownPerturb = .6f * perturb + 0.3f;
             greenPerturb = .2f * perturb + 0.8f;

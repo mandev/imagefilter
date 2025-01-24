@@ -16,7 +16,10 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
+import java.awt.image.MemoryImageSource;
+import java.awt.image.PixelGrabber;
 
 public class ImageCombiningFilter {
 
@@ -44,8 +47,7 @@ public class ImageCombiningFilter {
         try {
             pg1.grabPixels();
             pg2.grabPixels();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             System.err.println("interrupted waiting for pixels!");
             return null;
         }

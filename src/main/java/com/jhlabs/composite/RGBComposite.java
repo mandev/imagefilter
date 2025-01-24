@@ -16,7 +16,9 @@ limitations under the License.
 package com.jhlabs.composite;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ColorModel;
+import java.awt.image.Raster;
+import java.awt.image.WritableRaster;
 
 public abstract class RGBComposite implements Composite {
 
@@ -42,22 +44,18 @@ public abstract class RGBComposite implements Composite {
     }
 
     public boolean equals(Object o) {
-        if (!(o instanceof RGBComposite)) {
+        if (!(o instanceof RGBComposite c)) {
             return false;
         }
-        RGBComposite c = (RGBComposite) o;
 
-        if (extraAlpha != c.extraAlpha) {
-            return false;
-        }
-        return true;
+        return extraAlpha == c.extraAlpha;
     }
 
     public abstract static class RGBCompositeContext implements CompositeContext {
 
-        private float alpha;
-        private ColorModel srcColorModel;
-        private ColorModel dstColorModel;
+        private final float alpha;
+        private final ColorModel srcColorModel;
+        private final ColorModel dstColorModel;
 
         public RGBCompositeContext(float alpha, ColorModel srcColorModel, ColorModel dstColorModel) {
             this.alpha = alpha;

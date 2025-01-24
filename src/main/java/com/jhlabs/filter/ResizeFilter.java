@@ -6,10 +6,8 @@ package com.jhlabs.filter;
 
 import com.adlitteram.jasmin.image.icc.IccUtils;
 import com.jhlabs.image.AbstractBufferedImageOp;
-import java.awt.AlphaComposite;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
+
+import java.awt.*;
 import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
@@ -20,16 +18,16 @@ public class ResizeFilter extends AbstractBufferedImageOp {
     public static final int BILINEAR = 1;
     public static final int BICUBIC = 2;
     public static final int MULTISTEP = 3;
-  
+
     private static final Object[] RENDERING_HINTS = {
-        RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR,
-        RenderingHints.VALUE_INTERPOLATION_BILINEAR,
-        RenderingHints.VALUE_INTERPOLATION_BICUBIC,
-        RenderingHints.VALUE_INTERPOLATION_BILINEAR
+            RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR,
+            RenderingHints.VALUE_INTERPOLATION_BILINEAR,
+            RenderingHints.VALUE_INTERPOLATION_BICUBIC,
+            RenderingHints.VALUE_INTERPOLATION_BILINEAR
     };
-    private int type;
-    private int dstWidth;
-    private int dstHeight;
+    private final int type;
+    private final int dstWidth;
+    private final int dstHeight;
 
     /**
      * Construct a ResizeFilter.
@@ -41,7 +39,7 @@ public class ResizeFilter extends AbstractBufferedImageOp {
     /**
      * Construct a ResizeFilter.
      *
-     * @param width the width to scale to
+     * @param width  the width to scale to
      * @param height the height to scale to
      * @param type
      */
@@ -61,26 +59,22 @@ public class ResizeFilter extends AbstractBufferedImageOp {
         if (IccUtils.isCS_sGRAY(src)) {
             if (dst == null || IccUtils.isCS_sGRAY(dst)) {
                 dst = scaleImage(src, dst);
-            }
-            else {
+            } else {
                 ColorSpace cs = dst.getColorModel().getColorSpace();
                 dst = IccUtils.applyColorSpace(dst, IccUtils.CS_GRAY_COLORSPACE);
                 dst = scaleImage(src, dst);
                 dst = IccUtils.applyColorSpace(dst, cs);
             }
-        }
-        else {
+        } else {
             ColorSpace cs1 = src.getColorModel().getColorSpace();
             src = IccUtils.applyColorSpace(src, IccUtils.CS_GRAY_COLORSPACE);
 
             if (dst == null) {
                 dst = scaleImage(src, dst);
                 dst = IccUtils.applyColorSpace(dst, cs1);
-            }
-            else if (IccUtils.isCS_sGRAY(dst)) {
+            } else if (IccUtils.isCS_sGRAY(dst)) {
                 dst = scaleImage(src, dst);
-            }
-            else {
+            } else {
                 ColorSpace cs2 = dst.getColorModel().getColorSpace();
                 dst = IccUtils.applyColorSpace(dst, IccUtils.CS_GRAY_COLORSPACE);
                 dst = scaleImage(src, dst);
@@ -99,26 +93,22 @@ public class ResizeFilter extends AbstractBufferedImageOp {
         if (IccUtils.isCS_sRGB(src)) {
             if (dst == null || IccUtils.isCS_sRGB(dst)) {
                 dst = scaleImage(src, dst);
-            }
-            else {
+            } else {
                 ColorSpace cs = dst.getColorModel().getColorSpace();
                 dst = IccUtils.applyColorSpace(dst, IccUtils.CS_sRGB_COLORSPACE);
                 dst = scaleImage(src, dst);
                 dst = IccUtils.applyColorSpace(dst, cs);
             }
-        }
-        else {
+        } else {
             ColorSpace cs1 = src.getColorModel().getColorSpace();
             src = IccUtils.applyColorSpace(src, IccUtils.CS_sRGB_COLORSPACE);
 
             if (dst == null) {
                 dst = scaleImage(src, dst);
                 dst = IccUtils.applyColorSpace(dst, cs1);
-            }
-            else if (IccUtils.isCS_sRGB(dst)) {
+            } else if (IccUtils.isCS_sRGB(dst)) {
                 dst = scaleImage(src, dst);
-            }
-            else {
+            } else {
                 ColorSpace cs2 = dst.getColorModel().getColorSpace();
                 dst = IccUtils.applyColorSpace(dst, IccUtils.CS_sRGB_COLORSPACE);
                 dst = scaleImage(src, dst);
@@ -163,7 +153,7 @@ public class ResizeFilter extends AbstractBufferedImageOp {
 
     private BufferedImage getAverageDownImage(BufferedImage src, BufferedImage dst) {
 
-        BufferedImage retImg = (BufferedImage) src;
+        BufferedImage retImg = src;
         int prevW = retImg.getWidth();
         int prevH = retImg.getHeight();
 
@@ -212,8 +202,7 @@ public class ResizeFilter extends AbstractBufferedImageOp {
             g2 = dst.createGraphics();
             g2.drawImage(retImg, 0, 0, null);
             g2.dispose();
-        }
-        else {
+        } else {
             dst = retImg;
         }
 

@@ -35,8 +35,8 @@ public class CurvesFilter extends TransferFilter {
         }
 
         public Curve(Curve curve) {
-            x = (float[]) curve.x.clone();
-            y = (float[]) curve.y.clone();
+            x = curve.x.clone();
+            y = curve.y.clone();
         }
 
         public int addKnot(float kx, float ky) {
@@ -144,8 +144,7 @@ public class CurvesFilter extends TransferFilter {
 
         if (curves.length == 1) {
             rTable = gTable = bTable = curves[0].makeTable();
-        }
-        else {
+        } else {
             rTable = curves[0].makeTable();
             gTable = curves[1].makeTable();
             bTable = curves[2].makeTable();

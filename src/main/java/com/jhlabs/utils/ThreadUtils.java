@@ -24,15 +24,14 @@ public class ThreadUtils {
     public static int getThreadNumber(int width, int height, int step) {
         int max = PROCESSORS;
         int num = (int) (((long) width * (long) height) / ((long) step * (long) step));
-        return (num < 1) ? 1 : (num > max) ? max : num;
+        return (num < 1) ? 1 : Math.min(num, max);
     }
 
     public static void joinThreads(Thread[] threads) {
         for (Thread thread : threads) {
             try {
                 thread.join();
-            }
-            catch (InterruptedException ex) {
+            } catch (InterruptedException ex) {
             }
         }
     }

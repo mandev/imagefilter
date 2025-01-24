@@ -16,7 +16,7 @@ limitations under the License.
 package com.jhlabs.composite;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ColorModel;
 
 public final class ColorDodgeComposite extends RGBComposite {
 
@@ -50,20 +50,17 @@ public final class ColorDodgeComposite extends RGBComposite {
 
                 if (sr != 255) {
                     dor = Math.min((dir << 8) / (255 - sr), 255);
-                }
-                else {
+                } else {
                     dor = sr;
                 }
                 if (sg != 255) {
                     dog = Math.min((dig << 8) / (255 - sg), 255);
-                }
-                else {
+                } else {
                     dog = sg;
                 }
                 if (sb != 255) {
                     dob = Math.min((dib << 8) / (255 - sb), 255);
-                }
-                else {
+                } else {
                     dob = sb;
                 }
 

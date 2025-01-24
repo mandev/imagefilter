@@ -16,7 +16,7 @@ limitations under the License.
 package com.jhlabs.composite;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ColorModel;
 
 public final class MiscComposite implements Composite {
 
@@ -56,34 +56,34 @@ public final class MiscComposite implements Composite {
     private static final int MAX_RULE = SILHOUETTE;
 
     public static String[] RULE_NAMES = {
-        "Normal",
-        "Add",
-        "Subtract",
-        "Difference",
-        "Multiply",
-        "Darken",
-        "Burn",
-        "Color Burn",
-        "Screen",
-        "Lighten",
-        "Dodge",
-        "Color Dodge",
-        "Hue",
-        "Saturation",
-        "Brightness",
-        "Color",
-        "Overlay",
-        "Soft Light",
-        "Hard Light",
-        "Pin Light",
-        "Exclusion",
-        "Negation",
-        "Average",
-        "Stencil",
-        "Silhouette",};
+            "Normal",
+            "Add",
+            "Subtract",
+            "Difference",
+            "Multiply",
+            "Darken",
+            "Burn",
+            "Color Burn",
+            "Screen",
+            "Lighten",
+            "Dodge",
+            "Color Dodge",
+            "Hue",
+            "Saturation",
+            "Brightness",
+            "Color",
+            "Overlay",
+            "Soft Light",
+            "Hard Light",
+            "Pin Light",
+            "Exclusion",
+            "Negation",
+            "Average",
+            "Stencil",
+            "Silhouette",};
 
-    protected float extraAlpha;
-    protected int rule;
+    private float extraAlpha;
+    private int rule;
 
     private MiscComposite(int rule) {
         this(rule, 1.0f);
@@ -173,18 +173,14 @@ public final class MiscComposite implements Composite {
     }
 
     public boolean equals(Object o) {
-        if (!(o instanceof MiscComposite)) {
+        if (!(o instanceof MiscComposite c)) {
             return false;
         }
-        MiscComposite c = (MiscComposite) o;
 
         if (rule != c.rule) {
             return false;
         }
-        if (extraAlpha != c.extraAlpha) {
-            return false;
-        }
-        return true;
+        return extraAlpha == c.extraAlpha;
     }
 
 }

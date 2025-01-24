@@ -28,5 +28,5 @@ public interface Colormap {
      * @param v a value in the range 0..1
      * @return an RGB color
      */
-    public int getColor(float v);
+    int getColor(float v);
 }

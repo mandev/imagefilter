@@ -16,8 +16,12 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BandCombineOp;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 
 /**
  * A filter which draws a drop shadow based on the alpha channel of the image.
@@ -41,7 +45,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
     /**
      * Construct a ShadowFilter.
      *
-     * @param radius the radius of the shadow
+     * @param radius  the radius of the shadow
      * @param xOffset the X offset of the shadow
      * @param yOffset the Y offset of the shadow
      * @param opacity the opacity of the shadow
@@ -221,8 +225,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
             float topShadow = Math.max(0, radius - yOffset);
             float leftShadow = Math.max(0, radius - xOffset);
             dstPt.setLocation(srcPt.getX() + leftShadow, srcPt.getY() + topShadow);
-        }
-        else {
+        } else {
             dstPt.setLocation(srcPt.getX(), srcPt.getY());
         }
 
@@ -238,8 +241,7 @@ public class ShadowFilter extends AbstractBufferedImageOp {
             if (addMargins) {
                 ColorModel cm = src.getColorModel();
                 dst = new BufferedImage(cm, cm.createCompatibleWritableRaster(src.getWidth(), src.getHeight()), cm.isAlphaPremultiplied(), null);
-            }
-            else {
+            } else {
                 dst = createCompatibleDestImage(src, null);
             }
         }
@@ -250,10 +252,10 @@ public class ShadowFilter extends AbstractBufferedImageOp {
 
         // Make a black mask from the image's alpha channel
         float[][] extractAlpha = {
-            {0, 0, 0, shadowR},
-            {0, 0, 0, shadowG},
-            {0, 0, 0, shadowB},
-            {0, 0, 0, opacity}
+                {0, 0, 0, shadowR},
+                {0, 0, 0, shadowG},
+                {0, 0, 0, shadowB},
+                {0, 0, 0, opacity}
         };
         BufferedImage shadow = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         new BandCombineOp(extractAlpha, null).filter(src.getRaster(), shadow.getRaster());

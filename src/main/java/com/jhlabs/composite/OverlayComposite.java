@@ -16,7 +16,7 @@ limitations under the License.
 package com.jhlabs.composite;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ColorModel;
 
 public final class OverlayComposite extends RGBComposite {
 
@@ -52,24 +52,21 @@ public final class OverlayComposite extends RGBComposite {
                 if (dir < 128) {
                     t = dir * sr + 0x80;
                     dor = 2 * (((t >> 8) + t) >> 8);
-                }
-                else {
+                } else {
                     t = (255 - dir) * (255 - sr) + 0x80;
                     dor = 2 * (255 - (((t >> 8) + t) >> 8));
                 }
                 if (dig < 128) {
                     t = dig * sg + 0x80;
                     dog = 2 * (((t >> 8) + t) >> 8);
-                }
-                else {
+                } else {
                     t = (255 - dig) * (255 - sg) + 0x80;
                     dog = 2 * (255 - (((t >> 8) + t) >> 8));
                 }
                 if (dib < 128) {
                     t = dib * sb + 0x80;
                     dob = 2 * (((t >> 8) + t) >> 8);
-                }
-                else {
+                } else {
                     t = (255 - dib) * (255 - sb) + 0x80;
                     dob = 2 * (255 - (((t >> 8) + t) >> 8));
                 }

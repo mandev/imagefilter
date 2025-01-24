@@ -78,8 +78,7 @@ public class ErodeAlphaFilter extends PointFilter {
         a = (int) (f * 255);
         if (a < 0) {
             a = 0;
-        }
-        else if (a > 255) {
+        } else if (a > 255) {
             a = 255;
         }
         return (a << 24) | 0xffffff;

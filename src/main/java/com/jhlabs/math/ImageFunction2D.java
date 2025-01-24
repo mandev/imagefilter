@@ -15,9 +15,13 @@ limitations under the License.
  */
 package com.jhlabs.math;
 
+import com.jhlabs.image.ImageMath;
+import com.jhlabs.image.PixelUtils;
+
 import java.awt.*;
-import java.awt.image.*;
-import com.jhlabs.image.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.PixelGrabber;
 
 public class ImageFunction2D implements Function2D {
 
@@ -55,8 +59,7 @@ public class ImageFunction2D implements Function2D {
         PixelGrabber pg = new PixelGrabber(image, 0, 0, -1, -1, null, 0, -1);
         try {
             pg.grabPixels();
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             throw new RuntimeException("interrupted waiting for pixels!");
         }
         if ((pg.status() & ImageObserver.ABORT) != 0) {
@@ -92,21 +95,18 @@ public class ImageFunction2D implements Function2D {
         if (edgeAction == WRAP) {
             ix = ImageMath.mod(ix, width);
             iy = ImageMath.mod(iy, height);
-        }
-        else if (ix < 0 || iy < 0 || ix >= width || iy >= height) {
+        } else if (ix < 0 || iy < 0 || ix >= width || iy >= height) {
             if (edgeAction == ZERO) {
                 return 0;
             }
             if (ix < 0) {
                 ix = 0;
-            }
-            else if (ix >= width) {
+            } else if (ix >= width) {
                 ix = width - 1;
             }
             if (iy < 0) {
                 iy = 0;
-            }
-            else if (iy >= height) {
+            } else if (iy >= height) {
                 iy = height - 1;
             }
         }

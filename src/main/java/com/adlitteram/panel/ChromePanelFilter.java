@@ -7,17 +7,15 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.ChromeFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class ChromePanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider softnessSlider;
     private FloatJSpinSlider heightSlider;
@@ -63,8 +61,8 @@ public class ChromePanelFilter extends AbstractPanelFilter implements ChangeList
             exposureSlider = new FloatJSpinSlider(1.5f, 0f, 5f, 0.5f, 1f, 10);
             exposureSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);
@@ -86,7 +84,7 @@ public class ChromePanelFilter extends AbstractPanelFilter implements ChangeList
     public AbstractBufferedImageOp getFilter(float scale) {
         float softness = softnessSlider.getFloatValue() * scale;
         float height = heightSlider.getFloatValue() * scale;
-        float amount = (float) amountSlider.getValue() / 100f;
+        float amount = amountSlider.getValue() / 100f;
         float exposure = exposureSlider.getFloatValue();
 
         ChromeFilter filter = new ChromeFilter();

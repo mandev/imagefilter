@@ -16,6 +16,7 @@
 package com.jhlabs.image;
 
 import com.jhlabs.utils.ThreadUtils;
+
 import java.awt.image.BufferedImage;
 import java.util.concurrent.RecursiveAction;
 
@@ -139,13 +140,13 @@ public class UnsharpFilter extends GaussianFilter {
 
     private class UnsharpAction extends RecursiveAction {
 
-        private int thresh;
-        private int start;
-        private int end;
-        private int[] inPixels;
-        private int[] outPixels;
-        private int width;
-        private int height;
+        private final int thresh;
+        private final int start;
+        private final int end;
+        private final int[] inPixels;
+        private final int[] outPixels;
+        private final int width;
+        private final int height;
 
         private UnsharpAction(int start, int end, int[] inPixels, int[] outPixels, int width, int height, int thresh) {
             this.start = start;
@@ -162,8 +163,7 @@ public class UnsharpFilter extends GaussianFilter {
             int t = (end - start) * width;
             if (t < thresh) {
                 unsharp(start, end, inPixels, outPixels, width, height);
-            }
-            else {
+            } else {
                 int split = (end - start) / 2;
                 invokeAll(new UnsharpAction(start, start + split, inPixels, outPixels, width, height, thresh),
                         new UnsharpAction(start + split, end, inPixels, outPixels, width, height, thresh));

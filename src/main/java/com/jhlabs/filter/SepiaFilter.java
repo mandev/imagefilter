@@ -27,7 +27,7 @@ public class SepiaFilter extends PointFilter {
         amount = a;
     }
 
-    public int getAmoount() {
+    public int getAmount() {
         return amount;
     }
 

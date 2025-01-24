@@ -16,8 +16,9 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 
 /**
  * A filter which crops an image to a given rectangle.
@@ -39,9 +40,9 @@ public class CropFilter extends AbstractBufferedImageOp {
     /**
      * Construct a CropFilter.
      *
-     * @param x the left edge of the crop rectangle
-     * @param y the top edge of the crop rectangle
-     * @param width the width of the crop rectangle
+     * @param x      the left edge of the crop rectangle
+     * @param y      the top edge of the crop rectangle
+     * @param width  the width of the crop rectangle
      * @param height the height of the crop rectangle
      */
     public CropFilter(int x, int y, int width, int height) {

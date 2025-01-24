@@ -124,22 +124,18 @@ public final class Quat4f extends Tuple4f {
             x = (m.m12 - m.m21) * s;
             y = (m.m20 - m.m02) * s;
             z = (m.m01 - m.m10) * s;
-        }
-        else {
+        } else {
             i = 0;
             if (m.m11 > m.m00) {
                 i = 1;
                 if (m.m22 > m.m11) {
                     i = 2;
+                } else {
                 }
-                else {
-                }
-            }
-            else {
+            } else {
                 if (m.m22 > m.m00) {
                     i = 2;
-                }
-                else {
+                } else {
                 }
             }
 

@@ -15,10 +15,14 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.image.*;
-import com.jhlabs.math.*;
-import com.jhlabs.vecmath.*;
+import com.jhlabs.math.Function2D;
+import com.jhlabs.math.ImageFunction2D;
+import com.jhlabs.vecmath.Color4f;
+import com.jhlabs.vecmath.Vector3f;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.Kernel;
 
 public class ShadeFilter extends WholeImageFilter {
 
@@ -32,20 +36,21 @@ public class ShadeFilter extends WholeImageFilter {
 
     private float bumpHeight;
     private float bumpSoftness;
-    private float viewDistance = 10000.0f;
-    private int colorSource = COLORS_FROM_IMAGE;
+    private final float viewDistance = 10000.0f;
+    private final int colorSource = COLORS_FROM_IMAGE;
     private int bumpSource = BUMPS_FROM_IMAGE;
     private Function2D bumpFunction;
     private BufferedImage environmentMap;
     private int[] envPixels;
     private int envWidth = 1, envHeight = 1;
-    private Vector3f l;
-    private Vector3f v;
-    private Vector3f n;
-    private Color4f shadedColor;
-    private Color4f diffuse_color;
-    private Color4f specular_color;
-    private Vector3f tmpv, tmpv2;
+    private final Vector3f l;
+    private final Vector3f v;
+    private final Vector3f n;
+    private final Color4f shadedColor;
+    private final Color4f diffuse_color;
+    private final Color4f specular_color;
+    private final Vector3f tmpv;
+    private final Vector3f tmpv2;
 
     public ShadeFilter() {
         bumpHeight = 1.0f;
@@ -90,8 +95,7 @@ public class ShadeFilter extends WholeImageFilter {
             envWidth = environmentMap.getWidth();
             envHeight = environmentMap.getHeight();
             envPixels = getRGB(environmentMap, 0, 0, envWidth, envHeight, null);
-        }
-        else {
+        } else {
             envWidth = envHeight = 1;
             envPixels = null;
         }
@@ -131,8 +135,7 @@ public class ShadeFilter extends WholeImageFilter {
                 int bumpWidth = width;
                 int bumpHeight = height;
                 int[] bumpPixels = inPixels;
-                if (bumpSource == BUMPS_FROM_MAP && bumpFunction instanceof ImageFunction2D) {
-                    ImageFunction2D if2d = (ImageFunction2D) bumpFunction;
+                if (bumpSource == BUMPS_FROM_MAP && bumpFunction instanceof ImageFunction2D if2d) {
                     bumpWidth = if2d.getWidth();
                     bumpHeight = if2d.getHeight();
                     bumpPixels = if2d.getPixels();
@@ -145,8 +148,7 @@ public class ShadeFilter extends WholeImageFilter {
                 GaussianFilter.convolve(kernel, bumpPixels, tmpPixels, bumpWidth, bumpHeight, true, false, false, ConvolveFilter.CLAMP_EDGES);
 
                 bump = new ImageFunction2D(softPixels, bumpWidth, bumpHeight, ImageFunction2D.CLAMP, bumpSource == BUMPS_FROM_IMAGE_ALPHA);
-            }
-            else {
+            } else {
                 bump = new ImageFunction2D(inPixels, width, height, ImageFunction2D.CLAMP, bumpSource == BUMPS_FROM_IMAGE_ALPHA);
             }
         }
@@ -287,12 +289,10 @@ public class ShadeFilter extends WholeImageFilter {
                         int alpha = inPixels[index] & 0xff000000;
                         int rgb = ((int) (c.x * 255) << 16) | ((int) (c.y * 255) << 8) | (int) (c.z * 255);
                         outPixels[index++] = alpha | rgb;
-                    }
-                    else {
+                    } else {
                         outPixels[index++] = 0;
                     }
-                }
-                else {
+                } else {
                     outPixels[index++] = 0;
                 }
             }

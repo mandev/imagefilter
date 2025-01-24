@@ -20,15 +20,15 @@ package com.jhlabs.image;
  */
 public class SharpenFilter extends ConvolveFilter {
 
-//	private static float[] sharpenMatrix = {
+    //	private static float[] sharpenMatrix = {
 //		 0.0f, -0.2f,  0.0f,
 //		-0.2f,  1.8f, -0.2f,
 //		 0.0f, -0.2f,  0.0f
 //	};
-    private static float[] sharpenMatrix = {
-        -0.05f, -0.05f, -0.05f,
-        -0.05f, 1.4f, -0.05f,
-        -0.05f, -0.05f, -0.05f
+    private static final float[] sharpenMatrix = {
+            -0.05f, -0.05f, -0.05f,
+            -0.05f, 1.4f, -0.05f,
+            -0.05f, -0.05f, -0.05f
     };
 
     public SharpenFilter() {

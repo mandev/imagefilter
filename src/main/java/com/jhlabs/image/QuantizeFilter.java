@@ -15,9 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.util.*;
 import java.awt.*;
-import java.awt.image.*;
 
 /**
  * A filter which quantizes an image to a set number of colors - useful for
@@ -35,10 +33,10 @@ public class QuantizeFilter extends WholeImageFilter {
      * Floyd-Steinberg dithering matrix.
      */
     protected final static int[] matrix = {
-        0, 0, 0,
-        0, 0, 7,
-        3, 5, 1,};
-    private int sum = 3 + 5 + 7 + 1;
+            0, 0, 0,
+            0, 0, 7,
+            3, 5, 1,};
+    private final int sum = 3 + 5 + 7 + 1;
 
     private boolean dither;
     private int numColors = 256;
@@ -110,8 +108,7 @@ public class QuantizeFilter extends WholeImageFilter {
             for (int i = 0; i < count; i++) {
                 outPixels[i] = table[quantizer.getIndexForColor(inPixels[i])];
             }
-        }
-        else {
+        } else {
             int index = 0;
             for (int y = 0; y < height; y++) {
                 boolean reverse = serpentine && (y & 1) == 1;
@@ -119,8 +116,7 @@ public class QuantizeFilter extends WholeImageFilter {
                 if (reverse) {
                     index = y * width + width - 1;
                     direction = -1;
-                }
-                else {
+                } else {
                     index = y * width;
                     direction = 1;
                 }
@@ -151,8 +147,7 @@ public class QuantizeFilter extends WholeImageFilter {
                                     int w;
                                     if (reverse) {
                                         w = matrix[(i + 1) * 3 - j + 1];
-                                    }
-                                    else {
+                                    } else {
                                         w = matrix[(i + 1) * 3 + j + 1];
                                     }
                                     if (w != 0) {

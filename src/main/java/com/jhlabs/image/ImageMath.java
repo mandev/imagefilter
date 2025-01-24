@@ -43,7 +43,7 @@ public class ImageMath {
      *
      * @param a the number to bias
      * @param b the bias parameter. 0.5 means no change, smaller values bias
-     * towards 0, larger towards 1.
+     *          towards 0, larger towards 1.
      * @return the output value
      */
     public static float bias(float a, float b) {
@@ -56,7 +56,7 @@ public class ImageMath {
      *
      * @param a the number to apply gain to
      * @param b the gain parameter. 0.5 means no change, smaller values reduce
-     * gain, larger values increase gain.
+     *          gain, larger values increase gain.
      * @return the output value
      */
     public static float gain(float a, float b) {
@@ -75,8 +75,7 @@ public class ImageMath {
         float c = (1.0f / b - 2.0f) * (1.0f - 2.0f * a);
         if (a < 0.5) {
             return a / (c + 1.0f);
-        }
-        else {
+        } else {
             return (c - a) / (c - 1.0f);
         }
     }
@@ -112,7 +111,7 @@ public class ImageMath {
      * @param a2 the upper threshold position for the start of the pulse
      * @param b1 the lower threshold position for the end of the pulse
      * @param b2 the upper threshold position for the end of the pulse
-     * @param x the input parameter
+     * @param x  the input parameter
      * @return the output value
      */
     public static float smoothPulse(float a1, float a2, float b1, float b2, float x) {
@@ -302,7 +301,7 @@ public class ImageMath {
     /**
      * Linear interpolation of ARGB values.
      *
-     * @param t the interpolation parameter
+     * @param t    the interpolation parameter
      * @param rgb1 the lower interpolation range
      * @param rgb2 the upper interpolation range
      * @return the interpolated value
@@ -326,8 +325,8 @@ public class ImageMath {
     /**
      * Bilinear interpolation of ARGB values.
      *
-     * @param x the X interpolation parameter 0..1
-     * @param y the y interpolation parameter 0..1
+     * @param x   the X interpolation parameter 0..1
+     * @param y   the y interpolation parameter 0..1
      * @param rgb array of four ARGB values in the order NW, NE, SW, SE
      * @return the interpolated value
      */
@@ -344,8 +343,8 @@ public class ImageMath {
     /**
      * Bilinear interpolation of Gray value.
      *
-     * @param x the X interpolation parameter 0..1
-     * @param y the y interpolation parameter 0..1
+     * @param x   the X interpolation parameter 0..1
+     * @param y   the y interpolation parameter 0..1
      * @param rgb array of one G value in the order NW, NE, SW, SE
      * @return the interpolated value
      */
@@ -368,6 +367,7 @@ public class ImageMath {
         int b = rgb & 0xff;
         return (int) (r * 0.299f + g * 0.587f + b * 0.114f);
     }
+
     // Catmull-Rom splines
     private final static float m00 = -0.5f;
     private final static float m01 = 1.5f;
@@ -389,9 +389,9 @@ public class ImageMath {
     /**
      * Compute a Catmull-Rom spline.
      *
-     * @param x the input parameter
+     * @param x        the input parameter
      * @param numKnots the number of knots in the spline
-     * @param knots the array of knots
+     * @param knots    the array of knots
      * @return the spline value
      */
     public static float spline(float x, int numKnots, float[] knots) {
@@ -427,10 +427,10 @@ public class ImageMath {
     /**
      * Compute a Catmull-Rom spline, but with variable knot spacing.
      *
-     * @param x the input parameter
+     * @param x        the input parameter
      * @param numKnots the number of knots in the spline
-     * @param xknots the array of knot x values
-     * @param yknots the array of knot y values
+     * @param xknots   the array of knot x values
+     * @param yknots   the array of knot y values
      * @return the spline value
      */
     public static float spline(float x, int numKnots, int[] xknots, int[] yknots) {
@@ -451,7 +451,7 @@ public class ImageMath {
         if (span > numKnots - 3) {
             span = numKnots - 3;
         }
-        float t = (float) (x - xknots[span]) / (xknots[span + 1] - xknots[span]);
+        float t = (x - xknots[span]) / (xknots[span + 1] - xknots[span]);
         span--;
         if (span < 0) {
             span = 0;
@@ -474,9 +474,9 @@ public class ImageMath {
     /**
      * Compute a Catmull-Rom spline for RGB values.
      *
-     * @param x the input parameter
+     * @param x        the input parameter
      * @param numKnots the number of knots in the spline
-     * @param knots the array of knots
+     * @param knots    the array of knots
      * @return the spline value
      */
     public static int colorSpline(float x, int numKnots, int[] knots) {
@@ -512,8 +512,7 @@ public class ImageMath {
             int n = (int) (((c3 * x + c2) * x + c1) * x + c0);
             if (n < 0) {
                 n = 0;
-            }
-            else if (n > 255) {
+            } else if (n > 255) {
                 n = 255;
             }
             v |= n << shift;
@@ -526,10 +525,10 @@ public class ImageMath {
      * Compute a Catmull-Rom spline for RGB values, but with variable knot
      * spacing.
      *
-     * @param x the input parameter
+     * @param x        the input parameter
      * @param numKnots the number of knots in the spline
-     * @param xknots the array of knot x values
-     * @param yknots the array of knot y values
+     * @param xknots   the array of knot x values
+     * @param yknots   the array of knot y values
      * @return the spline value
      */
     public static int colorSpline(int x, int numKnots, int[] xknots, int[] yknots) {
@@ -573,8 +572,7 @@ public class ImageMath {
             int n = (int) (((c3 * t + c2) * t + c1) * t + c0);
             if (n < 0) {
                 n = 0;
-            }
-            else if (n > 255) {
+            } else if (n > 255) {
                 n = 255;
             }
             v |= n << shift;
@@ -587,11 +585,11 @@ public class ImageMath {
      * An implementation of Fant's resampling algorithm.
      *
      * @param source the source pixels
-     * @param dest the destination pixels
+     * @param dest   the destination pixels
      * @param length the length of the scanline to resample
      * @param offset the start offset into the arrays
      * @param stride the offset between pixels in consecutive rows
-     * @param out an array of output positions for each pixel
+     * @param out    an array of output positions for each pixel
      */
     public static void resample(int[] source, int[] dest, int length, int offset, int stride, float[] out) {
         int i, j;
@@ -612,7 +610,7 @@ public class ImageMath {
             while (out[i + 1] < j) {
                 i++;
             }
-            in[j] = i + (float) (j - out[i]) / (out[i + 1] - out[i]);
+            in[j] = i + (j - out[i]) / (out[i + 1] - out[i]);
 //			in[j] = ImageMath.clamp( in[j], 0, length-1 );
         }
         in[length] = length;
@@ -660,8 +658,7 @@ public class ImageMath {
                 nextG = (rgb >> 8) & 0xff;
                 nextB = rgb & 0xff;
                 srcIndex += stride;
-            }
-            else {
+            } else {
                 aSum += (aIntensity * outSegment);
                 rSum += (rIntensity * outSegment);
                 gSum += (gIntensity * outSegment);

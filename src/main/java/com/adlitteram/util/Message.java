@@ -6,12 +6,12 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class Message {
+    private Message() {
+    }
 
-    //
     private static ResourceBundle resource;
     private static Locale locale;
 
-    //
     private static ResourceBundle getResourceBundle() {
         return ResourceBundle.getBundle("com.adlitteram.resource.text", getLocale());
     }
@@ -31,8 +31,7 @@ public class Message {
                 resource = getResourceBundle();
             }
             return resource.getString(key);
-        }
-        catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             return key;
         }
     }
@@ -52,8 +51,7 @@ public class Message {
 
         try {
             return MessageFormat.format(resource.getString(key), args);
-        }
-        catch (MissingResourceException e) {
+        } catch (MissingResourceException e) {
             return key;
         }
     }

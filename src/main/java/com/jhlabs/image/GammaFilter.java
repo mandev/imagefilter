@@ -90,18 +90,15 @@ public class GammaFilter extends TransferFilter {
 
         if (gGamma == rGamma) {
             gTable = rTable;
-        }
-        else {
+        } else {
             gTable = makeTable(gGamma);
         }
 
         if (bGamma == rGamma) {
             bTable = rTable;
-        }
-        else if (bGamma == gGamma) {
+        } else if (bGamma == gGamma) {
             bTable = gTable;
-        }
-        else {
+        } else {
             bTable = makeTable(bGamma);
         }
     }

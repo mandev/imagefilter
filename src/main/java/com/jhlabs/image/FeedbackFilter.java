@@ -16,8 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which priduces a video feedback effect by repeated transformations.
@@ -43,9 +43,9 @@ public class FeedbackFilter extends AbstractBufferedImageOp {
      * Construct a FeedbackFilter.
      *
      * @param distance the distance to move on each iteration
-     * @param angle the angle to move on each iteration
+     * @param angle    the angle to move on each iteration
      * @param rotation the amount to rotate on each iteration
-     * @param zoom the amount to scale on each iteration
+     * @param zoom     the amount to scale on each iteration
      */
     public FeedbackFilter(float distance, float angle, float rotation, float zoom) {
         this.distance = distance;

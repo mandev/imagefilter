@@ -15,9 +15,10 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.image.*;
-import java.util.*;
 import com.jhlabs.math.*;
+
+import java.awt.image.BufferedImage;
+import java.util.Random;
 
 /**
  * A filter which produces textures from fractal Brownian motion.
@@ -280,8 +281,7 @@ public class FBMFilter extends PointFilter implements Cloneable {
         int v;
         if (colormap != null) {
             v = colormap.getColor(f);
-        }
-        else {
+        } else {
             v = PixelUtils.clamp((int) (f * 255));
             int r = v << 16;
             int g = v << 8;

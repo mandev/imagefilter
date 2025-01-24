@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.util.*;
+import java.util.Random;
 
 /**
  * A filter which adds random noise into an image.
@@ -34,7 +34,7 @@ public class NoiseFilter extends PointFilter {
     private int distribution = UNIFORM;
     private boolean monochrome = false;
     private float density = 1;
-    private Random randomNumbers = new Random();
+    private final Random randomNumbers = new Random();
 
     public NoiseFilter() {
     }
@@ -125,8 +125,7 @@ public class NoiseFilter extends PointFilter {
         x += (int) (((distribution == GAUSSIAN ? randomNumbers.nextGaussian() : 2 * randomNumbers.nextFloat() - 1)) * amount);
         if (x < 0) {
             x = 0;
-        }
-        else if (x > 0xff) {
+        } else if (x > 0xff) {
             x = 0xff;
         }
         return x;
@@ -143,8 +142,7 @@ public class NoiseFilter extends PointFilter {
                 r = PixelUtils.clamp(r + n);
                 g = PixelUtils.clamp(g + n);
                 b = PixelUtils.clamp(b + n);
-            }
-            else {
+            } else {
                 r = random(r);
                 g = random(g);
                 b = random(b);

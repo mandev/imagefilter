@@ -16,7 +16,6 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
 
 /**
  * A class to emboss an image.
@@ -105,15 +104,12 @@ public class EmbossFilter extends WholeImageFilter {
 
                     if (Nx == 0 && Ny == 0) {
                         shade = background;
-                    }
-                    else if ((NdotL = Nx * Lx + Ny * Ly + NzLz) < 0) {
+                    } else if ((NdotL = Nx * Lx + Ny * Ly + NzLz) < 0) {
                         shade = 0;
-                    }
-                    else {
+                    } else {
                         shade = (int) (NdotL / Math.sqrt(Nx * Nx + Ny * Ny + Nz2));
                     }
-                }
-                else {
+                } else {
                     shade = background;
                 }
 
@@ -127,8 +123,7 @@ public class EmbossFilter extends WholeImageFilter {
                     g = (g * shade) >> 8;
                     b = (b * shade) >> 8;
                     outPixels[index++] = a | (r << 16) | (g << 8) | b;
-                }
-                else {
+                } else {
                     outPixels[index++] = 0xff000000 | (shade << 16) | (shade << 8) | shade;
                 }
             }

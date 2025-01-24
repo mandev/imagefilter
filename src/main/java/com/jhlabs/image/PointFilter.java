@@ -15,10 +15,8 @@
  */
 package com.jhlabs.image;
 
-import static com.jhlabs.image.AbstractBufferedImageOp.getImageType;
-import static com.jhlabs.image.AbstractBufferedImageOp.getRGB0;
-import static com.jhlabs.image.AbstractBufferedImageOp.setRGB0;
 import com.jhlabs.utils.ThreadUtils;
+
 import java.awt.image.BufferedImage;
 import java.util.concurrent.RecursiveAction;
 
@@ -73,12 +71,12 @@ public abstract class PointFilter extends AbstractBufferedImageOp {
 
     private class PointAction extends RecursiveAction {
 
-        private int threshold;
-        private int start;
-        private int end;
-        private BufferedImage src;
-        private BufferedImage dst;
-        private int rgbType;
+        private final int threshold;
+        private final int start;
+        private final int end;
+        private final BufferedImage src;
+        private final BufferedImage dst;
+        private final int rgbType;
 
         private PointAction(int start, int end, BufferedImage src, BufferedImage dst, int rgbType, int threshold) {
             this.start = start;
@@ -103,8 +101,7 @@ public abstract class PointFilter extends AbstractBufferedImageOp {
                     }
                     setRGB0(dst, rgbType, 0, y, width, 1, pixels);
                 }
-            }
-            else {
+            } else {
                 int split = (end - start) / 2;
                 invokeAll(new PointAction(start, start + split, src, dst, rgbType, threshold),
                         new PointAction(start + split, end, src, dst, rgbType, threshold));

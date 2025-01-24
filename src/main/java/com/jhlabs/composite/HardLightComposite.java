@@ -16,7 +16,7 @@ limitations under the License.
 package com.jhlabs.composite;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.ColorModel;
 
 public final class HardLightComposite extends RGBComposite {
 
@@ -50,20 +50,17 @@ public final class HardLightComposite extends RGBComposite {
 
                 if (sr > 127) {
                     dor = 255 - 2 * multiply255(255 - sr, 255 - dir);
-                }
-                else {
+                } else {
                     dor = 2 * multiply255(sr, dir);
                 }
                 if (sg > 127) {
                     dog = 255 - 2 * multiply255(255 - sg, 255 - dig);
-                }
-                else {
+                } else {
                     dog = 2 * multiply255(sg, dig);
                 }
                 if (sb > 127) {
                     dob = 255 - 2 * multiply255(255 - sb, 255 - dib);
-                }
-                else {
+                } else {
                     dob = 2 * multiply255(sb, dib);
                 }
 

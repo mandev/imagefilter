@@ -1,30 +1,28 @@
 package com.adlitteram.panel;
 
 import com.adlitteram.jasmin.gui.widget.FloatJSpinSlider;
-import com.jhlabs.filter.GammaContrastFilter;
 import com.adlitteram.util.Message;
+import com.jhlabs.filter.GammaContrastFilter;
 import com.jhlabs.image.AbstractBufferedImageOp;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class ContrastPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider brigthnessSlider;
     private FloatJSpinSlider contrastSlider;
     private FloatJSpinSlider gammaSlider;
-    //
-    private float defaultBrigthness = 1f;
-    private float defaultContrast = 1f;
-    private float defaultGamma = 1f;
+
+    private static final float DEFAULT_BRIGTHNESS = 1f;
+    private static final float DEFAULT_CONTRAST = 1f;
+    private static final float DEFAULT_GAMMA = 1f;
 
     @Override
     public String getName() {
@@ -38,9 +36,9 @@ public class ContrastPanelFilter extends AbstractPanelFilter implements ChangeLi
 
     @Override
     public void reset() {
-        brigthnessSlider.setFloatValue(defaultBrigthness);
-        contrastSlider.setFloatValue(defaultContrast);
-        gammaSlider.setFloatValue(defaultGamma);
+        brigthnessSlider.setFloatValue(DEFAULT_BRIGTHNESS);
+        contrastSlider.setFloatValue(DEFAULT_CONTRAST);
+        gammaSlider.setFloatValue(DEFAULT_GAMMA);
     }
 
     @Override
@@ -52,17 +50,17 @@ public class ContrastPanelFilter extends AbstractPanelFilter implements ChangeLi
     public JPanel getPanel() {
         if (panel == null) {
 
-            brigthnessSlider = new FloatJSpinSlider(defaultBrigthness, 0f, 2f, 0.01f, 0.5f, 10);
+            brigthnessSlider = new FloatJSpinSlider(DEFAULT_BRIGTHNESS, 0f, 2f, 0.01f, 0.5f, 10);
             brigthnessSlider.addChangeListener(this);
 
-            contrastSlider = new FloatJSpinSlider(defaultContrast, 0f, 2f, 0.01f, 0.5f, 10);
+            contrastSlider = new FloatJSpinSlider(DEFAULT_CONTRAST, 0f, 2f, 0.01f, 0.5f, 10);
             contrastSlider.addChangeListener(this);
 
-            gammaSlider = new FloatJSpinSlider(defaultGamma, 0f, 3f, 0.01f, 0.5f, 10);
+            gammaSlider = new FloatJSpinSlider(DEFAULT_GAMMA, 0f, 3f, 0.01f, 0.5f, 10);
             gammaSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

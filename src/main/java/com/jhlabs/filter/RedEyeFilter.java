@@ -39,8 +39,7 @@ public class RedEyeFilter extends PointFilter {
 
         if (r > g * 3 || r > b * 3) {
             r = (g + b) / 2;
-        }
-        else if (r > g * 2 && r > b * 2) {
+        } else if (r > g * 2 && r > b * 2) {
             r = (g + b) / 2;
             g = g * 3 / 2;
             b = b * 3 / 2;

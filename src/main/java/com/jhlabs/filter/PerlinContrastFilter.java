@@ -11,10 +11,10 @@ import com.jhlabs.image.PointFilter;
  */
 public class PerlinContrastFilter extends PointFilter {
 
-    private double LOG_POINTFIVE = -0.6931471805599453d;
+    private final double LOG_POINTFIVE = -0.6931471805599453d;
     //
     private float contrast;
-    private int[] lookUp = new int[256];
+    private final int[] lookUp = new int[256];
 
     public PerlinContrastFilter() {
         this(0.5f);

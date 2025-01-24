@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.Rectangle;
+import java.awt.*;
 
 /**
  * A filter which uses Floyd-Steinberg error diffusion dithering to halftone an
@@ -24,9 +24,9 @@ import java.awt.Rectangle;
 public class DiffusionFilter extends WholeImageFilter {
 
     private final static int[] diffusionMatrix = {
-        0, 0, 0,
-        0, 0, 7,
-        3, 5, 1,};
+            0, 0, 0,
+            0, 0, 7,
+            3, 5, 1,};
     private int[] matrix;
     private int sum = 3 + 5 + 7 + 1;
     private boolean serpentine = true;
@@ -145,8 +145,7 @@ public class DiffusionFilter extends WholeImageFilter {
             if (reverse) {
                 index = y * width + width - 1;
                 direction = -1;
-            }
-            else {
+            } else {
                 index = y * width;
                 direction = 1;
             }
@@ -180,8 +179,7 @@ public class DiffusionFilter extends WholeImageFilter {
                                 int w;
                                 if (reverse) {
                                     w = matrix[(i + 1) * 3 - j + 1];
-                                }
-                                else {
+                                } else {
                                     w = matrix[(i + 1) * 3 + j + 1];
                                 }
                                 if (w != 0) {

@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.Rectangle;
+import java.awt.*;
 
 /**
  * A filter which performs a perspective distortion on an image.
@@ -88,8 +88,7 @@ public class PerspectiveFilter extends TransformFilter {
             a22 = y2 - y1;
             a32 = y0;
             a13 = a23 = 0;
-        }
-        else {
+        } else {
             a13 = (dx3 * dy2 - dx2 * dy3) / (dx1 * dy2 - dy1 * dx2);
             a23 = (dx1 * dy3 - dy1 * dx3) / (dx1 * dy2 - dy1 * dx2);
             a11 = x1 - x0 + a13 * x1;

@@ -15,8 +15,8 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.geom.*;
-import java.awt.image.*;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which performs the popular whirl-and-pinch distortion effect.
@@ -39,7 +39,7 @@ public class PinchFilter extends TransformFilter {
      * Set the angle of twirl in radians. 0 means no distortion.
      *
      * @param angle the angle of twirl. This is the angle by which pixels at the
-     * nearest edge of the image will move.
+     *              nearest edge of the image will move.
      * @see #getAngle
      */
     public void setAngle(float angle) {
@@ -193,8 +193,7 @@ public class PinchFilter extends TransformFilter {
         if (distance > radius2 || distance == 0) {
             out[0] = x;
             out[1] = y;
-        }
-        else {
+        } else {
             float d = (float) Math.sqrt(distance / radius2);
             float t = (float) Math.pow(Math.sin(Math.PI * 0.5 * d), -amount);
 

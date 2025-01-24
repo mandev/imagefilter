@@ -62,8 +62,7 @@ public class OffsetFilter extends TransformFilter {
         if (wrap) {
             out[0] = (x + width - xOffset) % width;
             out[1] = (y + height - yOffset) % height;
-        }
-        else {
+        } else {
             out[0] = x - xOffset;
             out[1] = y - yOffset;
         }

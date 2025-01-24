@@ -5,10 +5,10 @@
 package com.jhlabs.filter;
 
 import com.jhlabs.image.AbstractBufferedImageOp;
+
 import java.awt.image.BufferedImage;
 
 /**
- *
  * @author manu
  */
 public class SeamCarvingFilter extends AbstractBufferedImageOp {
@@ -21,9 +21,10 @@ public class SeamCarvingFilter extends AbstractBufferedImageOp {
         int lowestoffset = 0;      // min, max relative offsets
         int highestoffset = 0;     // min, max relative offsets
     }
+
     //
-    private int dstWidth;
-    private int dstHeight;
+    private final int dstWidth;
+    private final int dstHeight;
 
     public SeamCarvingFilter(int width, int height) {
         this.dstWidth = width;
@@ -254,12 +255,10 @@ public class SeamCarvingFilter extends AbstractBufferedImageOp {
                 x -= 1;
                 path.direction[y] = -1;
 
-            }
-            else if (right < center) {
+            } else if (right < center) {
                 x += 1;
                 path.direction[y] = 1;
-            }
-            else {
+            } else {
                 path.direction[y] = 0;
             }
         }

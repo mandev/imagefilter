@@ -16,7 +16,6 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
 
 /**
  * Given a binary image, this filter performs binary erosion, setting all
@@ -89,8 +88,7 @@ public class ErodeFilter extends BinaryFilter {
                         if (neighbours >= threshold) {
                             if (colormap != null) {
                                 pixel = colormap.getColor((float) i / iterations);
-                            }
-                            else {
+                            } else {
                                 pixel = newColor;
                             }
                         }

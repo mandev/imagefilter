@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 
 /**
  * Scales an image using the area-averaging algorithm, which can't be done with
@@ -24,8 +25,8 @@ import java.awt.image.*;
  */
 public class ScaleFilter extends AbstractBufferedImageOp {
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     /**
      * Construct a ScaleFilter.
@@ -37,7 +38,7 @@ public class ScaleFilter extends AbstractBufferedImageOp {
     /**
      * Construct a ScaleFilter.
      *
-     * @param width the width to scale to
+     * @param width  the width to scale to
      * @param height the height to scale to
      */
     public ScaleFilter(int width, int height) {

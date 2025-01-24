@@ -19,9 +19,8 @@ import com.jhlabs.math.Function2D;
 import com.jhlabs.math.ImageFunction2D;
 import com.jhlabs.vecmath.Color4f;
 import com.jhlabs.vecmath.Vector3f;
-import java.awt.Color;
-import java.awt.Image;
-import java.awt.Rectangle;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.Kernel;
 import java.util.Vector;
@@ -60,20 +59,21 @@ public class LightFilter extends WholeImageFilter {
     private int bumpShape;
     private float viewDistance = 10000.0f;
     Material material;
-    private Vector lights;
+    private final Vector lights;
     private int colorSource = COLORS_FROM_IMAGE;
     private int bumpSource = BUMPS_FROM_IMAGE;
     private Function2D bumpFunction;
     private Image environmentMap;
     private int[] envPixels;
     private int envWidth = 1, envHeight = 1;    // Temporary variables used to avoid per-pixel memory allocation while filtering
-    private Vector3f l;
-    private Vector3f v;
-    private Vector3f n;
-    private Color4f shadedColor;
-    private Color4f diffuse_color;
-    private Color4f specular_color;
-    private Vector3f tmpv, tmpv2;
+    private final Vector3f l;
+    private final Vector3f v;
+    private final Vector3f n;
+    private final Color4f shadedColor;
+    private final Color4f diffuse_color;
+    private final Color4f specular_color;
+    private final Vector3f tmpv;
+    private final Vector3f tmpv2;
 
     public LightFilter() {
         lights = new Vector();
@@ -146,8 +146,7 @@ public class LightFilter extends WholeImageFilter {
             envWidth = environmentMap.getWidth();
             envHeight = environmentMap.getHeight();
             envPixels = getRGB(environmentMap, 0, 0, envWidth, envHeight, null);
-        }
-        else {
+        } else {
             envWidth = envHeight = 1;
             envPixels = null;
         }
@@ -192,6 +191,7 @@ public class LightFilter extends WholeImageFilter {
     public Vector getLights() {
         return lights;
     }
+
     protected final static float r255 = 1.0f / 255.0f;
 
     protected void setFromRGB(Color4f c, int argb) {
@@ -223,8 +223,7 @@ public class LightFilter extends WholeImageFilter {
                 int bumpWidth = width;
                 int bumpHeight = height;
                 int[] bumpPixels = inPixels;
-                if (bumpSource == BUMPS_FROM_MAP && bumpFunction instanceof ImageFunction2D) {
-                    ImageFunction2D if2d = (ImageFunction2D) bumpFunction;
+                if (bumpSource == BUMPS_FROM_MAP && bumpFunction instanceof ImageFunction2D if2d) {
                     bumpWidth = if2d.getWidth();
                     bumpHeight = if2d.getHeight();
                     bumpPixels = if2d.getPixels();
@@ -250,7 +249,7 @@ public class LightFilter extends WholeImageFilter {
                         case 1:
                             bump = new Function2D() {
 
-                                private Function2D original = bbump;
+                                private final Function2D original = bbump;
 
                                 public float evaluate(float x, float y) {
                                     float v = original.evaluate(x, y);
@@ -262,7 +261,7 @@ public class LightFilter extends WholeImageFilter {
                         case 2:
                             bump = new Function2D() {
 
-                                private Function2D original = bbump;
+                                private final Function2D original = bbump;
 
                                 public float evaluate(float x, float y) {
                                     float v = original.evaluate(x, y);
@@ -274,7 +273,7 @@ public class LightFilter extends WholeImageFilter {
                         case 3:
                             bump = new Function2D() {
 
-                                private Function2D original = bbump;
+                                private final Function2D original = bbump;
 
                                 public float evaluate(float x, float y) {
                                     float v = original.evaluate(x, y);
@@ -286,7 +285,7 @@ public class LightFilter extends WholeImageFilter {
                         case 4:
                             bump = new Function2D() {
 
-                                private Function2D original = bbump;
+                                private final Function2D original = bbump;
 
                                 public float evaluate(float x, float y) {
                                     float v = original.evaluate(x, y);
@@ -298,7 +297,7 @@ public class LightFilter extends WholeImageFilter {
                         case 5:
                             bump = new Function2D() {
 
-                                private Function2D original = bbump;
+                                private final Function2D original = bbump;
 
                                 public float evaluate(float x, float y) {
                                     float v = original.evaluate(x, y);
@@ -336,8 +335,7 @@ public class LightFilter extends WholeImageFilter {
 //                  }
 //               };
 //         }
-            }
-            else if (bumpSource != BUMPS_FROM_MAP) {
+            } else if (bumpSource != BUMPS_FROM_MAP) {
                 bump = new ImageFunction2D(inPixels, width, height, ImageFunction2D.CLAMP, bumpSource == BUMPS_FROM_IMAGE_ALPHA);
             }
         }
@@ -355,7 +353,7 @@ public class LightFilter extends WholeImageFilter {
         float[][] heightWindow = new float[3][width];
 
         for (int x = 0; x < width;
-                x++) {
+             x++) {
             heightWindow[1][x] = width45 * bump.evaluate(x, 0);      // Loop through each source pixel
         }
 
@@ -461,8 +459,7 @@ public class LightFilter extends WholeImageFilter {
                     // Get the material colour at this point
                     if (colorSource == COLORS_FROM_IMAGE) {
                         setFromRGB(diffuseColor, inPixels[index]);
-                    }
-                    else {
+                    } else {
                         setFromRGB(diffuseColor, material.diffuseColor);
                     }
                     if (reflectivity != 0 && environmentMap != null) {
@@ -488,8 +485,7 @@ public class LightFilter extends WholeImageFilter {
                     int alpha = inPixels[index] & 0xff000000;
                     int rgb = ((int) (c.x * 255) << 16) | ((int) (c.y * 255) << 8) | (int) (c.z * 255);
                     outPixels[index++] = alpha | rgb;
-                }
-                else {
+                } else {
                     outPixels[index++] = 0;
                 }
             }
@@ -540,10 +536,9 @@ public class LightFilter extends WholeImageFilter {
                 float rv;
                 if (rDotV < 0.0) {
                     rv = 0.0f;
-                }
-                else //					rv = (float)Math.pow(rDotV, material.highlight);
+                } else //					rv = (float)Math.pow(rDotV, material.highlight);
                 {
-                    rv = rDotV / (material.highlight - material.highlight * rDotV + rDotV);	// Fast approximation to pow
+                    rv = rDotV / (material.highlight - material.highlight * rDotV + rDotV);    // Fast approximation to pow
                 }
                 // Spotlight
                 if (light.type == SPOT) {
@@ -587,14 +582,12 @@ public class LightFilter extends WholeImageFilter {
 
             if (y == 0.0f || y == 1.0f) {
                 x = 0.0f;
-            }
-            else {
+            } else {
                 float f = normal.x / (float) Math.sin(angle);
 
                 if (f > 1.0f) {
                     f = 1.0f;
-                }
-                else if (f < -1.0f) {
+                } else if (f < -1.0f) {
                     f = -1.0f;
                 }
 
@@ -664,6 +657,7 @@ public class LightFilter extends WholeImageFilter {
             return opacity;
         }
     }
+
     public final static int AMBIENT = 0;
     public final static int DISTANT = 1;
     public final static int POINT = 2;
@@ -802,7 +796,7 @@ public class LightFilter extends WholeImageFilter {
         /**
          * Prepare the light for rendering.
          *
-         * @param width the output image width
+         * @param width  the output image width
          * @param height the output image height
          */
         public void prepare(int width, int height) {
@@ -829,8 +823,7 @@ public class LightFilter extends WholeImageFilter {
             try {
                 Light copy = (Light) super.clone();
                 return copy;
-            }
-            catch (CloneNotSupportedException e) {
+            } catch (CloneNotSupportedException e) {
                 return null;
             }
         }

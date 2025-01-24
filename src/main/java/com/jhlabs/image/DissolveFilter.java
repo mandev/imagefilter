@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.util.*;
+import java.util.Random;
 
 /**
  * A filter which "dissolves" an image by thresholding the alpha channel with
@@ -25,7 +25,7 @@ public class DissolveFilter extends PointFilter {
 
     private float density = 1;
     private float softness = 0;
-    private Random randomNumbers;
+    private final Random randomNumbers;
     private float minDensity;
     private float maxDensity;
 

@@ -173,8 +173,7 @@ public class SphereFilter extends TransformFilter {
         if (y2 >= (b2 - (b2 * x2) / a2)) {
             out[0] = x;
             out[1] = y;
-        }
-        else {
+        } else {
             float rRefraction = 1.0f / refractionIndex;
 
             float z = (float) Math.sqrt((1.0f - x2 / a2 - y2 / b2) * (a * b));

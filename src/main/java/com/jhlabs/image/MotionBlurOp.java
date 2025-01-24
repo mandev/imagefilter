@@ -16,8 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
+import java.awt.geom.Point2D;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which produces motion blur the faster, but lower-quality way.
@@ -40,9 +40,9 @@ public class MotionBlurOp extends AbstractBufferedImageOp {
      * Construct a MotionBlurOp.
      *
      * @param distance the distance of blur.
-     * @param angle the angle of blur.
+     * @param angle    the angle of blur.
      * @param rotation the angle of rotation.
-     * @param zoom the zoom factor.
+     * @param zoom     the zoom factor.
      */
     public MotionBlurOp(float distance, float angle, float rotation, float zoom) {
         this.distance = distance;

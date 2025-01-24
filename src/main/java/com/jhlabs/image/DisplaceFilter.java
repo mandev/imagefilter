@@ -36,7 +36,7 @@ public class DisplaceFilter extends TransformFilter {
      * Set the displacement map.
      *
      * @param displacementMap an image representing the displacment at each
-     * point
+     *                        point
      * @see #getDisplacementMap
      */
     public void setDisplacementMap(BufferedImage displacementMap) {

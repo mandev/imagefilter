@@ -16,8 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
-import java.util.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 
 /**
  * An experimental filter which can be used for keying against a clean shot.
@@ -176,8 +176,7 @@ public class KeyFilter extends AbstractBufferedImageOp {
                     //                   if ( PixelUtils.nearColors( in, clean, (int)(255*tolerance) ) )
                     if (Math.abs(hsb1[0] - hsb2[0]) < hTolerance && Math.abs(hsb1[1] - hsb2[1]) < sTolerance && Math.abs(hsb1[2] - hsb2[2]) < bTolerance) {
                         inPixels[x] = out;
-                    }
-                    else {
+                    } else {
                         inPixels[x] = rgb1;
                     }
                 }

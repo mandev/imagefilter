@@ -16,7 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
 
 /**
  * A filter which tiles an image into a lerger one.
@@ -38,7 +39,7 @@ public class TileImageFilter extends AbstractBufferedImageOp {
     /**
      * Construct a TileImageFilter.
      *
-     * @param width the output image width
+     * @param width  the output image width
      * @param height the output image height
      */
     public TileImageFilter(int width, int height) {

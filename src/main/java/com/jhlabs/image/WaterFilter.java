@@ -211,8 +211,7 @@ public class WaterFilter extends TransformFilter {
         if (distance2 > radius2) {
             out[0] = x;
             out[1] = y;
-        }
-        else {
+        } else {
             float distance = (float) Math.sqrt(distance2);
             float amount = amplitude * (float) Math.sin(distance / wavelength * ImageMath.TWO_PI - phase);
             amount *= (radius - distance) / radius;

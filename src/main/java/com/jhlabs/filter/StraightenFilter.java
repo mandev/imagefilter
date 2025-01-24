@@ -17,9 +17,10 @@ package com.jhlabs.filter;
 
 import com.jhlabs.image.ImageMath;
 import com.jhlabs.image.TransformFilter;
-import java.awt.Rectangle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.awt.*;
 
 /**
  * A filter which rotates an image. These days this is easier done with Java2D,
@@ -54,7 +55,7 @@ public class StraightenFilter extends TransformFilter {
     /**
      * Construct a RotateFilter.
      *
-     * @param angle the angle to rotate
+     * @param angle  the angle to rotate
      * @param resize true if the output image should be resized
      */
     public StraightenFilter(float angle, boolean keepSize) {
@@ -97,8 +98,7 @@ public class StraightenFilter extends TransformFilter {
             y = rect.y / s;
             width = rect.width / s;
             height = rect.height / s;
-        }
-        else {
+        } else {
             scale = 1f;
             x = rect.x;
             y = rect.y;

@@ -10,23 +10,21 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.ThresholdFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class ThresholdPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider lowerThresholdSlider;
     private FloatJSpinSlider upperThresholdSlider;
-    //
-    private float defaultLowerThreshold = 25f;
-    private float defaultUpperThreshold = 75f;
+
+    private static final float DEFAULT_LOWER_THRESHOLD = 25f;
+    private static final float DEFAULT_UPPER_THRESHOLD = 75f;
 
     @Override
     public String getName() {
@@ -40,8 +38,8 @@ public class ThresholdPanelFilter extends AbstractPanelFilter implements ChangeL
 
     @Override
     public void reset() {
-        lowerThresholdSlider.setFloatValue(defaultLowerThreshold);
-        upperThresholdSlider.setFloatValue(defaultUpperThreshold);
+        lowerThresholdSlider.setFloatValue(DEFAULT_LOWER_THRESHOLD);
+        upperThresholdSlider.setFloatValue(DEFAULT_UPPER_THRESHOLD);
     }
 
     @Override
@@ -53,14 +51,14 @@ public class ThresholdPanelFilter extends AbstractPanelFilter implements ChangeL
     public JPanel getPanel() {
         if (panel == null) {
 
-            lowerThresholdSlider = new FloatJSpinSlider(defaultLowerThreshold, 0f, 100f, 1f, 1f, 10);
+            lowerThresholdSlider = new FloatJSpinSlider(DEFAULT_LOWER_THRESHOLD, 0f, 100f, 1f, 1f, 10);
             lowerThresholdSlider.addChangeListener(this);
 
-            upperThresholdSlider = new FloatJSpinSlider(defaultUpperThreshold, 0f, 100f, 1f, 1f, 10);
+            upperThresholdSlider = new FloatJSpinSlider(DEFAULT_UPPER_THRESHOLD, 0f, 100f, 1f, 1f, 10);
             upperThresholdSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

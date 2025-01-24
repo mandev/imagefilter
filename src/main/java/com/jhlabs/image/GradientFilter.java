@@ -16,8 +16,7 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
-import java.util.*;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which draws a coloured gradient. This is largely superceded by
@@ -168,8 +167,7 @@ public class GradientFilter extends AbstractBufferedImageOp {
             y2 = p1.y;
             rgb1 = color2;
             rgb2 = color1;
-        }
-        else {
+        } else {
             y1 = p1.y;
             y2 = p2.y;
             rgb1 = color1;
@@ -224,8 +222,7 @@ public class GradientFilter extends AbstractBufferedImageOp {
             while (--j >= 0) {
                 if (type == BILINEAR) {
                     rgb = colormap.getColor(map(ImageMath.triangle(colrel)));
-                }
-                else {
+                } else {
                     rgb = colormap.getColor(map(ImageMath.mod(colrel, 1.0f)));
                 }
                 pixels[off] = PixelUtils.combinePixels(rgb, pixels[off], paintMode);
@@ -254,8 +251,7 @@ public class GradientFilter extends AbstractBufferedImageOp {
             while (colrel < 1.0 && --j >= 0) {
                 if (type == BILINEAR) {
                     rgb = colormap.getColor(map(ImageMath.triangle(colrel)));
-                }
-                else {
+                } else {
                     rgb = colormap.getColor(map(colrel));
                 }
                 pixels[off] = PixelUtils.combinePixels(rgb, pixels[off], paintMode);
@@ -265,8 +261,7 @@ public class GradientFilter extends AbstractBufferedImageOp {
             if (j > 0) {
                 if (type == BILINEAR) {
                     rgb = colormap.getColor(0.0f);
-                }
-                else {
+                } else {
                     rgb = colormap.getColor(1.0f);
                 }
                 do {
@@ -284,8 +279,7 @@ public class GradientFilter extends AbstractBufferedImageOp {
         float rowrel = (x - x1) * dx + (y - y1) * dy;
         if (repeat) {
             repeatGradient(pixels, w, h, rowrel, dx, dy);
-        }
-        else {
+        } else {
             singleGradient(pixels, w, h, rowrel, dx, dy);
         }
     }
@@ -298,8 +292,7 @@ public class GradientFilter extends AbstractBufferedImageOp {
             float ratio = distance / radius;
             if (repeat) {
                 ratio = ratio % 2;
-            }
-            else if (ratio > 1.0) {
+            } else if (ratio > 1.0) {
                 ratio = 1.0f;
             }
             int rgb = colormap.getColor(map(ratio));
@@ -316,8 +309,7 @@ public class GradientFilter extends AbstractBufferedImageOp {
             float ratio = distance / radius;
             if (repeat) {
                 ratio = ratio % 2;
-            }
-            else if (ratio > 1.0) {
+            } else if (ratio > 1.0) {
                 ratio = 1.0f;
             }
             int rgb = colormap.getColor(map(ratio));

@@ -5,30 +5,33 @@
 package com.adlitteram.util;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.StringTokenizer;
 
 public class NumUtils {
+    private NumUtils() {
+    }
 
     public static final double DEGREE_TO_RADIAN = Math.PI / 180d;
     public static final double RADIAN_TO_DEGGRE = 180d / Math.PI;
-    //
+
     public static final double INtoU = 72;
     public static final double UtoIN = 1f / 72f;
     public static final double MMtoU = 72f / 25.4f;
     public static final double UtoMM = 25.4f / 72f;
     public static final double CMtoU = 72f / 2.54f;
     public static final double UtoCM = 2.54f / 72f;
-    //
+
     public static final int MM = 0;
     public static final int CM = 1;
     public static final int PT = 2;
     public static final int IN = 3;
-    //
-    private static final String[] unitArray = {"mm", "cm", "pt", "in"};
+
+    private static final String[] UNIT_ARRAY = {"mm", "cm", "pt", "in"};
 
     public static int getUnit(String str) {
-        for (int i = 0; i < unitArray.length; i++) {
-            if (unitArray[i].equalsIgnoreCase(str)) {
+        for (int i = 0; i < UNIT_ARRAY.length; i++) {
+            if (UNIT_ARRAY[i].equalsIgnoreCase(str)) {
                 return i;
             }
         }
@@ -36,11 +39,11 @@ public class NumUtils {
     }
 
     public static String getUnitName(int unit) {
-        return unitArray[unit];
+        return UNIT_ARRAY[unit];
     }
 
     public static String[] getAllUnits() {
-        return unitArray.clone();
+        return UNIT_ARRAY.clone();
     }
 
     // Convert String to point value
@@ -66,7 +69,7 @@ public class NumUtils {
     }
 
     public static double pointValue(Object obj) throws NumberFormatException {
-        return (obj instanceof String) ? pointValue((String) obj) : ((Number) obj).doubleValue();
+        return (obj instanceof String str) ? pointValue(str) : ((Number) obj).doubleValue();
     }
 
     public static String toUnit(Object value, int unit) {
@@ -88,36 +91,35 @@ public class NumUtils {
     }
 
     public static String roundDecimal(double d, int accuracy) {
-        BigDecimal bd = new BigDecimal(d);
-        return String.valueOf(bd.setScale(accuracy, BigDecimal.ROUND_HALF_UP).doubleValue());
+        BigDecimal bd = BigDecimal.valueOf(d);
+        return String.valueOf(bd.setScale(accuracy, RoundingMode.HALF_UP).doubleValue());
     }
 
     // Primitive type
     public static boolean booleanValue(Object obj) throws NumberFormatException {
-        return (obj instanceof String) ? Boolean.valueOf((String) obj).booleanValue() : ((Boolean) obj).booleanValue();
+        return (obj instanceof String str) ? Boolean.parseBoolean(str) : (Boolean) obj;
     }
 
     public static int intValue(Object obj) throws NumberFormatException {
-        return (obj instanceof String) ? Integer.parseInt((String) obj) : ((Integer) obj).intValue();
+        return (obj instanceof String str) ? Integer.parseInt(str) : (Integer) obj;
     }
 
     public static long longValue(Object obj) throws NumberFormatException {
-        return (obj instanceof String) ? Long.parseLong((String) obj) : ((Long) obj).longValue();
+        return (obj instanceof String str) ? Long.parseLong(str) : (Long) obj;
     }
 
     public static float floatValue(Object obj) throws NumberFormatException {
-        return (obj instanceof String) ? Float.parseFloat((String) obj) : ((Float) obj).floatValue();
+        return (obj instanceof String str) ? Float.parseFloat(str) : (Float) obj;
     }
 
     public static double doubleValue(Object obj) throws NumberFormatException {
-        return (obj instanceof String) ? Double.parseDouble((String) obj) : ((Double) obj).doubleValue();
+        return (obj instanceof String str) ? Double.parseDouble(str) : (Double) obj;
     }
 
     public static boolean booleanValue(Object obj, boolean value) {
         try {
             return booleanValue(obj);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return value;
         }
     }
@@ -125,8 +127,7 @@ public class NumUtils {
     public static int intValue(Object obj, int value) {
         try {
             return intValue(obj);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return value;
         }
     }
@@ -134,8 +135,7 @@ public class NumUtils {
     public static long longValue(Object obj, long value) {
         try {
             return longValue(obj);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return value;
         }
     }
@@ -143,8 +143,7 @@ public class NumUtils {
     public static float floatValue(Object obj, float value) {
         try {
             return floatValue(obj);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return value;
         }
     }
@@ -152,8 +151,7 @@ public class NumUtils {
     public static double doubleValue(Object obj, double value) {
         try {
             return doubleValue(obj);
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return value;
         }
     }
@@ -163,166 +161,37 @@ public class NumUtils {
         try {
             booleanValue(obj);
             return true;
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return false;
         }
-    }
-
-    public static boolean isValidInt(Object obj) {
-        try {
-            intValue(obj);
-            return true;
-        }
-        catch (RuntimeException e) {
-            return false;
-        }
-    }
-
-    public static boolean isValidLong(Object obj) {
-        try {
-            longValue(obj);
-            return true;
-        }
-        catch (RuntimeException e) {
-            return false;
-        }
-    }
-
-    public static boolean isValidFloat(Object obj) {
-        try {
-            floatValue(obj);
-            return true;
-        }
-        catch (RuntimeException e) {
-            return false;
-        }
-    }
-
-    public static boolean isValidDouble(Object obj) {
-        try {
-            doubleValue(obj);
-            return true;
-        }
-        catch (RuntimeException e) {
-            return false;
-        }
-    }
-
-    // Math
-    public static boolean isEven(int a) {    // pair
-        return (a & 1) == 0;
-    }
-
-    public static boolean isEven(long a) {
-        return (a & 1L) == 0;
-    }
-
-    public static boolean isEven(double a) {
-        return a % 2 == 0;
-    }
-
-    public static boolean isEven(float a) {
-        return a % 2 == 0;
-    }
-
-    public static boolean isOdd(int a) {    // impair
-        return (a & 1) != 0;
-    }
-
-    public static boolean isOdd(long a) {
-        return (a & 1L) != 0;
-    }
-
-    public static boolean isOdd(double a) {
-        return a % 2 != 0;
-    }
-
-    public static boolean isOdd(float a) {
-        return a % 2 != 0;
     }
 
     // Return value between Min & Max
     public static int clamp(int min, int value, int max) {
-        return (value < min) ? min : (value > max) ? max : value;
+        return (value < min) ? min : Math.min(value, max);
     }
 
     public static long clamp(long min, long value, long max) {
-        return (value < min) ? min : (value > max) ? max : value;
+        return (value < min) ? min : Math.min(value, max);
     }
 
     public static float clamp(float min, float value, float max) {
-        return (value < min) ? min : (value > max) ? max : value;
+        return (value < min) ? min : Math.min(value, max);
     }
 
     public static double clamp(double min, double value, double max) {
-        return (value < min) ? min : (value > max) ? max : value;
-    }
-
-    // String <=> Array
-    public static int[] stringToIntArray(String str) {
-        StringTokenizer st = new StringTokenizer(str);
-        int[] array = new int[st.countTokens()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = intValue(st.nextToken());
-        }
-        return array;
-    }
-
-    public static String intArrayToString(int[] array) {
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < array.length; i++) {
-            buffer.append(array[i]).append(" ");
-        }
-        return buffer.toString();
-    }
-
-    public static float[] stringToFloatArray(String str) {
-        StringTokenizer st = new StringTokenizer(str);
-        float[] array = new float[st.countTokens()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = floatValue(st.nextToken());
-        }
-        return array;
-    }
-
-    public static String floatArrayToString(float[] array) {
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < array.length; i++) {
-            buffer.append(array[i]).append(" ");
-        }
-        return buffer.toString();
-    }
-
-    public static double[] stringToDoubleArray(String str) {
-        StringTokenizer st = new StringTokenizer(str);
-        double[] array = new double[st.countTokens()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = doubleValue(st.nextToken());
-        }
-        return array;
-    }
-
-    public static String doubleArrayToString(double[] array) {
-        StringBuilder buffer = new StringBuilder();
-        for (int i = 0; i < array.length; i++) {
-            buffer.append(array[i]).append(" ");
-        }
-        return buffer.toString();
+        return (value < min) ? min : Math.min(value, max);
     }
 
     // Format Size to Byte
     public static String toByteSize(long s) {
         if (s < 1024) {
             return s + " Bytes";
-        }
-        else if (s < 1024 * 1024 * 1024) {
+        } else if (s < 1024 * 1024 * 1024) {
             return Math.round(s / 1024) + " Kb";
-        }
-        else if (s < 1024 * 1024 * 1024 * 1024) {
+        } else if (s < 1024L * 1024 * 1024 * 1024) {
             return Math.round(s / (1024 * 1024)) + " Mb";
-        }
-        else {
+        } else {
             return Math.round(s / (1024 * 1024 * 1024)) + " Gb";
         }
     }

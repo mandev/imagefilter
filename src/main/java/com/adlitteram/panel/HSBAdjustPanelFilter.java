@@ -6,17 +6,15 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.HSBAdjustFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class HSBAdjustPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
-    //
     private JPanel panel;
     private FloatJSpinSlider hueSlider;
     private FloatJSpinSlider saturationSlider;
@@ -57,8 +55,8 @@ public class HSBAdjustPanelFilter extends AbstractPanelFilter implements ChangeL
             brigthnessSlider = new FloatJSpinSlider(0f, -1f, 1f, .01f, .01f, 10);
             brigthnessSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

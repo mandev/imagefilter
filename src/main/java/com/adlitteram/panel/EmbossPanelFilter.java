@@ -6,13 +6,12 @@ import com.jhlabs.image.AbstractBufferedImageOp;
 import com.jhlabs.image.EmbossFilter;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class EmbossPanelFilter extends AbstractPanelFilter implements ChangeListener {
 
@@ -56,8 +55,8 @@ public class EmbossPanelFilter extends AbstractPanelFilter implements ChangeList
             bumpHeightSlider = new JSpinSlider(1, 0, 20, 1, 5, 10);
             bumpHeightSlider.addChangeListener(this);
 
-            int w[] = {10, 0, 10};
-            int h[] = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
+            int[] w = {10, 0, 10};
+            int[] h = {10, 0, 0, 10, 0, 0, 10, 0, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
             l.setColumnWeight(2, 1);

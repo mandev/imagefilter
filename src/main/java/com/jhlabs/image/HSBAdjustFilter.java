@@ -15,7 +15,7 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class HSBAdjustFilter extends PointFilter {
 
@@ -75,16 +75,14 @@ public class HSBAdjustFilter extends PointFilter {
         sat += sFactor;
         if (sat < 0) {
             sat = 0;
-        }
-        else if (sat > 1.0) {
+        } else if (sat > 1.0) {
             sat = 1.0f;
         }
 
         bri += bFactor;
         if (bri < 0) {
             bri = 0;
-        }
-        else if (bri > 1.0) {
+        } else if (bri > 1.0) {
             bri = 1.0f;
         }
 

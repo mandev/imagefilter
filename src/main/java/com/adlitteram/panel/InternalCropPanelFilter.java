@@ -3,18 +3,13 @@ package com.adlitteram.panel;
 import com.adlitteram.util.Message;
 import cz.autel.dmi.HIGConstraints;
 import cz.autel.dmi.HIGLayout;
-import java.awt.Color;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import java.awt.*;
 
 public class InternalCropPanelFilter extends IdentityPanelFilter {
 
-    //
     private JPanel panel;
     private JTextField xField;
     private JTextField yField;
@@ -53,11 +48,10 @@ public class InternalCropPanelFilter extends IdentityPanelFilter {
             hField = new JTextField(10);
             hField.setEditable(false);
 
-            int w[] = {10, 0, 5, 0, 5, 0, 10};
-            int h[] = {10, 0, 5, 0, 5, 0, 5, 0, 10};
+            int[] w = {10, 0, 5, 0, 5, 0, 10};
+            int[] h = {10, 0, 5, 0, 5, 0, 5, 0, 10};
             HIGLayout l = new HIGLayout(w, h);
             HIGConstraints c = new HIGConstraints();
-            //l.setColumnWeight(2, 1);
 
             panel = new JPanel(l);
             panel.setBorder(new TitledBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY), getName()));

@@ -15,9 +15,8 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.*;
-import java.awt.image.*;
-import java.util.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 
 /**
  * A filter which interpolates betwen two images. You can set the interpolation

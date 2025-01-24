@@ -16,7 +16,7 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
 
 /**
  * A class which warps an image using a field Warp algorithm.
@@ -43,6 +43,7 @@ public class FieldWarpFilter extends TransformFilter {
             length = (float) Math.sqrt(lengthSquared);
         }
     }
+
     private float amount = 1.0f;
     private float power = 1.0f;
     private float strength = 2.0f;
@@ -135,16 +136,13 @@ public class FieldWarpFilter extends TransformFilter {
             fdist = (dy * l.dx - dx * l.dy) / l.length;
             if (fraction <= 0) {
                 distance = (float) Math.sqrt(dx * dx + dy * dy);
-            }
-            else if (fraction >= 1) {
+            } else if (fraction >= 1) {
                 dx = x - l.x2;
                 dy = y - l.y2;
                 distance = (float) Math.sqrt(dx * dx + dy * dy);
-            }
-            else if (fdist >= 0) {
+            } else if (fdist >= 0) {
                 distance = fdist;
-            }
-            else {
+            } else {
                 distance = -fdist;
             }
             u = l1.x1 + fraction * l1.dx - fdist * l1.dy / l1.length;

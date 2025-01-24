@@ -61,7 +61,7 @@ public class CrystallizeFilter extends CellularFilter {
         nx /= scale;
         ny /= scale * stretch;
         nx += 1000;
-        ny += 1000;	// Reduce artifacts around 0,0
+        ny += 1000;    // Reduce artifacts around 0,0
         float f = evaluate(nx, ny);
 
         float f1 = results[0].distance;
@@ -77,8 +77,7 @@ public class CrystallizeFilter extends CellularFilter {
             int v2 = inPixels[srcy * width + srcx];
             v2 = ImageMath.mixColors(0.5f, v2, v);
             v = ImageMath.mixColors(f, v2, v);
-        }
-        else {
+        } else {
             v = ImageMath.mixColors(f, edgeColor, v);
         }
         return v;

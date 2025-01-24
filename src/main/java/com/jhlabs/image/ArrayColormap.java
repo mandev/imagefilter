@@ -45,10 +45,9 @@ public class ArrayColormap implements Colormap, Cloneable {
     public Object clone() {
         try {
             ArrayColormap g = (ArrayColormap) super.clone();
-            g.map = (int[]) map.clone();
+            g.map = map.clone();
             return g;
-        }
-        catch (CloneNotSupportedException e) {
+        } catch (CloneNotSupportedException e) {
         }
         return null;
     }
@@ -94,8 +93,7 @@ public class ArrayColormap implements Colormap, Cloneable {
         int n = (int) (v * 255);
         if (n < 0) {
             n = 0;
-        }
-        else if (n > 255) {
+        } else if (n > 255) {
             n = 255;
         }
         return map[n];
@@ -105,10 +103,10 @@ public class ArrayColormap implements Colormap, Cloneable {
      * Set the color at "index" to "color". Entries are interpolated linearly
      * from the existing entries at "firstIndex" and "lastIndex" to the new
      * entry. firstIndex < index < lastIndex must hold. @param index t
-     *
+     * <p>
      * he position to set @param firstIndex the position of the first color from
      * which t
-     *
+     * <p>
      * o
      * interpolate @param lastIndex the position of the second color from which
      * to interpolate @param color the color to set
@@ -128,9 +126,9 @@ public class ArrayColormap implements Colormap, Cloneable {
      * Set a range of the colormap, interpolating between two colors.
      *
      * @param firstIndex the position of the first color
-     * @param lastIndex the position of the second color
-     * @param color1 the first color
-     * @param color2 the second color
+     * @param lastIndex  the position of the second color
+     * @param color1     the first color
+     * @param color2     the second color
      */
     public void setColorRange(int firstIndex, int lastIndex, int color1, int color2) {
         for (int i = firstIndex; i <= lastIndex; i++) {
@@ -142,8 +140,8 @@ public class ArrayColormap implements Colormap, Cloneable {
      * Set a range of the colormap to a single color.
      *
      * @param firstIndex the position of the first color
-     * @param lastIndex the position of the second color
-     * @param color the color
+     * @param lastIndex  the position of the second color
+     * @param color      the color
      */
     public void setColorRange(int firstIndex, int lastIndex, int color) {
         for (int i = firstIndex; i <= lastIndex; i++) {

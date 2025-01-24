@@ -39,11 +39,11 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
     /**
      * Constructs a BrushedMetalFilter object.
      *
-     * @param color an int specifying the metal color
-     * @param radius an int specifying the blur size
-     * @param amount a float specifying the amount of texture
+     * @param color      an int specifying the metal color
+     * @param radius     an int specifying the blur size
+     * @param amount     a float specifying the amount of texture
      * @param monochrome a boolean -- true for monochrome texture
-     * @param shine a float specifying the shine to add
+     * @param shine      a float specifying the shine to add
      */
     public BrushedMetalFilter(int color, int radius, float amount, boolean monochrome, float shine) {
         this.color = color;
@@ -83,8 +83,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
                 if (monochrome) {
                     int n = (int) (255 * (2 * randomNumbers.nextFloat() - 1) * amount);
                     inPixels[x] = a | (clamp(tr + n) << 16) | (clamp(tg + n) << 8) | clamp(tb + n);
-                }
-                else {
+                } else {
                     inPixels[x] = a | (random(tr) << 16) | (random(tg) << 8) | random(tb);
                 }
             }
@@ -92,8 +91,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
             if (radius != 0) {
                 blur(inPixels, outPixels, width, radius);
                 setRGB(dst, 0, y, width, 1, outPixels);
-            }
-            else {
+            } else {
                 setRGB(dst, 0, y, width, 1, inPixels);
             }
         }
@@ -104,8 +102,7 @@ public class BrushedMetalFilter extends AbstractBufferedImageOp {
         x += (int) (255 * (2 * randomNumbers.nextFloat() - 1) * amount);
         if (x < 0) {
             x = 0;
-        }
-        else if (x > 0xff) {
+        } else if (x > 0xff) {
             x = 0xff;
         }
         return x;

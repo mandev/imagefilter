@@ -16,8 +16,8 @@ limitations under the License.
 package com.jhlabs.image;
 
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which renders text onto an image.
@@ -39,9 +39,9 @@ public class RenderTextFilter extends AbstractBufferedImageOp {
     /**
      * Construct a RenderTextFilter.
      *
-     * @param text the text
-     * @param font the font to use (may be null)
-     * @param paint the paint (may be null)
+     * @param text      the text
+     * @param font      the font to use (may be null)
+     * @param paint     the paint (may be null)
      * @param composite the composite (may be null)
      * @param transform the transform (may be null)
      */

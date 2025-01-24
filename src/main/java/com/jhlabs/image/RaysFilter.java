@@ -15,10 +15,10 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
+import com.jhlabs.composite.MiscComposite;
+
 import java.awt.*;
-import java.awt.geom.*;
-import java.awt.image.*;
-import com.jhlabs.composite.*;
+import java.awt.image.BufferedImage;
 
 /**
  * A filter which produces the effect of light rays shining out of an image.
@@ -154,8 +154,7 @@ public class RaysFilter extends MotionBlurOp {
                 int l = r + g + b;
                 if (l < threshold3) {
                     pixels[x] = 0xff000000;
-                }
-                else {
+                } else {
                     l /= 3;
                     pixels[x] = a | (l << 16) | (l << 8) | l;
                 }
@@ -178,8 +177,7 @@ public class RaysFilter extends MotionBlurOp {
                 if (colormap != null) {
                     int l = r + g + b;
                     rgb = colormap.getColor(l * strength * (1 / 3f));
-                }
-                else {
+                } else {
                     r = PixelUtils.clamp((int) (r * strength));
                     g = PixelUtils.clamp((int) (g * strength));
                     b = PixelUtils.clamp((int) (b * strength));

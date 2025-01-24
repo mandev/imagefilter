@@ -15,9 +15,6 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.awt.*;
-import java.awt.image.*;
-
 /**
  * A warp grid. From "A simplified approach to Image Processing" by Randy Crane
  */
@@ -61,8 +58,7 @@ public class WarpGrid {
                 if (row == before) {
                     x[k] = (xGrid[l] + xGrid[k]) / 2;
                     y[k] = (yGrid[l] + yGrid[k]) / 2;
-                }
-                else {
+                } else {
                     x[k] = xGrid[l];
                     y[k] = yGrid[l];
                 }
@@ -95,8 +91,7 @@ public class WarpGrid {
                 if (col == before) {
                     x[j] = (xGrid[i] + xGrid[i - 1]) / 2;
                     y[j] = (yGrid[i] + yGrid[i - 1]) / 2;
-                }
-                else {
+                } else {
                     x[j] = xGrid[i];
                     y[j] = yGrid[i];
                     i++;
@@ -172,8 +167,8 @@ public class WarpGrid {
         int index = 0;
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                intermediate.xGrid[index] = (float) ImageMath.lerp(t, xGrid[index], destination.xGrid[index]);
-                intermediate.yGrid[index] = (float) ImageMath.lerp(t, yGrid[index], destination.yGrid[index]);
+                intermediate.xGrid[index] = ImageMath.lerp(t, xGrid[index], destination.xGrid[index]);
+                intermediate.yGrid[index] = ImageMath.lerp(t, yGrid[index], destination.yGrid[index]);
                 index++;
             }
         }
@@ -273,8 +268,8 @@ public class WarpGrid {
                 int i = x;
 
                 for (v = 0; v < gridRows; v++) {
-                    xrow[v] = splines.xGrid[i];;
-                    yrow[v] = splines.yGrid[i];;
+                    xrow[v] = splines.xGrid[i];
+                    yrow[v] = splines.yGrid[i];
                     i += cols;
                 }
 
@@ -282,8 +277,7 @@ public class WarpGrid {
                 scale[rows] = rows;
                 ImageMath.resample(intermediate, outPixels, rows, x, cols, scale);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -324,8 +318,7 @@ public class WarpGrid {
                 }
                 if (index < end) {
                     k3 = yKnots[index + 1];
-                }
-                else {
+                } else {
                     k3 = k2;
                 }
             }

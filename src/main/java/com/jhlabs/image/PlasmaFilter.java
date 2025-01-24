@@ -15,15 +15,16 @@ limitations under the License.
  */
 package com.jhlabs.image;
 
-import java.util.*;
 import java.awt.*;
+import java.util.Date;
+import java.util.Random;
 
 public class PlasmaFilter extends WholeImageFilter {
 
     public float turbulence = 1.0f;
     private float scaling = 0.0f;
     private Colormap colormap = new LinearColormap();
-    private Random randomGenerator;
+    private final Random randomGenerator;
     private long seed = 567;
     private boolean useColormap = false;
     private boolean useImageColors = false;
@@ -113,8 +114,7 @@ public class PlasmaFilter extends WholeImageFilter {
     private int randomRGB(int[] inPixels, int x, int y) {
         if (useImageColors) {
             return inPixels[y * originalSpace.width + x];
-        }
-        else {
+        } else {
             int r = (int) (255 * randomGenerator.nextFloat());
             int g = (int) (255 * randomGenerator.nextFloat());
             int b = (int) (255 * randomGenerator.nextFloat());
@@ -198,10 +198,7 @@ public class PlasmaFilter extends WholeImageFilter {
                 putPixel(mx, my, mm, pixels, stride);
             }
 
-            if (x2 - x1 < 3 && y2 - y1 < 3) {
-                return false;
-            }
-            return true;
+            return x2 - x1 >= 3 || y2 - y1 >= 3;
         }
 
         mx = (x1 + x2) / 2;
